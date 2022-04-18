@@ -33,7 +33,7 @@ class ProductFactory extends Factory
             'writer'=>$this->faker->name,
             'penciled'=>$this->faker->name,
             'item_number'=>$this->faker->randomNumber(),
-            'body'=>$this->faker->text(35),
+            'body'=>$this->faker->text(75),
             'price'=>$this->faker->numberBetween(15 ,65),
         ];
     }

@@ -45,16 +45,16 @@
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                         <li class="nav-item">
-                                            <a class="nav-link fs-5 fw-bold" aria-current="page" href="index.html">Home</a>
+                                            <a class="nav-link fs-5 fw-bold" aria-current="page" href="{{route('home')}}">Home</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link fs-5 fw-bold" href="store.html">Shop</a>
+                                            <a class="nav-link fs-5 fw-bold" href="{{route('home.shop')}}">Shop</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link fs-5 fw-bold" href="about.html">About</a>
+                                            <a class="nav-link fs-5 fw-bold" href="{{route('home.about')}}">About</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link fs-5 fw-bold" href="about.html">Blog</a>
+                                            <a class="nav-link fs-5 fw-bold" href="{{route('home.bloghome')}}">Blog</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link fs-5 fw-bold pe-3" href="contact.html">Contact</a>
@@ -97,7 +97,6 @@
                             <figure class="mb-4">
                                 <img class="img-fluid" src="{{$post->photo ? asset($post->photo->file) : 'https://via.placeholder.com/800x600'}}" alt="{{$post->title}}">
                             </figure>
-                            <!-- Post content-->
                         </article>
                     </div>
                 </div>

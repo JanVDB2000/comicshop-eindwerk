@@ -106,7 +106,7 @@
                                                 <div class="upcoming-badge">
                                                     <i class="fas fa-book"></i>
                                                 </div>
-                                                <a href="details.html"><img src="{{$product->photo ? asset($product->photo->file) : 'http://via.placeholder.com/750x750'}}" class="card-img-top" alt=""></a>
+                                                <a href="{{route('home.shopd',$product)}}"><img src="{{$product->photo ? asset($product->photo->file) : 'http://via.placeholder.com/750x750'}}" class="card-img-top" alt=""></a>
                                                 <div class="card-body">
                                                     <div class="card-body text-center">
                                                         <h3 class="card-title">{{$product->name}}</h3>
@@ -124,7 +124,7 @@
                                                     <li class="list-group-item text-center">
                                                         <div class="row">
                                                             <div  class="col-12">
-                                                                <a class="d-flex justify-content-evenly" href="details.html">
+                                                                <a class="d-flex justify-content-evenly" href="{{route('home.shopd',$product)}}">
                                                                     <p class="fw-bold m-0 text-black fs-1">Buy Now</p>
                                                                     <p class="fw-bold m-0"><span class="text-danger fs-1">€{{$product->price}}</span></p>
                                                                 </a>
@@ -162,7 +162,7 @@
                                             <i class="fas fa-book"></i>
                                         </div>
                                         <div class="row">
-                                            <a href="details.html" class="col-lg-4"><img src="img/img-pages/marvel-comics-i114018.jpg" class="card-img-top" alt="Placeholder"></a>
+                                            <a href="{{route('home.shopd',$product)}}" class="col-lg-4"><img src="img/img-pages/marvel-comics-i114018.jpg" class="card-img-top" alt="Placeholder"></a>
                                             <div class="card-body border-radius col-lg-4 text-lg-start">
                                                 <h3 class="card-title">{{$product->name}}</h3>
                                                 <p class="card-text">Published: {{$product->published_date}}</p>
@@ -180,7 +180,7 @@
                                                 <li class="list-group-item text-center">
                                                     <div class="row">
                                                         <div  class="col-12">
-                                                            <a class="d-flex justify-content-center" href="details.html">
+                                                            <a class="d-flex justify-content-center" href="{{route('home.shopd',$product)}}">
                                                                 <p class="fw-bold m-0 text-black fs-1 p-2">Buy Now </p>
                                                                 <p class="fw-bold m-0 p-2"><span class="text-danger fs-1">€{{$product->price}}</span></p>
                                                             </a>

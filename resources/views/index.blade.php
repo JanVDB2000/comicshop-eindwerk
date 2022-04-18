@@ -26,7 +26,7 @@
                                     <div class="card boxshc border-radius mb-5" style="width: 100%;">
                                         <img class="card-img-top img-fluid border-radius" src="{{$productbrand->photo ? asset($productbrand->photo->file) : 'http://via.placeholder.com/450x700'}}" alt="{{$productbrand->name}}">
                                         <div class="card-body d-flex justify-content-center">
-                                            <a href="" class="btn btn-header fw-bold">View More</a>
+                                            <a href="{{route('home.shopd',$productbrand)}}" class="btn btn-header fw-bold">View More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                     <div class="card boxshc border-radius mb-5" style="width: 100%;">
                                         <img class="card-img-top img-fluid border-radius" src="{{$productbrand->photo ? asset($productbrand->photo->file) : 'http://via.placeholder.com/450x700'}}" alt="{{$productbrand->name}}">
                                         <div class="card-body d-flex justify-content-center">
-                                            <a href="" class="btn btn-header fw-bold">View More</a>
+                                            <a href="{{route('home.shopd',$productbrand)}}" class="btn btn-header fw-bold">View More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                         <div class="upcoming-badge">
                             <i class="fas fa-book"></i>
                         </div>
-                        <a href="details.html"><img src="{{$product->photo ? asset($product->photo->file) : 'http://via.placeholder.com/750x750'}}" class="card-img-top" alt="{{$productbrand->name}}"></a>
+                        <a href="{{route('home.shopd',$product)}}"><img src="{{$product->photo ? asset($product->photo->file) : 'http://via.placeholder.com/750x750'}}" class="card-img-top" alt="{{$productbrand->name}}"></a>
                         <div class="card-body ">
                             <div class="card-body  text-center">
                                 <h3 class="card-title">{{$product->name}}</h3>
@@ -77,9 +77,6 @@
                                 <p class="card-text">Writer: {{$product->writer}}</p>
                                 <p class="card-text">Penciler: {{$product->penciled}}</p>
                             </div>
-
-
-
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
@@ -90,7 +87,7 @@
                             <li class="list-group-item text-center">
                                 <div class="row">
                                     <div  class="col-12">
-                                        <a class="d-flex justify-content-evenly" href="details.html">
+                                        <a class="d-flex justify-content-evenly" href="{{route('home.shopd',$product)}}">
                                             <p class="fw-bold m-0 text-black fs-1">Buy Now</p>
                                             <p class="fw-bold m-0"><span class="text-danger fs-1">€{{$product->price}}</span></p>
                                         </a>

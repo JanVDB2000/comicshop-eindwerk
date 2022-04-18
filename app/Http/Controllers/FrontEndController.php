@@ -35,7 +35,7 @@ class FrontEndController extends Controller
     }
 
     public function shopd(Product $product){
-        return view('shop', compact('product'));
+        return view('product', compact('product'));
     }
 
     public function about(){

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', 'App\Http\Controllers\FrontEndController@index')->name('home');
 Route::get('/shop', 'App\Http\Controllers\FrontEndController@shop')->name('home.shop');
-Route::get('/shop/{shop:slug}', 'App\Http\Controllers\FrontEndController@shopd')->name('home.shopd');
+Route::get('/shop/{product:slug}', 'App\Http\Controllers\FrontEndController@shopd')->name('home.shopd');
 Route::get('/about','App\Http\Controllers\FrontEndController@about' )->name('home.about');
 Route::get('/blog','App\Http\Controllers\FrontEndController@bloghome' )->name('home.bloghome');
 Route::get('/blog/{post:slug}', 'App\Http\Controllers\FrontEndController@post')->name('home.post');
