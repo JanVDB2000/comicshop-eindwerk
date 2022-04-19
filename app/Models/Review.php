@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class Review extends Model
 {
@@ -19,4 +20,9 @@ class Review extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function stars()
+    {
+        $stars = Review::all();
+        return $stars;
+    }
 }

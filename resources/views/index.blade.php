@@ -98,9 +98,12 @@
                                 <div>
                                     <span class="colorstar fs-1 p-0">
                                         @if($product->reviews->isnotempty() )
-                                            @foreach($product->reviews as $productreview)
-                                                {{$productreview->stars}}
-                                            @endforeach
+                                            <div class="Stars" style="--rating:
+{{dd($product->reviews->stars)}}
+                                            @foreach($product->stars() as $productreview)
+
+                                            {{$productreview->avgRating($productreview->avg('stars'))}}
+                                           @endforeach;" aria-label="Rating of this product is 2.3 out of 5.">
                                         @else
                                             {{'No Reviews'}}
                                         @endif
