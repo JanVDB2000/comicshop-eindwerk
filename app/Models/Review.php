@@ -20,9 +20,9 @@ class Review extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function stars()
+    public function avgRating($id)
     {
-        $stars = Review::all();
+        $stars = Review::whereid($id)->avg('stars');
         return $stars;
     }
 }

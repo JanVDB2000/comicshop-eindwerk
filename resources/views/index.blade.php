@@ -97,13 +97,12 @@
                             <li class="list-group-item bg-dark border-radius m-3">
                                 <div>
                                     <span class="colorstar fs-1 p-0">
-                                        @if($product->reviews->isnotempty() )
+                                        @if($product->reviews->isnotempty())
                                             <div class="Stars" style="--rating:
-{{dd($product->reviews->stars)}}
-                                            @foreach($product->stars() as $productreview)
-
-                                            {{$productreview->avgRating($productreview->avg('stars'))}}
-                                           @endforeach;" aria-label="Rating of this product is 2.3 out of 5.">
+                                            @foreach($product->reviews as $productreview)
+                                            {{$productreview->avgRating($productreview->id)}}
+                                            @endforeach;">
+                                            </div>
                                         @else
                                             {{'No Reviews'}}
                                         @endif
@@ -140,9 +139,7 @@
                                                     <a href="#0"><img src="{{asset('img/img-pages/client03.png')}}" alt="{{$review->user->name}}"></a>
                                                 </div>
                                                 <div class="card-footer text-muted border-none">
-                                                    <div class="ratings colorstar">
-                                                        {{$review->stars}}
-                                                    </div>
+                                                    <div class="Stars" style="--rating:{{$review->stars}}"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -163,9 +160,7 @@
                                                     <a href="#0"><img src="{{asset('img/img-pages/client03.png')}}" alt="{{$review->user->name}}"></a>
                                                 </div>
                                                 <div class="card-footer text-muted border-none">
-                                                    <div class="ratings colorstar">
-                                                        {{$review->stars}}
-                                                    </div>
+                                                    <div class="Stars" style="--rating:{{$review->stars}}"></div>
                                                 </div>
                                             </div>
                                         </div>
