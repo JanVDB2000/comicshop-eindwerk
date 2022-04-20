@@ -73,16 +73,14 @@
         </li>
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePhotos"
-               aria-expanded="true" aria-controls="collapsePhotos">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePhotos" aria-expanded="true" aria-controls="collapsePhotos">
                 <i class="fas fa-images"></i>
-                <span>Media</span>
+                <span>Photos</span>
             </a>
             <div id="collapsePhotos" class="collapse" aria-labelledby="collapsePhotos" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">User Pages:</h6>
-                    <a class="collapse-item" href="{{route('media.index')}}">All Media</a>
-                    <a class="collapse-item" href="{{route('media.create')}}">Create Media</a>
+                    <h6 class="collapse-header">Photos:</h6>
+                    <a class="collapse-item" href="{{route('photos.index')}}">All Photos</a>
                 </div>
             </div>
         </li>

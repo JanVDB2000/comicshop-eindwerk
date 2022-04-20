@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <h1>Users</h1>
+    <h1>Photos</h1>
     <table class="table table-striped">
         <thead>
         <tr>

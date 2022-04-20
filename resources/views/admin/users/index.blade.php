@@ -36,7 +36,7 @@
             <tr>
                 <td>{{$user->id}}</td>
                 <td>
-                    <img width="auto" height="62" src="{{$user->photo ? asset('img/users') . $user->photo->file: 'http://via.placeholder.com/62'}}" alt="{{$user->name}}">
+                    <img src="{{$user->photo ? asset( 'img/' . $user->photo->file): 'https://via.placeholder.com/64x64'}}" alt="{{$user->name}}" width="64" height="64">
                 </td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
@@ -58,6 +58,7 @@
                             {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
                         {!! Form::close() !!}
                         @endif
+                        <a href="{{url('admin/users/'.$user->id .'/edit')}}" class="btn-warning btn"><i class="fas fa-edit text-black"></i></a>
                 </td>
             </tr>
                 @endforeach

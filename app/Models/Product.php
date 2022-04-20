@@ -28,4 +28,18 @@ class Product extends Model
     public function productcategory(){
         return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }
+    public function avgRating()
+    {
+        $total = 0;
+
+        foreach ($this->reviews as $review){
+            $total += $review->stars;
+        }
+        $avg = $total/count($this->reviews);
+
+        return $avg;
+    }
+
 }
+
+

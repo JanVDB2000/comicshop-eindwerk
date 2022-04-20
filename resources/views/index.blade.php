@@ -64,6 +64,7 @@
             <div class="row text-center">
                 @if($products)
                 @foreach($products as $product)
+
                 <div class="col-12 col-lg-4 mb-4">
                     <div class="card border-none bage" style="width: 100%;">
                         <div class="upcoming-badge">
@@ -102,11 +103,7 @@
                                 <div>
                                     <span class="colorstar fs-1 p-0">
                                         @if($product->reviews->isnotempty())
-                                            <div class="Stars" style="--rating:
-                                            @foreach($product->reviews as $productreview)
-                                            {{$productreview->avgRating($productreview->id)}}
-                                            @endforeach;">
-                                            </div>
+                                            <div class="Stars" style="--rating:{{$product->avgRating()}};"></div>
                                         @else
                                             {{'No Reviews'}}
                                         @endif
@@ -117,6 +114,7 @@
                     </div>
                 </div>
                 @endforeach
+
                 @endif
             </div>
         </div>
