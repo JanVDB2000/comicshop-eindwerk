@@ -87,10 +87,14 @@
                             <li class="list-group-item text-center">
                                 <div class="row">
                                     <div  class="col-12">
-                                        <a class="d-flex justify-content-evenly" href="{{route('home.shopd',$product)}}">
-                                            <p class="fw-bold m-0 text-black fs-1">Buy Now</p>
-                                            <p class="fw-bold m-0"><span class="text-danger fs-1">€{{$product->price}}</span></p>
-                                        </a>
+                                        <div class="d-flex justify-content-evenly">
+                                            <a href="{{route('home.shopd',$product)}}">
+                                                <p class="fw-bold m-0"><p class="fw-bold m-0 text-black fs-1">Buy Now</p><span class="text-danger fs-1">€{{$product->price}}</span></p>
+                                            </a>
+                                            <a href="#">
+                                                <button class="btn btn-lg btn-header mt-5" type="button"><i class="bi-cart-fill me-1"></i>Add to cart</button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
