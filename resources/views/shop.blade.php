@@ -106,14 +106,12 @@
                                                 <div class="upcoming-badge">
                                                     <i class="fas fa-book"></i>
                                                 </div>
-                                                <a href="{{route('home.shopd',$product)}}"><img src="{{$product->photo ? asset($product->photo->file) : 'http://via.placeholder.com/750x750'}}" class="card-img-top" alt=""></a>
+                                                <a href="{{route('home.shopd',$product)}}"><img src="{{$product->photo ? asset( 'img/'.$product->photo->file) : 'http://via.placeholder.com/750x750'}}" class="card-img-top" alt="{{$product->name}}" width="450" height="450"></a>
                                                 <div class="card-body">
-                                                    <div class="card-body text-center">
-                                                        <h3 class="card-title">{{$product->name}}</h3>
-                                                        <p class="card-text">Published: {{$product->published_date}}</p>
-                                                        <p class="card-text">Writer: {{$product->writer}}</p>
-                                                        <p class="card-text">Penciler: {{$product->penciled}}</p>
-                                                    </div>
+                                                    <h3 class="card-title">{{Str::limit($product->name, 20)}}</h3>
+                                                    <p class="card-text">Published: {{$product->published_date}}</p>
+                                                    <p class="card-text">Writer: {{$product->writer}}</p>
+                                                    <p class="card-text">Penciler: {{$product->penciled}}</p>
                                                 </div>
                                                 <ul class="list-group list-group-flush">
                                                     <li class="list-group-item">
@@ -123,25 +121,27 @@
                                                     </li>
                                                     <li class="list-group-item text-center">
                                                         <div class="row">
-                                                            <div  class="col-12">
-                                                                <a class="d-flex justify-content-evenly" href="{{route('home.shopd',$product)}}">
-                                                                    <p class="fw-bold m-0 text-black fs-1">Buy Now</p>
-                                                                    <p class="fw-bold m-0"><span class="text-danger fs-1">€{{$product->price}}</span></p>
+                                                            <div  class="col-4">
+                                                                <a href="{{route('home.shopd',$product)}}">
+                                                                    <p class="fw-bold m-0 text-black fs-4">Buy Now</p><span class="text-danger fs-4">€{{$product->price}}</span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <a href="#">
+                                                                    <button class="btn btn-header mt-2" type="button"><i class="bi-cart-fill me-1"></i>Add to cart</button>
                                                                 </a>
                                                             </div>
                                                         </div>
                                                     </li>
                                                     <li class="list-group-item bg-dark border-radius m-3">
                                                         <div>
-                                                            <span class="colorstar fs-1 p-0">
-                                                                @if($product->reviews->isnotempty() )
-                                                                    @foreach($product->reviews as $productreview)
-                                                                        {{$productreview->stars}}
-                                                                    @endforeach
+                                                          <span class="colorstar fs-1 p-0">
+                                                                @if($product->reviews->isnotempty())
+                                                                    <div class="Stars" style="--rating:{{$product->avgRating()}};"></div>
                                                                 @else
                                                                     {{'No Reviews'}}
-                                                                @endif
-                                                            </span>
+                                                                 @endif
+                                                          </span>
                                                         </div>
                                                     </li>
                                                 </ul>
@@ -162,7 +162,7 @@
                                             <i class="fas fa-book"></i>
                                         </div>
                                         <div class="row">
-                                            <a href="{{route('home.shopd',$product)}}" class="col-lg-4"><img src="img/img-pages/marvel-comics-i114018.jpg" class="card-img-top" alt="Placeholder"></a>
+                                            <a href="{{route('home.shopd',$product)}}" class="col-lg-4"><img class="card-img-top img-fluid border-radius" src="{{$product->photo ? asset('img/'.$product->photo->file) : 'https://via.placeholder.com/450x700'}}" alt="{{$product->name}}" width="450" height="450"></a>
                                             <div class="card-body border-radius col-lg-4 text-lg-start">
                                                 <h3 class="card-title">{{$product->name}}</h3>
                                                 <p class="card-text">Published: {{$product->published_date}}</p>
@@ -191,9 +191,7 @@
                                                     <div>
                                                         <span class="colorstar fs-1 p-0">
                                                             @if($product->reviews->isnotempty() )
-                                                                @foreach($product->reviews as $productreview)
-                                                                    {{$productreview->stars}}
-                                                                @endforeach
+                                                                <div class="Stars" style="--rating:{{$product->avgRating()}};"></div>
                                                             @else
                                                                 {{'No Reviews'}}
                                                             @endif

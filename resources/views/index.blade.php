@@ -24,7 +24,7 @@
                                     @if($loop->index < 3)
                                 <div class="col p-2">
                                     <div class="card boxshc border-radius mb-5" style="width: 100%;">
-                                        <img class="card-img-top img-fluid border-radius" src="{{$productbrand->photo ? asset($productbrand->photo->file) : 'http://via.placeholder.com/450x700'}}" alt="{{$productbrand->name}}">
+                                        <img class="card-img-top img-fluid border-radius" src="{{$productbrand->photo ? asset('img/'.$productbrand->photo->file) : 'https://via.placeholder.com/450x700'}}" alt="{{$productbrand->name}}" width="450" height="450">
                                         <div class="card-body d-flex justify-content-center">
                                             <a href="{{route('home.shopd',$productbrand)}}" class="btn btn-header fw-bold">View More</a>
                                         </div>
@@ -40,7 +40,7 @@
                                     @if($loop->index >= 3)
                                 <div class="col p-2">
                                     <div class="card boxshc border-radius mb-5" style="width: 100%;">
-                                        <img class="card-img-top img-fluid border-radius" src="{{$productbrand->photo ? asset($productbrand->photo->file) : 'http://via.placeholder.com/450x700'}}" alt="{{$productbrand->name}}">
+                                        <img class="card-img-top img-fluid border-radius" src="{{$productbrand->photo ? asset('img/'.$productbrand->photo->file) : 'https://via.placeholder.com/450x700'}}" alt="{{$productbrand->name}}" width="450" height="450">
                                         <div class="card-body d-flex justify-content-center">
                                             <a href="{{route('home.shopd',$productbrand)}}" class="btn btn-header fw-bold">View More</a>
                                         </div>
@@ -70,13 +70,13 @@
                         <div class="upcoming-badge">
                             <i class="fas fa-book"></i>
                         </div>
-                        <a href="{{route('home.shopd',$product)}}"><img src="{{$product->photo ? asset($product->photo->file) : 'http://via.placeholder.com/750x750'}}" class="card-img-top" alt="{{$productbrand->name}}"></a>
+                        <a href="{{route('home.shopd',$product)}}"><img src="{{$product->photo ? asset( 'img/'.$product->photo->file) : 'https://via.placeholder.com/750x750'}}" class="card-img-top" alt="{{$productbrand->name}}" width="750" height="750"></a>
                         <div class="card-body ">
                             <div class="card-body  text-center">
                                 <h3 class="card-title">{{$product->name}}</h3>
-                                <p class="card-text">Published: {{$product->published_date}}</p>
-                                <p class="card-text">Writer: {{$product->writer}}</p>
-                                <p class="card-text">Penciler: {{$product->penciled}}</p>
+                                <p class="card-text">Published : {{$product->published_date}}</p>
+                                <p class="card-text">Writer : {{$product->writer}}</p>
+                                <p class="card-text">Penciler : {{$product->penciled}}</p>
                             </div>
                         </div>
                         <ul class="list-group list-group-flush">
@@ -90,7 +90,7 @@
                                     <div  class="col-12">
                                         <div class="d-flex justify-content-evenly">
                                             <a href="{{route('home.shopd',$product)}}">
-                                                <p class="fw-bold m-0"><p class="fw-bold m-0 text-black fs-1">Buy Now</p><span class="text-danger fs-1">€{{$product->price}}</span></p>
+                                                <p class="fw-bold m-0 text-black fs-1">Buy Now</p><span class="text-danger fs-1">€{{$product->price}}</span>
                                             </a>
                                             <a href="#">
                                                 <button class="btn btn-lg btn-header mt-5" type="button"><i class="bi-cart-fill me-1"></i>Add to cart</button>
@@ -138,7 +138,7 @@
                                                 <div class="card-body border-none">
                                                     <h3 class="card-title border-none h3"><a href="#0"  class="text-decoration-none text-black">{{$review->user->name}}</a></h3>
                                                     <p class="card-text border-none">{{$review->description}}</p>
-                                                    <a href="#0"><img src="{{asset('img/img-pages/client03.png')}}" alt="{{$review->user->name}}"></a>
+                                                    <a href="#0"><img src="{{$review->user->photo ? asset( 'img/'.$review->user->photo->file) : 'https://via.placeholder.com/75x75'}}" alt="{{$review->user->name}}" width="64" height="64"></a>
                                                 </div>
                                                 <div class="card-footer text-muted border-none">
                                                     <div class="Stars" style="--rating:{{$review->stars}}"></div>
@@ -159,7 +159,7 @@
                                                 <div class="card-body border-none">
                                                     <h3 class="card-title border-none h3"><a href="#0"  class="text-decoration-none text-black">{{$review->user->name}}</a></h3>
                                                     <p class="card-text border-none">{{$review->description}}</p>
-                                                    <a href="#0"><img src="{{asset('img/img-pages/client03.png')}}" alt="{{$review->user->name}}"></a>
+                                                    <a href="#0"><img src="{{$review->user->photo ? asset( 'img/'.$review->user->photo->file) : 'https://via.placeholder.com/75x75'}}" alt="{{$review->user->name}}" width="64" height="64"></a>
                                                 </div>
                                                 <div class="card-footer text-muted border-none">
                                                     <div class="Stars" style="--rating:{{$review->stars}}"></div>

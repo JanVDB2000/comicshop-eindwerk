@@ -49,7 +49,6 @@
                 <td>{{$user->created_at->diffForHumans()}}</td>
                 <td>{{$user->updated_at->diffForHumans()}}</td>
                 <td>{{$user->photo ? $user->photo->file : 'niks'}}
-                <td>{{$user->deleted_at}}</td>
                 <td>
                     @if($user->deleted_at != null)
                         <a class="btn btn-warning" href="{{route('users.restore',$user->id)}}">Restore</a>
@@ -57,15 +56,13 @@
                         {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\AdminUsersController@destroy', $user->id]]) !!}
                             {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
                         {!! Form::close() !!}
-                        @endif
-                        <a href="{{url('admin/users/'.$user->id .'/edit')}}" class="btn-warning btn"><i class="fas fa-edit text-black"></i></a>
+                    @endif
+                </td>
+                <td>
+                    <a href="{{url('admin/users/'.$user->id .'/edit')}}" class="btn-warning btn"><i class="fas fa-edit text-black"></i></a>
                 </td>
             </tr>
                 @endforeach
-
         </tbody>
-
     </table>
-
-
     @endsection

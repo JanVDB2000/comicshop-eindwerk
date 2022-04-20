@@ -15,7 +15,7 @@ class FrontEndController extends Controller
     public function index(){
         $productsbrands = Product::latest()->take(6)->get()->load(['brand','photo']);
         $products= Product::latest()->take(6)->get()->load(['brand','photo','reviews']);
-        $reviewssite = Review::latest()->take(6)->get()->load(['user']);
+        $reviewssite = Review::latest()->take(6)->get()->load(['user','user.photo']);
         return view('index', compact('products','productsbrands','reviewssite'));
     }
 
