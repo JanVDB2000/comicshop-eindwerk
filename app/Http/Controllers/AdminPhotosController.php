@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
-class AdminUsersController extends Controller
+class AdminPhotosController extends Controller
 {
     /**
      * Display a listing of the resource.

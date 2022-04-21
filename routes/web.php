@@ -42,7 +42,7 @@ Auth::routes(['verify'=>true]);
 });*/
 
 Route::group(['prefix' => 'admin', 'middleware'=> 'admin'], function(){
-    Route::resource('users',App\Http\Controllers\AdminUsersController::class);
+    Route::resource('users',App\Http\Controllers\AdminPhotosController::class);
     Route::get('users/restore/{user}', 'App\Http\Controllers\AdminUsersController@restore')->name('users.restore');
     Route::resource('comments',\App\Http\Controllers\AdminPostCommentsController::class);
     Route::resource('replies', \App\Http\Controllers\AdminPostCommentRepliesController::class);
