@@ -15,8 +15,7 @@
                         @method('POST')
                         <input class="form-control" type="hidden" name="id" value="{{$item['product_id']}}">
                         <div class="d-flex justify-content-between">
-                            <input wire:model="cart" class="form-control me-2" type="number" name="quantity" value="{{$item['quantity']}}" min="1" max="100">
-
+                            <input wire:click="updateQuantity" class="form-control me-2" type="number" name="quantity" value="{{$item['quantity']}}" min="1" max="100">
                             <button class="btn btn-outline-success btn-sm me-2" type="submit"><i class="fas fa-recycle"></i></button>
                             <a class="btn btn-outline-danger btn-sm p-2" href="{{route('removeItem',$item['product_id'])}}"><i class="fas fa-times-circle"></i></a>
                         </div>
