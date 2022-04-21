@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class FrontEndController extends Controller
 {
@@ -40,5 +42,41 @@ class FrontEndController extends Controller
 
     public function about(){
         return view('about-page');
+    }
+    public function addToCart($id){
+        $product = Product::with(['productcategory','photo','brand'])->where('id', $id)->first();
+        $oldCart = Session::has('cart') ? Session::get('cart'): null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $id);
+        Session::put('cart',$cart);
+        return redirect()->back();
+    }
+
+    public function cart(){
+        if(!Session::has('cart')){
+            return redirect('/shop');
+        }else{
+            $currentCart = Session::has('cart') ? Session::get('cart') : null;
+            $cart = new Cart($currentCart);
+            $cart = $cart->products;
+            return view('checkout',compact('cart'));
+        }
+    }
+
+    public function updateQuantity(Request $request){
+        //dd($request);
+        $oldCart = Session::has('cart') ? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->updateQuantity($request->id, $request->quantity);
+        Session::put('cart', $cart);
+        return redirect()->back();
+    }
+
+    public function removeItem($id){
+        $oldCart = Session::has('cart') ? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($id);
+        Session::put('cart', $cart);
+        return redirect()->back();
     }
 }

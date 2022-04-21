@@ -127,7 +127,7 @@
                                                                 </a>
                                                             </div>
                                                             <div class="col-8">
-                                                                <a href="#">
+                                                                <a href="{{route('addToCart',$product->id)}}">
                                                                     <button class="btn btn-header mt-2" type="button"><i class="bi-cart-fill me-1"></i>Add to cart</button>
                                                                 </a>
                                                             </div>
@@ -177,12 +177,16 @@
                                                         <p class="pe-2 m-0 fw-bold">Listing ID: <span>{{$product->id}}</span></p><p class="ps-2 m-0 fw-bold">Item #<span>{{$product->item_number}}</span></p>
                                                     </div>
                                                 </li>
-                                                <li class="list-group-item text-center">
+                                                <li class="list-group-item">
                                                     <div class="row">
-                                                        <div  class="col-12">
-                                                            <a class="d-flex justify-content-center" href="{{route('home.shopd',$product)}}">
-                                                                <p class="fw-bold m-0 text-black fs-1 p-2">Buy Now </p>
-                                                                <p class="fw-bold m-0 p-2"><span class="text-danger fs-1">€{{$product->price}}</span></p>
+                                                        <div  class="col-4">
+                                                            <a href="{{route('home.shopd',$product)}}">
+                                                                <p class="fw-bold m-0 text-black fs-4">Buy Now</p><span class="text-danger fs-4">€{{$product->price}}</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <a href="{{route('addToCart',$product->id)}}">
+                                                                <button class="btn btn-header mt-2" type="button"><i class="bi-cart-fill me-1"></i>Add to cart</button>
                                                             </a>
                                                         </div>
                                                     </div>
