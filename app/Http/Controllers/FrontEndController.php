@@ -64,7 +64,6 @@ class FrontEndController extends Controller
     }
 
     public function updateQuantity(Request $request){
-        //dd($request);
         $oldCart = Session::has('cart') ? Session::get('cart'):null;
         $cart = new Cart($oldCart);
         $cart->updateQuantity($request->id, $request->quantity);
