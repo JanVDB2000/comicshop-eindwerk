@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
-use App\Models\Keyword;
 use App\Models\Photo;
 use App\Models\Post;
 use App\Models\Product;
@@ -22,7 +21,7 @@ class AdminProductsController extends Controller
     {
         //
         $brands = Brand::all();
-        $products = Product::with(['brand','photo','keywords','productcategory'])->paginate(10);
+        $products = Product::with(['brand','photo','productcategory'])->paginate(10);
         return view('admin.products.index', compact('products','brands'));
     }
 
@@ -34,10 +33,9 @@ class AdminProductsController extends Controller
     public function create()
     {
         //
-        $keywords= Keyword::all();
         $productcategories = ProductCategory::all();
         $brands = Brand::all();
-        return view('admin.products.create', compact('keywords','brands', 'productcategories'));
+        return view('admin.products.create', compact('brands', 'productcategories'));
     }
 
     /**
@@ -74,15 +72,6 @@ class AdminProductsController extends Controller
 
         /** de gekozen categoriëen wegschrijven naar de tussentabel category_post**/
         //$post->categories()->sync($request->categories, false);
-
-        foreach($request->keywords as $keyword){
-            $keywordfind = Keyword::findOrFail($keyword);
-            //onderstaande lijn zorgt ervoor dat we via het model
-            //van post, de methode keywords gebruiken.
-            //de methode keywords bevat morphToMany.
-            //morphToMany zorgt ervoor dat je kan wegschrijven in keywordables tabel
-            $product->keywords()->save($keywordfind);
-        }
         return redirect()->route('products.index');
     }
 
@@ -105,7 +94,8 @@ class AdminProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        return view('admin.products.edit');
     }
 
     /**
@@ -117,7 +107,7 @@ class AdminProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**

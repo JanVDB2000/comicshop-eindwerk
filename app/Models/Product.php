@@ -13,9 +13,6 @@ class Product extends Model
     use HasApiTokens, HasFactory, Notifiable, Sortable;
     protected $fillable=['photo_id','product_category_id', 'brand_id','name','body','published_date','writer','penciled','item_number','price','slug'];
 
-    public function keywords(){
-        return $this->morphToMany(Keyword::class, 'keywordable');
-    }
     public function photo(){
         return $this->belongsTo(Photo::class);
     }
@@ -28,6 +25,7 @@ class Product extends Model
     public function productcategory(){
         return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }
+
     public function avgRating()
     {
         $total = 0;

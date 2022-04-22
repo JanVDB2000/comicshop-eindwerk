@@ -18,7 +18,6 @@
                 <th>Category</th>
                 <th>Brand</th>
                 <th>Name</th>
-                <th>Keywords</th>
                 <th>Body</th>
                 <th>Created</th>
                 <th>Updated</th>
@@ -38,19 +37,12 @@
                         <td>{{$product->productcategory ? $product->productcategory->name : 'no category'}}</td>
                         <td>{{$product->brand ? $product->brand->name : 'no brand'}}</td>
                         <td>{{$product->name}}</td>
-                        <td>
-                            @if($product->keywords)
-                                @foreach($product->keywords as $keyword)
-                                    <span class="badge badge-pill badge-info">{{$keyword->name}}</span>
-                                @endforeach
-                            @endif
-                        </td>
                         <td>{{$product->body}}</td>
                         <td>{{$product->created_at->diffForHumans()}}</td>
                         <td>{{$product->updated_at->diffForHumans()}}</td>
                         <td class="d-flex">
                             <a class="btn btn-info mr-1" href="#">Show</a>
-                            <a class="btn btn-warning mr-1" href="#">Edit</a>
+                            <a class="btn btn-warning mr-1" href="{{route('products.edit', $product->id)}}">Edit</a>
                         </td>
                     </tr>
                 @endforeach

@@ -1,12 +1,9 @@
 @extends('layouts.store')
 @section('content')
     <section class="container">
-        <div class="py-5 text-center">
-            <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-            <h2>Checkout form</h2>
-            <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        <div class="py-5 text-center fw-bold fs-1">
+            <h1>Checkout</h1>
         </div>
-
         <div class="row g-5">
             <div class="col-md-5 col-lg-4 order-md-last">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -14,7 +11,33 @@
                     <span class="badge bg-primary rounded-pill">{{Session::get('cart') ? Session::get('cart')->totalQuantity: '0'}}</span>
                 </h4>
                 <ul class="list-group mb-3">
-                    <livewire:cart-live-wire :cart="$cart">
+                    @foreach($cart as $item)
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div class="row">
+                                <div class="col-3">
+                                    <img class="card-img-top img-thumbnail" src="{{$item['product_image'] ? asset('img/' . $item['product_image']) : 'http://via.placeholder.com/400'}}" alt="">
+                                </div>
+                                <div class="col-9">
+                                    <div>
+                                        <h6 class="my-0">{{$item['product_name']}}</h6>
+                                        <small class="text-muted">{{Str::limit($item['product_body'],30)}}</small>
+                                    </div>
+                                    <form method="POST" action="{{action('App\Http\Controllers\FrontEndController@updateQuantity')}}" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('POST')
+                                        <input class="form-control" type="hidden" name="id" value="{{$item['product_id']}}">
+                                        <div class="d-flex justify-content-between">
+                                            <input class="form-control me-2" type="number" name="quantity" value="{{$item['quantity']}}" min="1" max="100">
+                                            <button class="btn btn-outline-success btn-sm me-2" type="submit"><i class="fas fa-recycle"></i></button>
+                                            <a class="btn btn-outline-danger btn-sm p-2" href="{{route('removeItem',$item['product_id'])}}"><i class="fas fa-times-circle"></i></a>
+                                        </div>
+
+                                    </form>
+                                    <span class="text-muted">&euro; {{$item['product_price']}}</span>
+                                </div>
+                            </div>
+                        </li>
+                    @endforeach
 
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total (Euro)</span>
