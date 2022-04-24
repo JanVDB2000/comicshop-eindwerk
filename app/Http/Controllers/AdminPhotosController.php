@@ -29,11 +29,11 @@ class AdminPhotosController extends Controller
         //
         //$users = User::all(); //eloquent way ORM
         //$users = User::paginate(15);
-        $users= User::withTrashed()->paginate(15);
+        $photos= Photo::paginate(10);
         //$users = DB::table('users')->get(); //query builder
         //dd($users);
         //return view('admin.users.index', ['users' => $users]);
-        return view('admin.users.index', compact('users'));
+        return view('admin.photos.index', compact('photos'));
 
     }
 

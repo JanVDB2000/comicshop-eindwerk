@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Photo;
 use App\Models\Post;
 use App\Models\Product;
@@ -93,9 +94,12 @@ class AdminProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
 
-        return view('admin.products.edit');
+    {
+        $brands = Brand::all();
+        $productcategory = ProductCategory::all();
+        $product = Product::findOrFail($id);
+        return view('admin.products.edit',compact('brands','product','productcategory'));
     }
 
     /**
@@ -107,6 +111,7 @@ class AdminProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
+
 
     }
 

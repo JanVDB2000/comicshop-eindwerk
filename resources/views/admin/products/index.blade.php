@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('title')
+    Products
+@endsection
 @section('content')
     <div class="col-12">
         <h1>Products</h1>
@@ -31,7 +34,7 @@
                         <td>{{$product->id}}</td>
                         <td>
                             <img width="auto" height="62"
-                                 src="{{$product->photo ? asset('img/products') . $product->photo->file : 'http://via.placeholder.com/62'}}"
+                                 src="{{$product->photo ? asset('img/products'. $product->photo->file)  : 'http://via.placeholder.com/62'}}"
                                  alt="{{$product->name}}">
                         </td>
                         <td>{{$product->productcategory ? $product->productcategory->name : 'no category'}}</td>
