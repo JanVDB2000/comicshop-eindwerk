@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="img/img-pages/icon.png" type="image" sizes="16x16">
+    <link rel="icon" href="{{asset('img/img-pages/icon.png')}}" type="image" sizes="16x16">
     <!-- Bootstrap CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,8 +13,8 @@
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     @livewireStyles
 </head>
 <body>
@@ -52,7 +52,7 @@
                 <div class="container-fluid">
                     <section  class="navbar navbar-expand-lg navbar-light">
                         <div class="col-5">
-                            <a class="navbar-brand" href="#"><img src="img/img-pages/logo.png" alt="logo"></a>
+                            <a class="navbar-brand" href="#"><img src="{{asset('img/img-pages/logo.png')}}" alt="logo"></a>
                             <button class="navbar-toggler mt-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
@@ -97,7 +97,7 @@
             </div>
         </section>
         <div class="banner-shape-2 d-none d-lg-block">
-            <img class="img-fluid " src="img/img-pages/banner-shape-2.png" alt="banner-cover">
+            <img class="img-fluid " src="{{asset('img/img-pages/banner-shape-2.png')}}" alt="banner-cover">
         </div>
     </div>
 </header>
@@ -106,7 +106,7 @@
 </main>
 <footer class="bg-footer pb-5">
     <div class="bg-footer-top">
-        <img class="image-fluid" src="img/img-pages/footer-top-shape.png" alt="footer-top">
+        <img class="image-fluid" src="{{asset('img/img-pages/footer-top-shape.png')}}" alt="footer-top">
     </div>
     <section class="container box-footer">
         <div class="row">
@@ -145,21 +145,21 @@
         </div>
         <div class="row mt-5 pt-4 border-top">
             <div class="col-md-6 col-lg-4">
-                <img src="img/img-pages/logo.png" alt="logo">
+                <img src="{{asset('img/img-pages/logo.png')}}" alt="logo">
             </div>
             <div class="col-md-6 col-lg-4 text-md-right">
                 <ul class="list-icon pt-3">
                     <li class="p-1">
-                        <a href="#0"><img src="img/img-pages/paypal.png" alt="footer"></a>
+                        <a href="#0"><img src="{{asset('img/img-pages/paypal.png')}}" alt="footer"></a>
                     </li>
                     <li class="p-1">
-                        <a href="#0"><img src="img/img-pages/visa.png" alt="footer"></a>
+                        <a href="#0"><img src="{{asset('img/img-pages/visa.png')}}" alt="footer"></a>
                     </li>
                     <li class="p-1">
-                        <a href="#0"><img src="img/img-pages/discover.png" alt="footer"></a>
+                        <a href="#0"><img src="{{asset('img/img-pages/discover.png')}}" alt="footer"></a>
                     </li>
                     <li class="p-1">
-                        <a href="#0"><img src="img/img-pages/mastercard.png" alt="footer"></a>
+                        <a href="#0"><img src="{{asset('img/img-pages/mastercard.png')}}" alt="footer"></a>
                     </li>
                 </ul>
             </div>

@@ -32,8 +32,15 @@ class FrontEndController extends Controller
     }
 
     public function shop(){
+        $brands = Brand::all();
         $products= Product::with(['brand','photo','reviews'])->paginate(6);
-        return view('shop', compact('products'));
+        return view('shop', compact('products','brands',));
+    }
+    public function productsPerBrand($id){
+        $brands = Brand::all();
+        $products = Product::where('brand_id', $id)->with(['brand','photo','reviews'])->paginate(6);
+        $filter = Brand::find($id);
+        return view('shop', compact('products','brands','filter'));
     }
 
     public function shopd(Product $product){
@@ -43,6 +50,9 @@ class FrontEndController extends Controller
     public function about(){
         return view('about-page');
     }
+
+
+
     public function addToCart($id){
         $product = Product::with(['productcategory','photo','brand'])->where('id', $id)->first();
         $oldCart = Session::has('cart') ? Session::get('cart'): null;

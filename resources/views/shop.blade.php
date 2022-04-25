@@ -12,34 +12,18 @@
                     <div class="col-lg-8 d-flex align-items-center mb-3 pt-3">
                         <span class="fw-bold ps-3 m-3 ">Applied Filters : </span>
                         <div class="row">
-                            <div class="purple-label  p-1 col">
-                                <span>Marvel Comics</span>
-                                <a href="#0">
+                            @if(isset($filter))
+                            <div class="purple-label p-1 col">
+                                <span>{{$filter->name}}</span>
+                                <a href="{{route('home.shop')}}">
                                     <i class="fas fa-trash-alt text-black"></i>
                                 </a>
                             </div>
-                            <div class="purple-label  p-1 col">
-                                <span>Price: €0-€250</span>
-                                <a href="#0">
-                                    <i class="fas fa-trash-alt text-black"></i>
-                                </a>
-                            </div>
-                            <div class="purple-label  p-1 col">
-                                <span>Belgium</span>
-                                <a href="#0">
-                                    <i class="fas fa-trash-alt text-black"></i>
-                                </a>
-                            </div>
-                            <div class="purple-label  p-1 col">
-                                <span class="form-inline colorstar"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="far fa-star  text-muted"></span></span>
-                                <a  href="#0">
-                                    <i class="fas fa-trash-alt text-black"></i>
-                                </a>
-                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-2 d-flex align-items-center justify-content-lg-end mb-3 pt-3">
-                        <p class="fw-bold text-decoration-none purple-label p-2"><span class="p-1">{{$products->count()}}</span>Items</p>
+                        <p class="fw-bold text-decoration-none purple-label p-2"><span class="p-1">{{$products->total()}}</span>Items</p>
                     </div>
                     <div class="col-lg-2 d-flex align-items-center justify-content-lg-end mb-3 pt-3 pe-3">
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
@@ -58,39 +42,12 @@
                     <div class="col-lg-12 mb-5">
                         <div class="card border-none bage" style="width: 100%;">
                             <div class="col-lg-10 offset-lg-1 py-1">
-                                <h3 class="fw-bold pb-1 border-bottom">Categories</h3>
-                                <ul class="">
-                                    <li><a href="#" class="d-block text-black"><i class="fas fa-thumbtack color-purple"></i> Marvel Comics</a></li>
-                                    <li><a href="#" class="d-block text-black"><i class="fas fa-thumbtack color-purple"></i> Star Wars Comics</a></li>
-                                    <li><a href="#" class="d-block text-black"><i class="fas fa-thumbtack color-purple"></i> DC Comics</a></li>
-                                    <li><a href="#" class="d-block text-black"><i class="fas fa-thumbtack color-purple"></i> IDW PUBLISHING Comics</a></li>
+                                <h3 class="fw-bold pb-1 border-bottom">Brands</h3>
+                                <ul>
+                                    @foreach($brands as $brand)
+                                    <li><a href="{{route('productsPerBrandF', $brand->id)}}" class="d-block text-black"> <i class="fas fa-thumbtack color-purple"></i> {{$brand->name}}</a></li>
+                                    @endforeach
                                 </ul>
-                            </div>
-                            <div class="col-lg-10 offset-lg-1 py-1">
-                                <h3 class="fw-bold pb-1 border-bottom">Price</h3>
-                                <div class="d-flex pt-2">
-                                    <p class="text-center fw-bold fs-5">€0</p>
-                                    <label for="customRange" class="form-label"></label>
-                                    <input type="range" class="form-range pt-2 pe-2 ps-2" min="0" id="customRange">
-                                    <p class="text-center fw-bold fs-5">€500<p>
-                                </div>
-                            </div>
-                            <div class="col-lg-10 offset-lg-1 py-1">
-                                <h3 class="fw-bold pb-1 border-bottom">Countrys</h3>
-                                <ul class="">
-                                    <li><a href="#" class="d-block text-black"><i class="fas fa-thumbtack color-purple"></i> Belgium</a></li>
-                                    <li><a href="#" class="d-block text-black"><i class="fas fa-thumbtack color-purple"></i> Netherlands</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-10 offset-lg-1 py-1">
-                                <h3 class="fw-bold pb-1 border-bottom">Review Rating</h3>
-                                <form class="colorstar">
-                                    <div class="form-inline d-flex align-items-center py-2"> <label class="tick"><span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <input type="checkbox"> <span class="check"></span> </label> </div>
-                                    <div class="form-inline d-flex align-items-center py-2"> <label class="tick"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="far fa-star  text-muted"></span> <input type="checkbox"> <span class="check"></span> </label> </div>
-                                    <div class="form-inline d-flex align-items-center py-2"> <label class="tick"><span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="far fa-star text-muted"></span> <span class="far fa-star  text-muted"></span> <input type="checkbox"> <span class="check"></span> </label> </div>
-                                    <div class="form-inline d-flex align-items-center py-2"> <label class="tick"><span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="far fa-star  text-muted"></span> <span class="far fa-star text-muted"></span> <span class="far fa-star text-muted"></span> <input type="checkbox"> <span class="check"></span> </label> </div>
-                                    <div class="form-inline d-flex align-items-center py-2"> <label class="tick"> <span class="fas fa-star"></span> <span class="far fa-star text-muted"></span> <span class="far fa-star text-muted"></span> <span class="far fa-star  text-muted"></span> <span class="far fa-star  text-muted"></span> <input type="checkbox"> <span class="check"></span> </label> </div>
-                                </form>
                             </div>
                         </div>
                     </div>
