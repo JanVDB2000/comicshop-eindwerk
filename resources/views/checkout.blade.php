@@ -11,7 +11,8 @@
                     <span class="badge bg-primary rounded-pill">{{Session::get('cart') ? Session::get('cart')->totalQuantity: '0'}}</span>
                 </h4>
                 <ul class="list-group mb-3">
-                    @foreach($cart as $item)
+                    <livewire:cart-l-w :cart="$cart"/>
+                    {{--@foreach($cart as $item)
                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                             <div class="row">
                                 <div class="col-3">
@@ -37,8 +38,7 @@
                                 </div>
                             </div>
                         </li>
-                    @endforeach
-
+                    @endforeach--}}
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total (Euro)</span>
                         <strong>&euro;{{Session::has('cart') ? Session::get('cart')->totalPrice: '0.00'}}</strong>
@@ -74,7 +74,6 @@
                         <div class="col-12">
                             <label for="username" class="form-label">Username</label>
                             <div class="input-group has-validation">
-                                <span class="input-group-text">@</span>
                                 <input type="text" class="form-control" id="username" placeholder="Username" required="">
                                 <div class="invalid-feedback">
                                     Your username is required.
@@ -149,6 +148,5 @@
             </div>
         </div>
     </section>
-
 @stop
 

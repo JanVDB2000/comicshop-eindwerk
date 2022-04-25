@@ -102,7 +102,6 @@
                                 <span>€{{$product->price}}</span>
                             </div>
                             <p class="lead">{{$product->body}}</p>
-
                             <span class="colorstar fs-1">
                                 @if($product->reviews->isnotempty() )
                                     <div class="Stars rounded p-1" style="--rating:{{$product->avgRating()}};"></div>
