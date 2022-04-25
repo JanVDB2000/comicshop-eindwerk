@@ -27,7 +27,7 @@
                         <div class=" d-flex justify-content-start">
                             <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link fs-5 fw-bold " href="#"><i class="colorwhite fs-5 bi bi-telephone-fill"></i> Customer Support</a>
+                                    <a class="nav-link fs-5 fw-bold " href="{{route('home.contact')}}"><i class="colorwhite fs-5 bi bi-telephone-fill"></i> Customer Support</a>
                                 </li>
                             </ul>
                         </div>
@@ -51,7 +51,7 @@
                 <div class="container-fluid">
                     <section  class="navbar navbar-expand-lg navbar-light">
                         <div class="col-5">
-                            <a class="navbar-brand" href="#"><img src="{{asset('img/img-pages/logo.png')}}" alt="logo"></a>
+                            <a class="navbar-brand" href="{{route('home')}}"><img src="{{asset('img/img-pages/logo.png')}}" alt="logo"></a>
                             <button class="navbar-toggler mt-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
@@ -74,13 +74,7 @@
                                         <a class="nav-link fs-5 fw-bold" href="{{route('home.bloghome')}}">Blog</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link fs-5 fw-bold pe-3" href="contact.html">Contact</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <form class="d-flex">
-                                            <input class="search-color rounded-pill mt-1 ps-3 pe-3 " id="search-home" type="search" placeholder="Search for brand, model...." aria-label="Search">
-                                            <label for="search-home"><i class="btn bi bi-search mt-1"></i></label>
-                                        </form>
+                                        <a class="nav-link fs-5 fw-bold" href="{{route('home.contact')}}">Contact</a>
                                     </li>
                                 </ul>
                             </div>
@@ -108,6 +102,15 @@
                                 <span>€{{$product->price}}</span>
                             </div>
                             <p class="lead">{{$product->body}}</p>
+
+                            <span class="colorstar fs-1">
+                                @if($product->reviews->isnotempty() )
+                                    <div class="Stars rounded p-1 bg-dark" style="--rating:{{$product->avgRating()}};"></div>
+                                @else
+                                    {{'No Reviews'}}
+                                @endif
+                            </span>
+                            <br>
                             <button class="btn btn-lg btn-header mt-5" type="button"><i class="bi-cart-fill me-1"></i>Add to cart</button>
                         </div>
                     </div>
@@ -118,72 +121,58 @@
 
 </header>
 <main>
+
     <section class="container">
         <div class="row">
             <ul class="nav  mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="btn active" id="comment-tab" data-bs-toggle="pill" data-bs-target="#comment" type="button" role="tab" aria-controls="comment" aria-selected="false"><i class="fas fa-th-list"></i> Review </button>
+                    <button class="btn active" id="description-tab" data-bs-toggle="pill" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true"><i class="fas fa-file-alt"></i> Description </button>
                 </li>
+                @auth()
                 <li class="nav-item" role="presentation">
-                    <button class="btn" id="description-tab" data-bs-toggle="pill" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true"><i class="fas fa-file-alt"></i> Description </button>
+                    <button class="btn " id="comment-tab" data-bs-toggle="pill" data-bs-target="#comment" type="button" role="tab" aria-controls="comment" aria-selected="false"><i class="fas fa-th-list"></i> Review </button>
                 </li>
+                @endauth
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active colorbuy boxshc p-3 border-radius mb-5" id="comment" role="tabpanel" aria-labelledby="comment-tab">
-                    <div class="container-fluid">
+                @auth()
+                <div class="tab-pane fade colorbuy boxshc p-3 border-radius mb-5" id="comment" role="tabpanel" aria-labelledby="comment-tab">
+                    <div class="container">
                         <div class="row">
-                            <div class="row justify-content-center">
-                                <div class="col-8">
-                                    <!-- Comment Area Start -->
-                                    <section class="mb-5">
-                                        <div class="card bg-light">
-                                            <div class="card-body">
-                                                <!-- Comment form-->
-                                                <form class="mb-4">
-                                                    <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea>
-                                                </form>
-                                                <!-- Comment with nested comments-->
-                                                <div class="d-flex mb-4">
-                                                    <!-- Parent comment-->
-                                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."></div>
-                                                    <div class="ms-3">
-                                                        <div class="fw-bold">Commenter Name</div>
-                                                        If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
-                                                        <!-- Child comment 1-->
-                                                        <div class="d-flex mt-4">
-                                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."></div>
-                                                            <div class="ms-3">
-                                                                <div class="fw-bold">Commenter Name</div>
-                                                                And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
-                                                            </div>
-                                                        </div>
-                                                        <!-- Child comment 2-->
-                                                        <div class="d-flex mt-4">
-                                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."></div>
-                                                            <div class="ms-3">
-                                                                <div class="fw-bold">Commenter Name</div>
-                                                                When you put money directly to a problem, it makes a good headline.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Single comment-->
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."></div>
-                                                    <div class="ms-3">
-                                                        <div class="fw-bold">Commenter Name</div>
-                                                        When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-                                </div>
+                            <div class="col-sm-5 col-md-6 col-12 pb-4">
+                                <h1>Reviews</h1>
+                                @foreach($product->reviews as $review)
+                                    <div class="mt-5">
+                                        <h4>{{$review->user->name}}</h4>
+                                        <span class="fw-bold">{{$review->created_at->diffForHumans()}}</span>
+                                        <br>
+                                        <p>{{$review->description}}</p>
+                                    </div>
+                                @endforeach
+
+                            </div>
+                            <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+                                <form id="algin-form">
+                                    @csrf
+                                    <h4>Leave a Review</h4>
+                                    <div class="form-group">
+                                        <label for="stars">Stars</label>
+                                        <input type="number" min="1" max="5" name="stars">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message">Review</label>
+                                        <textarea name="body" cols="10" rows="3" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" id="post" class="btn bg-yello">Post Review</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade colorbuy boxshc p-3 border-radius mb-5" id="description" role="tabpanel" aria-labelledby="description-tab">
+                @endauth
+                <div class="tab-pane fade show active colorbuy boxshc p-3 border-radius mb-5" id="description" role="tabpanel" aria-labelledby="description-tab">
                     <div class="container">
                         <h3>Officially Licensed Fallout® Collectible</h3>
                         <p>* Designed and Manufactured under license by Chronicle Collectibles</p>

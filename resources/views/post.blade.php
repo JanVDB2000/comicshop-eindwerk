@@ -10,7 +10,7 @@
                             <div class=" d-flex justify-content-start">
                                 <ul class="navbar-nav me-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link fs-5 fw-bold " href="#"><i class="colorwhite fs-5 bi bi-telephone-fill"></i> Customer Support</a>
+                                        <a class="nav-link fs-5 fw-bold " href="{{route('home.contact')}}"><i class="colorwhite fs-5 bi bi-telephone-fill"></i> Customer Support</a>
                                     </li>
                                 </ul>
                             </div>
@@ -34,7 +34,7 @@
                     <div class="container-fluid">
                         <section  class="navbar navbar-expand-lg navbar-light">
                             <div class="col-5">
-                                <a class="navbar-brand" href="#"><img src="{{asset('img/img-pages/logo.png')}}" alt="logo"></a>
+                                <a class="navbar-brand" href="{{route('home')}}"><img src="{{asset('img/img-pages/logo.png')}}" alt="logo"></a>
                                 <button class="navbar-toggler mt-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
@@ -57,13 +57,7 @@
                                             <a class="nav-link fs-5 fw-bold" href="{{route('home.bloghome')}}">Blog</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link fs-5 fw-bold pe-3" href="contact.html">Contact</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <form class="d-flex">
-                                                <input class="search-color rounded-pill mt-1 ps-3 pe-3 " id="search-home" type="search" placeholder="Search for brand, model...." aria-label="Search">
-                                                <label for="search-home"><i class="btn bi bi-search mt-1"></i></label>
-                                            </form>
+                                            <a class="nav-link fs-5 fw-bold" href="{{route('home.contact')}}">Contact</a>
                                         </li>
                                     </ul>
                                 </div>

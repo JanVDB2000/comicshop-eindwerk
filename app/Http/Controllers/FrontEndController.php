@@ -44,11 +44,17 @@ class FrontEndController extends Controller
     }
 
     public function shopd(Product $product){
+        $product->load('reviews.user');
         return view('product', compact('product'));
     }
 
     public function about(){
-        return view('about-page');
+        $reviewssite = Review::latest()->take(6)->get()->load(['user','user.photo']);
+        return view('about-page',compact('reviewssite'));
+    }
+
+    public function contact(){
+        return view('contact');
     }
 
 

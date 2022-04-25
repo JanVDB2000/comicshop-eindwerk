@@ -28,7 +28,7 @@
                         <div class=" d-flex justify-content-start">
                             <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link fs-5 fw-bold " href="{{route('home.contact')}}"><i class="colorwhite fs-5 bi bi-telephone-fill"></i> Customer Support</a>
+                                    <a class="nav-link fs-5 fw-bold " href="#"><i class="colorwhite fs-5 bi bi-telephone-fill"></i> Customer Support</a>
                                 </li>
                             </ul>
                         </div>
@@ -86,7 +86,7 @@
         </div>
         <section class="container-fluid">
             <div class="col-lg-8 offset-lg-2 pb-5">
-                <p><a href="{{route('home')}}" class="p-3 text-decoration-none colorwhite">Home</a><i class="colorwhite fas fa-arrow-right"></i><a href="{{route('home.shop')}}" class="colorwhite p-3 text-decoration-none">Shop</a>
+                <p><a href="{{route('home')}}" class="p-3 text-decoration-none colorwhite">Home</a><i class="colorwhite fas fa-arrow-right"></i><a href="{{route('home.contact')}}" class="colorwhite p-3 text-decoration-none">Contact</a>
                 </p>
             </div>
         </section>
@@ -107,10 +107,10 @@
             <div class="col-md-6 col-lg-3 mb-md-0 mb-4">
                 <h2 class="d-flex colorwhite">Shop Brands</h2>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="colorwhite-f py-1 d-block">Star Wars</a></li>
-                    <li><a href="#" class="colorwhite-f py-1 d-block">Marvel</a></li>
-                    <li><a href="#" class="colorwhite-f py-1 d-block">DC</a></li>
-                    <li><a href="#" class="colorwhite-f py-1 d-block">IDW</a></li>
+                    <li><a href="#" class="colorwhite-f py-1 d-block">Star Wars Comics</a></li>
+                    <li><a href="#" class="colorwhite-f py-1 d-block">Marvel Comics</a></li>
+                    <li><a href="#" class="colorwhite-f py-1 d-block">DC Comics</a></li>
+                    <li><a href="#" class="colorwhite-f py-1 d-block">IDW PUBLISHING Comics</a></li>
                 </ul>
             </div>
             <div class="col-md-6 col-lg-3 mb-md-0 mb-4">

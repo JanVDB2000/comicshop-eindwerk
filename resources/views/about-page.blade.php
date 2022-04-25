@@ -26,7 +26,7 @@
                         <div class=" d-flex justify-content-start">
                             <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link fs-5 fw-bold " href="#"><i class="colorwhite fs-5 bi bi-telephone-fill"></i> Customer Support</a>
+                                    <a class="nav-link fs-5 fw-bold " href="{{route('home.contact')}}"><i class="colorwhite fs-5 bi bi-telephone-fill"></i> Customer Support</a>
                                 </li>
                             </ul>
                         </div>
@@ -50,7 +50,7 @@
                 <div class="container-fluid">
                     <section  class="navbar navbar-expand-lg navbar-light">
                         <div class="col-5">
-                            <a class="navbar-brand" href="#"><img src="img/img-pages/logo.png" alt="logo"></a>
+                            <a class="navbar-brand" href="{{route('home')}}"><img src="img/img-pages/logo.png" alt="logo"></a>
                             <button class="navbar-toggler mt-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
@@ -73,13 +73,7 @@
                                         <a class="nav-link fs-5 fw-bold" href="{{route('home.bloghome')}}">Blog</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link fs-5 fw-bold pe-3" href="contact.html">Contact</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <form class="d-flex">
-                                            <input class="search-color rounded-pill mt-1 ps-3 pe-3 " id="search-home" type="search" placeholder="Search for brand, model...." aria-label="Search">
-                                            <label for="search-home"><i class="btn bi bi-search mt-1"></i></label>
-                                        </form>
+                                        <a class="nav-link fs-5 fw-bold pe-3" href="{{route('home.contact')}}">Contact</a>
                                     </li>
                                 </ul>
                             </div>
@@ -90,7 +84,7 @@
         </div>
         <section class="container-fluid">
             <div class="col-lg-8 offset-lg-2 pb-5">
-                <p><a href="index.html" class="p-3 text-decoration-none colorwhite">Home</a><i class="colorwhite fas fa-arrow-right"></i><a href="about.html" class="colorwhite p-3 text-decoration-none">About</a>
+                <p><a href="{{route('home')}}" class="p-3 text-decoration-none colorwhite">Home</a><i class="colorwhite fas fa-arrow-right"></i><a href="{{route('home.about')}}" class="colorwhite p-3 text-decoration-none">About</a>
                 </p>
             </div>
         </section>
@@ -168,124 +162,44 @@
                     <div class="carousel-inner p-1 pt-3">
                         <div class="carousel-item active">
                             <div class="row">
-                                <div class="col m-3 p-2 border-radius boxshc">
-                                    <div class="card text-center border-none">
-                                        <div class="card-heade border-noner fw-bold">Featured</div>
-                                        <div class="card-body border-none">
-                                            <h5 class="card-title border-none"><a href="#0"  class="text-decoration-none text-black">Tom Powell</a></h5>
-                                            <p class="card-text border-none">This was my first time, but it was exciting. I will try it again. Thank you so much.</p>
-                                            <a href="#0"><img src="img/img-pages/client03.png" alt="client"></a>
-                                        </div>
-                                        <div class="card-footer text-muted border-none">
-                                            <div class="ratings colorstar">
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
+                                @foreach($reviewssite as $review)
+                                    @if($loop->index < 3)
+                                        <div class="col m-3 p-2 border-radius boxshc">
+                                            <div class="card text-center border-none">
+                                                <div class="card-heade border-noner fw-bold">Featured</div>
+                                                <div class="card-body border-none">
+                                                    <h3 class="card-title border-none h3"><a href="#0"  class="text-decoration-none text-black">{{$review->user->name}}</a></h3>
+                                                    <p class="card-text border-none">{{$review->description}}</p>
+                                                    <a href="#0"><img src="{{$review->user->photo ? asset( 'img/'.$review->user->photo->file) : 'https://via.placeholder.com/75x75'}}" alt="{{$review->user->name}}" width="64" height="64"></a>
+                                                </div>
+                                                <div class="card-footer text-muted border-none">
+                                                    <div class="Stars" style="--rating:{{$review->stars}}"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col m-3 p-2 border-radius boxshc">
-                                    <div class="card text-center border-none">
-                                        <div class="card-heade border-noner fw-bold">Featured</div>
-                                        <div class="card-body border-none">
-                                            <h5 class="card-title border-none"><a href="#0"  class="text-decoration-none text-black">Tom Powell</a></h5>
-                                            <p class="card-text border-none">This was my first time, but it was exciting. I will try it again. Thank you so much.</p>
-                                            <a href="#0"><img src="img/img-pages/client03.png" alt="client"></a>
-                                        </div>
-                                        <div class="card-footer text-muted border-none">
-                                            <div class="ratings colorstar">
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col m-3 p-2 border-radius boxshc">
-                                    <div class="card text-center border-none">
-                                        <div class="card-heade border-noner fw-bold">Featured</div>
-                                        <div class="card-body border-none">
-                                            <h5 class="card-title border-none"><a href="#0"  class="text-decoration-none text-black">Tom Powell</a></h5>
-                                            <p class="card-text border-none">This was my first time, but it was exciting. I will try it again. Thank you so much.</p>
-                                            <a href="#0"><img src="img/img-pages/client03.png" alt="client"></a>
-                                        </div>
-                                        <div class="card-footer text-muted border-none">
-                                            <div class="ratings colorstar">
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="row">
-                                <div class="col m-3 p-2 border-radius boxshc">
-                                    <div class="card text-center border-none">
-                                        <div class="card-heade border-noner fw-bold">Featured</div>
-                                        <div class="card-body border-none">
-                                            <h5 class="card-title border-none"><a href="#0"  class="text-decoration-none text-black">Tom Powell</a></h5>
-                                            <p class="card-text border-none">This was my first time, but it was exciting. I will try it again. Thank you so much.</p>
-                                            <a href="#0"><img src="img/img-pages/client03.png" alt="client"></a>
-                                        </div>
-                                        <div class="card-footer text-muted border-none">
-                                            <div class="ratings colorstar">
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
+                                @foreach($reviewssite as $review)
+                                    @if($loop->index >= 3)
+                                        <div class="col m-3 p-2 border-radius boxshc">
+                                            <div class="card text-center border-none">
+                                                <div class="card-heade border-noner fw-bold">Featured</div>
+                                                <div class="card-body border-none">
+                                                    <h3 class="card-title border-none h3"><a href="#0"  class="text-decoration-none text-black">{{$review->user->name}}</a></h3>
+                                                    <p class="card-text border-none">{{$review->description}}</p>
+                                                    <a href="#0"><img src="{{$review->user->photo ? asset( 'img/'.$review->user->photo->file) : 'https://via.placeholder.com/75x75'}}" alt="{{$review->user->name}}" width="64" height="64"></a>
+                                                </div>
+                                                <div class="card-footer text-muted border-none">
+                                                    <div class="Stars" style="--rating:{{$review->stars}}"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col m-3 p-2 border-radius boxshc">
-                                    <div class="card text-center border-none">
-                                        <div class="card-heade border-noner fw-bold">Featured</div>
-                                        <div class="card-body border-none">
-                                            <h5 class="card-title border-none"><a href="#0"  class="text-decoration-none text-black">Tom Powell</a></h5>
-                                            <p class="card-text border-none">This was my first time, but it was exciting. I will try it again. Thank you so much.</p>
-                                            <a href="#0"><img src="img/img-pages/client03.png" alt="client"></a>
-                                        </div>
-                                        <div class="card-footer text-muted border-none">
-                                            <div class="ratings colorstar">
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col m-3 p-2 border-radius boxshc">
-                                    <div class="card text-center border-none">
-                                        <div class="card-heade border-noner fw-bold">Featured</div>
-                                        <div class="card-body border-none">
-                                            <h5 class="card-title border-none"><a href="#0"  class="text-decoration-none text-black">Tom Powell</a></h5>
-                                            <p class="card-text border-none">This was my first time, but it was exciting. I will try it again. Thank you so much.</p>
-                                            <a href="#0"><img src="img/img-pages/client03.png" alt="client"></a>
-                                        </div>
-                                        <div class="card-footer text-muted border-none">
-                                            <div class="ratings colorstar">
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                                <span><i class="fas fa-star"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
                     </div>

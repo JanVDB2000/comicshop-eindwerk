@@ -21,12 +21,13 @@ Route::get('/about','App\Http\Controllers\FrontEndController@about' )->name('hom
 Route::get('/blog','App\Http\Controllers\FrontEndController@bloghome' )->name('home.bloghome');
 Route::get('/blog/{post:slug}', 'App\Http\Controllers\FrontEndController@post')->name('home.post');
 Route::get('/blogcategory/{category:slug}','App\Http\Controllers\AdminPostsCategoriesController@category')->name('category.category');
+Route::get('/contact', 'App\Http\Controllers\FrontEndController@contact')->name('home.contact');
 Route::get('/addtocart/{id}','App\Http\Controllers\FrontEndController@addToCart')->name('addToCart');
 Route::get('/checkout','App\Http\Controllers\FrontEndController@cart')->name('checkout');
 Route::post('/checkout','App\Http\Controllers\FrontEndController@updateQuantity')->name('quantity');
 Route::get('/removeitem/{id}', 'App\Http\Controllers\FrontEndController@removeItem')->name('removeItem');
-Route::get('/contact', 'App\Http\Controllers\ContactController@create');
-Route::post('/contact', 'App\Http\Controllers\ContactController@store');
+
+
 
 //verify zorgt ervoor dat enkel een geverifieerde user wordt toegelaten
 //aan de geautentiseerde routes
