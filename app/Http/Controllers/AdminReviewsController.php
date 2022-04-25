@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminReviewsController extends Controller
 {
@@ -34,7 +37,15 @@ class AdminReviewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($user = Auth::user()){
+            $data =[
+                'stars'=>$request->stars,
+                'description'=>$request->description,
+                'user_id' => $user->id,
+            ];
+            Review::create($data);
+        }
+        return back();
     }
 
     /**

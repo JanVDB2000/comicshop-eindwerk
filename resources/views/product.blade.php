@@ -105,7 +105,7 @@
 
                             <span class="colorstar fs-1">
                                 @if($product->reviews->isnotempty() )
-                                    <div class="Stars rounded p-1 bg-dark" style="--rating:{{$product->avgRating()}};"></div>
+                                    <div class="Stars rounded p-1" style="--rating:{{$product->avgRating()}};"></div>
                                 @else
                                     {{'No Reviews'}}
                                 @endif
@@ -130,7 +130,7 @@
                 </li>
                 @auth()
                 <li class="nav-item" role="presentation">
-                    <button class="btn " id="comment-tab" data-bs-toggle="pill" data-bs-target="#comment" type="button" role="tab" aria-controls="comment" aria-selected="false"><i class="fas fa-th-list"></i> Review </button>
+                    <button class="btn " id="comment-tab" data-bs-toggle="pill" data-bs-target="#comment" type="button" role="tab" aria-controls="comment" aria-selected="false"><i class="fas fa-th-list"></i> Reviews </button>
                 </li>
                 @endauth
             </ul>
@@ -147,24 +147,25 @@
                                         <span class="fw-bold">{{$review->created_at->diffForHumans()}}</span>
                                         <br>
                                         <p>{{$review->description}}</p>
+                                        <div class="Stars rounded img-fluid col-4" style="--rating:{{$review->stars}}"></div>
                                     </div>
                                 @endforeach
 
                             </div>
                             <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
-                                <form id="algin-form">
+                                <form action="{{action('App\Http\Controllers\AdminReviewsController@store')}}">
                                     @csrf
+                                    @method('POST')
                                     <h4>Leave a Review</h4>
                                     <div class="form-group">
+                                        <textarea name="description" cols="10" rows="3" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="stars">Stars</label>
-                                        <input type="number" min="1" max="5" name="stars">
+                                        <input class="form-input" type="number" name="stars" min="1" max="5">
                                     </div>
                                     <div class="form-group">
-                                        <label for="message">Review</label>
-                                        <textarea name="body" cols="10" rows="3" class="form-control"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="button" id="post" class="btn bg-yello">Post Review</button>
+                                        <button type="submit" class="btn bg-yello">Post Review</button>
                                     </div>
                                 </form>
                             </div>

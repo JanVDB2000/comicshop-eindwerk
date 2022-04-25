@@ -56,6 +56,7 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['auth','verified']], function
     Route::resource('posts', App\Http\Controllers\AdminPostsController::class);
     Route::resource('postcategories', App\Http\Controllers\AdminPostsCategoriesController::class);
     Route::resource('products', \App\Http\Controllers\AdminProductsController::class);
+    Route::resource('reviews', \App\Http\Controllers\AdminReviewsController::class);
     Route::resource('brands', \App\Http\Controllers\AdminBrandsController::class);
     Route::resource('product/categories',\App\Http\Controllers\AdminProductCategoryController::class);
     Route::get('products/brand/{id}','App\Http\Controllers\AdminProductsController@productsPerBrand')->name('productsPerBrand');
