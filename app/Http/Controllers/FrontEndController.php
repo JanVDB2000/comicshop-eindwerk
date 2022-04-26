@@ -36,6 +36,13 @@ class FrontEndController extends Controller
         $products= Product::with(['brand','photo','reviews'])->paginate(6);
         return view('shop', compact('products','brands',));
     }
+
+    public function checkout(){
+
+
+
+    }
+
     public function productsPerBrand($id){
         $brands = Brand::all();
         $products = Product::where('brand_id', $id)->with(['brand','photo','reviews'])->paginate(6);
