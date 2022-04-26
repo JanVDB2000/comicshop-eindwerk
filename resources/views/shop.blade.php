@@ -58,7 +58,7 @@
                             <div class="row text-center">
                                 @if($products)
                                     @foreach($products as $product)
-                                        <div class="col-lg-4 col-12 mb-4">
+                                        <div class="col-lg-4 col-md-6 col-xl-4 col-12 mb-4">
                                             <div class="card border-none bage" style="width: 100%;">
                                                 <div class="upcoming-badge">
                                                     <i class="fas fa-book"></i>
@@ -92,7 +92,7 @@
                                                     </li>
                                                     <li class="list-group-item bg-dark border-radius m-3">
                                                         <div>
-                                                          <span class="colorstar fs-1 p-0">
+                                                          <span class="p-0">
                                                                 @if($product->reviews->isnotempty())
                                                                     <div class="Stars" style="--rating:{{$product->avgRating()}};"></div>
                                                                 @else
@@ -150,7 +150,7 @@
                                                 </li>
                                                 <li class="list-group-item bg-dark border-radius m-3">
                                                     <div>
-                                                        <span class="colorstar fs-1 p-0">
+                                                        <span class=" p-0">
                                                             @if($product->reviews->isnotempty() )
                                                                 <div class="Stars" style="--rating:{{$product->avgRating()}};"></div>
                                                             @else

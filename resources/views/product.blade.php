@@ -96,13 +96,15 @@
                     <div class="row gx-4 gx-lg-5 align-items-center">
                         <div class="col-lg-6 col-12"><img class="card-img-top mb-5 mb-md-0" src="{{$product->photo ? asset('img/'.$product->photo->file) : 'https://via.placeholder.com/450x700'}}" alt="{{$product->title}}" width="450" height="750"></div>
                         <div class="col-lg-6 col-12">
-
                             <div class="small mb-1">Listing ID:{{$product->id}} - Item #{{$product->item_number}}</div>
                             <h1 class="display-5 fw-bolder">{{$product->name}}</h1>
-                            <div class="fs-5 mb-5">
+                            <p class="card-text">Published: {{$product->published_date}}</p>
+                            <p class="card-text">Writer: {{$product->writer}}</p>
+                            <p class="card-text">Penciler: {{$product->penciled}}</p>
+                            <p class="lead">{{$product->body}}</p>
+                            <div class="fs-1 fw-bold mb-5">
                                 <span>€{{$product->price}}</span>
                             </div>
-                            <p class="lead">{{$product->body}}</p>
                             <span class="colorstar fs-1">
                                 @if($product->reviews->isnotempty() )
                                     <div class="Stars rounded p-1" style="--rating:{{$product->avgRating()}};"></div>
@@ -177,7 +179,10 @@
                 <div class="tab-pane fade show active colorbuy boxshc p-3 border-radius mb-5" id="description" role="tabpanel" aria-labelledby="description-tab">
                     <div class="container">
                         <h3>{{$product->name}}</h3>
-                        <p>{{$product->body}}</p>
+                        <p class="card-text">Published: {{$product->published_date}}</p>
+                        <p class="card-text">Writer: {{$product->writer}}</p>
+                        <p class="card-text">Penciler: {{$product->penciled}}</p>
+                        <p class="card-text">Description: {{$product->body}}</p>
                     </div>
                 </div>
             </div>
