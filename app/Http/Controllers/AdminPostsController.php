@@ -69,16 +69,6 @@ class AdminPostsController extends Controller
 
         /** de gekozen categoriëen wegschrijven naar de tussentabel category_post**/
         $post->categories()->sync($request->categories, false);
-
-
-        foreach($request->keywords as $keyword){
-            $keywordfind = Keyword::findOrFail($keyword);
-            //onderstaande lijn zorgt ervoor dat we via het model
-            //van post, de methode keywords gebruiken.
-            //de methode keywords bevat morphToMany.
-            //morphToMany zorgt ervoor dat je kan wegschrijven in keywordables tabel
-            $post->keywords()->save($keywordfind);
-        }
         return redirect()->route('posts.index');
     }
 

@@ -48,6 +48,7 @@ class Cart extends Model
     }
 
     public function updateQuantity($id, $quantity){
+        if ($quantity >= 1){
             //telt het totaal aantal items in de winkelwagen
             $this->totalQuantity -= $this->products[$id]['quantity'];
             $this->totalQuantity += $quantity;
@@ -59,6 +60,8 @@ class Cart extends Model
                 $this->totalPrice -= ($this->products[$id]['quantity']-$quantity)*$this->products[$id]['product_price'];
             }
             $this->products[$id]['quantity'] = $quantity;
+        }
+
     }
     public function removeItem($id){
         $this->totalQuantity -= $this->products[$id]['quantity'];

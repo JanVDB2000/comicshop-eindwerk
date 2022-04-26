@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReviewsRequest;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,17 +36,23 @@ class AdminReviewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReviewsRequest $request)
     {
-        if($user = Auth::user()){
-            $data =[
-                'stars'=>$request->stars,
-                'description'=>$request->description,
-                'user_id' => $user->id,
-            ];
-            Review::create($data);
+        if ($request->stars <= 5 && $request->stars >= 1 ){
+            if($user = Auth::user()){
+                $data =[
+                    'product_id'=>$request->id,
+                    'stars'=>$request->stars,
+                    'description'=>$request->description,
+                    'user_id' => $user->id,
+                ];
+                Review::create($data);
+            }
+            return back();
+        }else{
+            return back();
         }
-        return back();
+
     }
 
     /**

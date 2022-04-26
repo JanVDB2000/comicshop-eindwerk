@@ -36,7 +36,7 @@
                         <div class="">
                             <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link fw-bold" href="cart.html"><i class="colorwhite fs-4 bi bi-basket"></i> <span class="amount colorwhite">8</span></a>
+                                    <a class="nav-link fw-bold" href="{{route('checkout')}}"><i class="colorwhite fs-4 bi bi-basket"></i> <span class="amount colorwhite">{{Session::has('cart') ? Session::get('cart')->totalQuantity: '0'}}</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link fw-bold"  href="login.html"><i class="colorwhite fs-4 bi bi-person-circle"></i></a>
@@ -94,8 +94,9 @@
             <div class="container px-4 px-lg-5 my-5">
                 <div class="border-radius border mb-3 p-3 bg-white text-left mx-auto">
                     <div class="row gx-4 gx-lg-5 align-items-center">
-                        <div class="col-lg-6 col-12"><img class="card-img-top mb-5 mb-md-0" src="{{asset('img/img-pages/marvel-comics-i114018.jpg')}}" alt="{{$product->title}}" /></div>
+                        <div class="col-lg-6 col-12"><img class="card-img-top mb-5 mb-md-0" src="{{$product->photo ? asset('img/'.$product->photo->file) : 'https://via.placeholder.com/450x700'}}" alt="{{$product->title}}" width="450" height="750"></div>
                         <div class="col-lg-6 col-12">
+
                             <div class="small mb-1">Listing ID:{{$product->id}} - Item #{{$product->item_number}}</div>
                             <h1 class="display-5 fw-bolder">{{$product->name}}</h1>
                             <div class="fs-5 mb-5">
@@ -110,7 +111,7 @@
                                 @endif
                             </span>
                             <br>
-                            <button class="btn btn-lg btn-header mt-5" type="button"><i class="bi-cart-fill me-1"></i>Add to cart</button>
+                            <a class="btn btn-lg btn-header mt-5" href="{{route('addToCart',$product->id)}}"><i class="bi-cart-fill me-1"></i>Add to cart</a>
                         </div>
                     </div>
                 </div>
@@ -146,16 +147,17 @@
                                         <span class="fw-bold">{{$review->created_at->diffForHumans()}}</span>
                                         <br>
                                         <p>{{$review->description}}</p>
-                                        <div class="Stars rounded img-fluid col-4" style="--rating:{{$review->stars}}"></div>
+                                        <div class="Stars rounded w-25 col-4" style="--rating:{{$review->stars}}"></div>
                                     </div>
                                 @endforeach
 
                             </div>
                             <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
-                                <form action="{{action('App\Http\Controllers\AdminReviewsController@store')}}">
+                                <form method="POST" action="{{action('App\Http\Controllers\AdminReviewsController@store')}}">
                                     @csrf
                                     @method('POST')
                                     <h4>Leave a Review</h4>
+                                    <input name="id" type="hidden" value="{{$product->id}}">
                                     <div class="form-group">
                                         <textarea name="description" cols="10" rows="3" class="form-control"></textarea>
                                     </div>
@@ -174,14 +176,8 @@
                 @endauth
                 <div class="tab-pane fade show active colorbuy boxshc p-3 border-radius mb-5" id="description" role="tabpanel" aria-labelledby="description-tab">
                     <div class="container">
-                        <h3>Officially Licensed Fallout® Collectible</h3>
-                        <p>* Designed and Manufactured under license by Chronicle Collectibles</p>
-                        <p>* Features LED lights on each side</p>
-                        <p>* Moveable trigger as the on/off switch</p>
-                        <p>* Created from Bethesda’s 3D assets</p>
-                        <p>* Materials: Injection Plastics</p>
-                        <p>* Dimensions: 15” long x 6” wide x 11” tall</p>
-                        <p>* Weight: estimated 8 pounds</p>
+                        <h3>{{$product->name}}</h3>
+                        <p>{{$product->body}}</p>
                     </div>
                 </div>
             </div>
@@ -214,7 +210,6 @@
                 <h2 class="d-flex colorwhite">We're Here to Help</h2>
                 <ul class="list-unstyled">
                     <li><a href="#" class="colorwhite-f py-1 d-block">Contact</a></li>
-                    <li><a href="#" class="colorwhite-f py-1 d-block">Help &amp; Support</a></li>
                 </ul>
             </div>
             <div class="col-md-6 col-lg-3 mb-md-0 mb-4">
