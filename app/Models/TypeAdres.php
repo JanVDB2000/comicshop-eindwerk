@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class TypeAdres extends Model
 {
     use HasFactory;
-    protected $fillable = ['type_adres'];
+    protected $fillable = ['name'];
+
+    public function addresses(){
+        return $this->belongsToMany(Address::class, 'addresses_type_adres');
+    }
 
 }

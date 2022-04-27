@@ -3,10 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Address;
+use App\Models\TypeAdres;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AddressSeeder extends Seeder
+class AddressesTypeAdresTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +16,6 @@ class AddressSeeder extends Seeder
      */
     public function run()
     {
-        Address::factory()->count(25)->create();
+
     }
 }

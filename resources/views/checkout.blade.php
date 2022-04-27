@@ -17,49 +17,49 @@
                         <strong>&euro;{{Session::has('cart') ? Session::get('cart')->totalPrice: '0.00'}}</strong>
                     </li>
                 </ul>
-                <form class="card p-2">
-                    <div class="input-group d-flex justify-content-between">
-                        <a class="btn bg-yello text-center fw-bold" href="{{route('home.shop')}}">Continue shopping</a>
-                        <a class="btn bg-yello text-center fw-bold" href="">Pay</a>
-                    </div>
-                </form>
+                <div class="input-group d-flex justify-content-between">
+                    <a class="btn bg-yello text-center fw-bold" href="{{route('home.shop')}}">Continue shopping</a>
+                    <a class="btn bg-yello text-center fw-bold" href="">Pay</a>
+                </div>
             </div>
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Billing address</h4>
-                <form>
+                <form method="POST" action="{{action('App\Http\Controllers\FrontEndController@orderReady')}}" enctype="multipart/form-data">
+                    @csrf
+                    @method('POST')
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label for="firstName" class="form-label">First name</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="Jhon">
+                            <input type="text" class="form-control" id="firstName" name="firstName_b" placeholder="Jhon">
                         </div>
 
                         <div class="col-sm-6">
                             <label for="lastName" class="form-label">Last name</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="Walker">
+                            <input type="text" class="form-control" id="lastName" name="lastName_b" placeholder="Walker">
                         </div>
                         <div class="col-12">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" placeholder="1234 Main St">
+                            <input type="text" class="form-control" name="street_b" placeholder="1234 Main St">
                         </div>
 
                         <div class="col-12">
                             <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
-                            <input type="text" class="form-control"  placeholder="Apartment or suite">
+                            <input type="text" class="form-control" name="street_b"  placeholder="Apartment or suite">
                         </div>
 
                         <div class="col-md-5">
                             <label for="country" class="form-label">Country</label>
-                            <input type="text" class="form-control" placeholder="Country">
+                            <input type="text" class="form-control" name="country_b" placeholder="Country">
                         </div>
 
                         <div class="col-md-4">
                             <label for="state" class="form-label">State</label>
-                            <input type="text" class="form-control" placeholder="State">
+                            <input type="text" class="form-control" name="state_b" placeholder="State">
                         </div>
 
                         <div class="col-md-3">
                             <label for="zip" class="form-label">Zip</label>
-                            <input type="text" class="form-control" id="zip" placeholder="8000">
+                            <input type="text" class="form-control" id="zip" name="zip_b" placeholder="8000">
                         </div>
                         <hr>
                             <button class="btn bg-yello fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
@@ -70,36 +70,36 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label for="firstName" class="form-label">First name</label>
-                                        <input type="text" class="form-control" id="firstName" placeholder="Jhon">
+                                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Jhon">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="lastName" class="form-label">Last name</label>
-                                        <input type="text" class="form-control" id="lastName" placeholder="Walker">
+                                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Walker">
                                     </div>
                                     <div class="col-12">
                                         <label for="address" class="form-label">Address</label>
-                                        <input type="text" class="form-control" placeholder="1234 Main St">
+                                        <input type="text" class="form-control" name="street_b" placeholder="1234 Main St">
                                     </div>
 
                                     <div class="col-12">
                                         <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
-                                        <input type="text" class="form-control"  placeholder="Apartment or suite">
+                                        <input type="text" class="form-control" name="street_b"  placeholder="Apartment or suite">
                                     </div>
 
                                     <div class="col-md-5">
                                         <label for="country" class="form-label">Country</label>
-                                        <input type="text" class="form-control" placeholder="Country">
+                                        <input type="text" class="form-control" name="country" placeholder="Country">
                                     </div>
 
                                     <div class="col-md-4">
                                         <label for="state" class="form-label">State</label>
-                                        <input type="text" class="form-control" placeholder="State">
+                                        <input type="text" class="form-control" name="state" placeholder="State">
                                     </div>
 
                                     <div class="col-md-3">
                                         <label for="zip" class="form-label">Zip</label>
-                                        <input type="text" class="form-control" id="zip" placeholder="8000">
+                                        <input type="text" class="form-control" name="zip" id="zip" placeholder="8000">
                                     </div>
                                     <hr class="my-4">
                                 </div>

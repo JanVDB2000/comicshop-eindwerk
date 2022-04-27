@@ -37,11 +37,7 @@ class FrontEndController extends Controller
         return view('shop', compact('products','brands',));
     }
 
-    public function checkout(){
 
-
-
-    }
 
     public function productsPerBrand($id){
         $brands = Brand::all();
@@ -99,6 +95,11 @@ class FrontEndController extends Controller
         $cart = new Cart($oldCart);
         $cart->removeItem($id);
         Session::put('cart', $cart);
+        return redirect()->back();
+    }
+    public function orderReady(Request $request){
+
+
         return redirect()->back();
     }
 }

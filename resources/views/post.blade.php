@@ -105,26 +105,26 @@
                 <div class="col-10 offset-1">
                     <p class="fs-5 mb-4">{{$post->body}}</p>
                 </div>
-                <div class="container-fluid">
+                <!--                <div class="container-fluid">
                     <div class="row">
                         <div class="row justify-content-center">
                             <div class="col-8">
-                                <!-- Comment Area Start -->
+                                &lt;!&ndash; Comment Area Start &ndash;&gt;
                                 <section class="mb-5">
                                     <div class="card bg-light">
                                         <div class="card-body">
-                                            <!-- Comment form-->
+                                            &lt;!&ndash; Comment form&ndash;&gt;
                                             <form class="mb-4">
                                                 <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea>
                                             </form>
-                                            <!-- Comment with nested comments-->
+                                            &lt;!&ndash; Comment with nested comments&ndash;&gt;
                                             <div class="d-flex mb-4">
-                                                <!-- Parent comment-->
+                                                &lt;!&ndash; Parent comment&ndash;&gt;
                                                 <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."></div>
                                                 <div class="ms-3">
                                                     <div class="fw-bold">Commenter Name</div>
                                                     If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
-                                                    <!-- Child comment 1-->
+                                                    &lt;!&ndash; Child comment 1&ndash;&gt;
                                                     <div class="d-flex mt-4">
                                                         <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."></div>
                                                         <div class="ms-3">
@@ -132,7 +132,7 @@
                                                             And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
                                                         </div>
                                                     </div>
-                                                    <!-- Child comment 2-->
+                                                    &lt;!&ndash; Child comment 2&ndash;&gt;
                                                     <div class="d-flex mt-4">
                                                         <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."></div>
                                                         <div class="ms-3">
@@ -142,7 +142,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- Single comment-->
+                                            &lt;!&ndash; Single comment&ndash;&gt;
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..."></div>
                                                 <div class="ms-3">
@@ -156,7 +156,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </section>
     </main>

@@ -22,11 +22,13 @@ class DatabaseSeeder extends Seeder
             PostsTableSeeder::class,
             CategoriesTableSeeder::class,
             RepliesTableSeeder::class,
-            TagsTableSeeder::class,
             BrandsTableSeeder::class,
             ProductCategorySeeder::class,
             ProductsTableSeeder::class,
             ReviewsTableSeeder::class,
+            TypeAdresSeeder::class,
+            AddressSeeder::class,
+            AddressesTypeAdresTableSeeder::class,
         ]);
     }
 }
