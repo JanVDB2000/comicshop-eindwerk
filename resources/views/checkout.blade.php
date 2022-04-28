@@ -19,7 +19,6 @@
                 </ul>
                 <div class="input-group d-flex justify-content-between">
                     <a class="btn bg-yello text-center fw-bold" href="{{route('home.shop')}}">Continue shopping</a>
-                    <a class="btn bg-yello text-center fw-bold" href="">Pay</a>
                 </div>
             </div>
             <div class="col-md-7 col-lg-8">
@@ -39,12 +38,7 @@
                         </div>
                         <div class="col-12">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" name="street_b" placeholder="1234 Main St">
-                        </div>
-
-                        <div class="col-12">
-                            <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
-                            <input type="text" class="form-control" name="street_b"  placeholder="Apartment or suite">
+                            <input type="text" class="form-control" name="street_one_b" placeholder="1234 Main St">
                         </div>
 
                         <div class="col-md-5">
@@ -70,40 +64,36 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label for="firstName" class="form-label">First name</label>
-                                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Jhon">
+                                        <input type="text" class="form-control" name="firstName_s" placeholder="Jhon">
                                     </div>
 
                                     <div class="col-sm-6">
                                         <label for="lastName" class="form-label">Last name</label>
-                                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Walker">
+                                        <input type="text" class="form-control" name="lastName_s" placeholder="Walker">
                                     </div>
                                     <div class="col-12">
                                         <label for="address" class="form-label">Address</label>
-                                        <input type="text" class="form-control" name="street_b" placeholder="1234 Main St">
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
-                                        <input type="text" class="form-control" name="street_b"  placeholder="Apartment or suite">
+                                        <input type="text" class="form-control" name="street_one_s" placeholder="1234 Main St">
                                     </div>
 
                                     <div class="col-md-5">
                                         <label for="country" class="form-label">Country</label>
-                                        <input type="text" class="form-control" name="country" placeholder="Country">
+                                        <input type="text" class="form-control" name="country_s" placeholder="Country">
                                     </div>
 
                                     <div class="col-md-4">
                                         <label for="state" class="form-label">State</label>
-                                        <input type="text" class="form-control" name="state" placeholder="State">
+                                        <input type="text" class="form-control" name="state_s" placeholder="State">
                                     </div>
 
                                     <div class="col-md-3">
                                         <label for="zip" class="form-label">Zip</label>
-                                        <input type="text" class="form-control" name="zip" id="zip" placeholder="8000">
+                                        <input type="text" class="form-control" name="zip_s" id="zip" placeholder="8000">
                                     </div>
                                     <hr class="my-4">
                                 </div>
                         </div>
+                        <button type="submit" class="btn bg-yello text-center fw-bold">Pay</button>
                     </div>
                 </form>
             </div>

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('address_1');
-            $table->string('address_2');
             $table->string('country');
             $table->string('state');
             $table->string('zip');

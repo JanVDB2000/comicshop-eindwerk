@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Brand;
 use App\Models\Cart;
 use App\Models\Category;
@@ -99,6 +100,53 @@ class FrontEndController extends Controller
     }
     public function orderReady(Request $request){
 
+        if ($request->firstName_s == null &&
+            $request->lastName_s == null &&
+            $request->street_one_s == null &&
+            $request->country_s == null  &&
+            $request->state_s == null &&
+            $request->zip_s == null
+        ){
+            $address = new Address();
+            $address->firstName = $request->firstName_b;
+            $address->lastName = $request->lastName_b;
+            $address->address_1 = $request->street_one_b;
+            $address->country = $request->country_b;
+            $address->state =$request->state_b;
+            $address->zip = $request->zip_b;
+
+
+            $address->save();
+
+            $address->TypeAdres()->sync([2],false);
+
+
+
+        }else{
+            //billing address
+            $address = new Address();
+            $address->firstName = $request->firstName_b;
+            $address->lastName = $request->lastName_b;
+            $address->address_1 = $request->street_one_b;
+            $address->country = $request->country_b;
+            $address->state =$request->state_b;
+            $address->zip = $request->zip_b;
+
+            $address->save();
+
+            //shipping address
+            $address = new Address();
+            $address->firstName = $request->firstName_s;
+            $address->lastName = $request->lastName_s;
+            $address->address_1 = $request->street_one_s;
+            $address->country = $request->country_s;
+            $address->state =$request->state_s;
+            $address->zip = $request->zip_s;
+
+            $address->save();
+
+
+        }
 
         return redirect()->back();
     }

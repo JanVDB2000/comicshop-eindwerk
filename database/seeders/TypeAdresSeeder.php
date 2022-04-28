@@ -15,7 +15,7 @@ class TypeAdresSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('type_adres')->insert(['name' => 'Shipping Address']);
-        DB::table('type_adres')->insert(['name' => 'Billing Address']);
+        DB::table('typeaddresses')->insert(['name' => 'Shipping Address']);
+        DB::table('typeaddresses')->insert(['name' => 'Billing Address']);
     }
 }

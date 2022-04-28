@@ -24,7 +24,7 @@ Route::get('/blogcategory/{category:slug}','App\Http\Controllers\AdminPostsCateg
 Route::get('/contact', 'App\Http\Controllers\FrontEndController@contact')->name('home.contact');
 Route::get('/addtocart/{id}','App\Http\Controllers\FrontEndController@addToCart')->name('addToCart');
 Route::get('/checkout','App\Http\Controllers\FrontEndController@cart')->name('checkout');
-Route::post('/checkout','App\Http\Controllers\FrontEndController@orderReady')->name('orderready');
+Route::post('/orderready','App\Http\Controllers\FrontEndController@orderReady')->name('orderready');
 Route::post('/checkout','App\Http\Controllers\FrontEndController@updateQuantity')->name('quantity');
 Route::get('/removeitem/{id}', 'App\Http\Controllers\FrontEndController@removeItem')->name('removeItem');
 

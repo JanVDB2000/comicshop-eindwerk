@@ -63,7 +63,7 @@
                                                 <div class="upcoming-badge">
                                                     <i class="fas fa-book"></i>
                                                 </div>
-                                                <a href="{{route('home.shopd',$product)}}"><img src="{{$product->photo ? asset( 'img/'.$product->photo->file) : 'http://via.placeholder.com/750x750'}}" class="card-img-top" alt="{{$product->name}}" width="450" height="450"></a>
+                                                <a href="{{route('home.shopd',$product)}}"><img src="{{$product->photo ? asset( 'img/'.$product->photo->file) : 'http://via.placeholder.com/450x750'}}" class="card-img-top" alt="{{$product->name}}" width="450" height="750"></a>
                                                 <div class="card-body">
                                                     <h3 class="card-title">{{Str::limit($product->name, 20)}}</h3>
                                                     <p class="card-text">Published: {{$product->published_date}}</p>
@@ -92,7 +92,7 @@
                                                     </li>
                                                     <li class="list-group-item bg-dark border-radius m-3">
                                                         <div>
-                                                          <span class="p-0">
+                                                          <span class="colorstar fs-1 p-0">
                                                                 @if($product->reviews->isnotempty())
                                                                     <div class="Stars" style="--rating:{{$product->avgRating()}};"></div>
                                                                 @else

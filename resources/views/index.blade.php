@@ -70,7 +70,7 @@
                         <div class="upcoming-badge">
                             <i class="fas fa-book"></i>
                         </div>
-                        <a href="{{route('home.shopd',$product)}}"><img src="{{$product->photo ? asset( 'img/'.$product->photo->file) : 'https://via.placeholder.com/750x750'}}" class="card-img-top" alt="{{$productbrand->name}}" width="750" height="750"></a>
+                        <a href="{{route('home.shopd',$product)}}"><img src="{{$product->photo ? asset( 'img/'.$product->photo->file) : 'https://via.placeholder.com/450x750'}}" class="card-img-top" alt="{{$productbrand->name}}" width="450" height="750"></a>
                         <div class="card-body ">
                             <div class="card-body  text-center">
                                 <h3 class="card-title">{{$product->name}}</h3>
