@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Mollie\Laravel\Facades\Mollie;
 
@@ -17,13 +18,17 @@ class MollieController extends Controller
 
         $total = number_format(Session::get('cart')->totalPrice * 1.21,2,'.','');
 
+        $user = Auth::user()->name;
+
+
+
 
         $payment = Mollie::api()->payments()->create([
             'amount' => [
                 'currency' => 'EUR', // Type of currency you want to send
                 'value' => "$total", // You must send the correct number of decimals, thus we enforce the use of strings
             ],
-            'description' => 'Payment By codehunger',
+            'description' => 'Payment By ' . $user,
             'redirectUrl' => route('payment.success'), // after the payment completion where you to redirect
             "metadata" => [
                 "order_id" => "12345",
