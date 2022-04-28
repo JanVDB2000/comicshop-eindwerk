@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MollieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,8 @@ Route::get('/checkout','App\Http\Controllers\FrontEndController@cart')->name('ch
 Route::post('/orderready','App\Http\Controllers\FrontEndController@orderReady')->name('orderready');
 Route::post('/checkout','App\Http\Controllers\FrontEndController@updateQuantity')->name('quantity');
 Route::get('/removeitem/{id}', 'App\Http\Controllers\FrontEndController@removeItem')->name('removeItem');
-
+Route::get('/mollie-paymnet',[MollieController::Class,'preparePayment'])->name('mollie.payment');
+Route::get('/payment-success',[MollieController::Class, 'paymentSuccess'])->name('payment.success');
 
 
 //verify zorgt ervoor dat enkel een geverifieerde user wordt toegelaten

@@ -13,8 +13,16 @@
                 <ul class="list-group mb-3">
                     <livewire:cart-l-w :cart="$cart"/>
                     <li class="list-group-item d-flex justify-content-between">
-                        <span>Total (Euro)</span>
+                        <span>SubTotal (Euro)</span>
                         <strong>&euro;{{Session::has('cart') ? Session::get('cart')->totalPrice: '0.00'}}</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>BTW %</span>
+                        <strong>&euro;{{Session::has('cart') ? Session::get('cart')->totalPrice * 0.21: '0.00'}}</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total (Euro)</span>
+                        <strong>&euro;{{Session::has('cart') ? Session::get('cart')->totalPrice * 1.21: '0.00'}}</strong>
                     </li>
                 </ul>
                 <div class="input-group d-flex justify-content-between">
@@ -56,7 +64,7 @@
                             <input type="text" class="form-control" id="zip" name="zip_b" placeholder="8000">
                         </div>
                         <hr>
-                            <button class="btn bg-yello fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                            <button class="btn bg-yello fw-bold col-6" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
                                 Not the same Shipping address as the Billing address.
                             </button>
                         <div class="collapse collapse" id="collapseWidthExample">
@@ -93,7 +101,7 @@
                                     <hr class="my-4">
                                 </div>
                         </div>
-                        <button type="submit" class="btn bg-yello text-center fw-bold">Pay</button>
+                        <a href="{{route('mollie.payment')}}" class="btn bg-yello text-center fw-bold">Checkout</a>
                     </div>
                 </form>
             </div>

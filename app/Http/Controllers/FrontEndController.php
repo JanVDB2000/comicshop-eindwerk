@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CheckoutRequest;
 use App\Models\Address;
 use App\Models\Brand;
 use App\Models\Cart;
@@ -98,7 +99,8 @@ class FrontEndController extends Controller
         Session::put('cart', $cart);
         return redirect()->back();
     }
-    public function orderReady(Request $request){
+
+    public function orderReady(CheckoutRequest $request){
 
         if ($request->firstName_s == null &&
             $request->lastName_s == null &&
@@ -148,6 +150,6 @@ class FrontEndController extends Controller
 
         }
 
-        return redirect()->back();
+        return redirect()->route('');
     }
 }
