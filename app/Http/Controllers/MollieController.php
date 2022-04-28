@@ -17,7 +17,7 @@ class MollieController extends Controller
 
         $total = number_format(Session::get('cart')->totalPrice * 1.21,2,'.','');
 
-        
+
         $payment = Mollie::api()->payments()->create([
             'amount' => [
                 'currency' => 'EUR', // Type of currency you want to send
@@ -25,6 +25,9 @@ class MollieController extends Controller
             ],
             'description' => 'Payment By codehunger',
             'redirectUrl' => route('payment.success'), // after the payment completion where you to redirect
+            "metadata" => [
+                "order_id" => "12345",
+            ],
         ]);
 
         $payment = Mollie::api()->payments()->get($payment->id);
