@@ -24,7 +24,7 @@ class CheckoutRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'quantity'=>'required|min:1|integer',
         ];
     }
 }

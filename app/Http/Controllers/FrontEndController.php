@@ -91,7 +91,7 @@ class FrontEndController extends Controller
         }
     }
 
-    public function updateQuantity(Request $request){
+    public function updateQuantity(CheckoutRequest $request){
         $oldCart = Session::has('cart') ? Session::get('cart'):null;
         $cart = new Cart($oldCart);
         $cart->updateQuantity($request->id, $request->quantity);
@@ -143,20 +143,13 @@ class FrontEndController extends Controller
         foreach (Session::get('cart')->products as $product){
             $orderdetail = new OrderDetail();
             $orderdetail->order_id = $order->id;
-            $orderdetail->product_id = 0;
-            $orderdetail->price = Session::get('cart')->totalPrice;
-            $orderdetail->amount = Session::get('cart')->totalQuantity;
+            $orderdetail->product_id = $product['product_id'];
+            $orderdetail->amount = $product['quantity'];
+            $orderdetail->price = $product['product_price'];
             $orderdetail->save();
         }
-
-
-
-
-       /* if ($request->firstName_s == null && $request->lastName_s == null && $request->street_one_s == null && $request->country_s == null  && $request->state_s == null && $request->zip_s == null
-        ){
+        if ($request->firstName_s == null && $request->lastName_s == null && $request->street_one_s == null && $request->country_s == null  && $request->state_s == null && $request->zip_s == null){
             $address = new Address();
-            $address->firstName = $request->firstName_b;
-            $address->lastName = $request->lastName_b;
             $address->address_1 = $request->street_one_b;
             $address->country = $request->country_b;
             $address->state =$request->state_b;
@@ -172,8 +165,6 @@ class FrontEndController extends Controller
         }else{
             //billing address
             $address = new Address();
-            $address->firstName = $request->firstName_b;
-            $address->lastName = $request->lastName_b;
             $address->address_1 = $request->street_one_b;
             $address->country = $request->country_b;
             $address->state =$request->state_b;
@@ -183,8 +174,6 @@ class FrontEndController extends Controller
 
             //shipping address
             $address = new Address();
-            $address->firstName = $request->firstName_s;
-            $address->lastName = $request->lastName_s;
             $address->address_1 = $request->street_one_s;
             $address->country = $request->country_s;
             $address->state =$request->state_s;
@@ -193,7 +182,7 @@ class FrontEndController extends Controller
             $address->save();
 
 
-        }*/
+        }
         Session::forget('cart');
         return redirect($payment->getCheckoutUrl(), 303);
     }

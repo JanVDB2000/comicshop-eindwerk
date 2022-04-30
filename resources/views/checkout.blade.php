@@ -1,6 +1,6 @@
 @extends('layouts.store')
 @section('content')
-    <section class="container">
+    <section class="container mt-5 mb-5">
         <div class="py-5 text-center fw-bold fs-1">
             <h1>Checkout</h1>
         </div>
@@ -88,7 +88,9 @@
                             </div>
                     </div>
                 </div>
-                    <a href="{{route('mollie.payment')}}" class="btn bg-yello text-center fw-bold">Checkout</a>
+                    <div class="d-flex justify-content-center p-3">
+                        <a href="{{route('mollie.payment')}}" class="btn bg-yello text-center fw-bold col-10 ">Checkout</a>
+                    </div>
                 </form>
            </div>
         </div>
