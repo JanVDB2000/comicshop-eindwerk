@@ -15,12 +15,20 @@ return new class extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('firstName');
-            $table->string('lastName');
             $table->string('address_1');
             $table->string('country');
             $table->string('state');
             $table->string('zip');
+            $table->unsignedBigInteger('user_id')->index();
+            $table->timestamps();
+        });
+        Schema::create('user_address', function (Blueprint $table){
+            $table->id();
+            $table->unsignedBigInteger('address_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unique(['address_id', 'user_id']);
+            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

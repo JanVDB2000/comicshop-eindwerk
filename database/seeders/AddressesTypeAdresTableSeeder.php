@@ -17,12 +17,12 @@ class AddressesTypeAdresTableSeeder extends Seeder
      * @return void
      */
     public function run(){
-        $typeaddress =Typeaddress::all();
+        $typeaddress = Typeaddress::all();
         Address::all()->each(function ($address) use ($typeaddress){
             $address->TypeAdres()->attach(
                     $typeaddress->random(rand(1,2))->pluck('id')->toArray()
             );
         });
-
     }
+
 }

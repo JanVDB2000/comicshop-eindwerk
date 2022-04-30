@@ -7,15 +7,22 @@ use App\Models\Address;
 use App\Models\Brand;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Mollie\Laravel\Facades\Mollie;
 
 class FrontEndController extends Controller
 {
+
+    /** Pages front end **/
+
     public function index(){
         $productsbrands = Product::latest()->take(6)->get()->load(['brand','photo']);
         $products= Product::latest()->take(6)->get()->load(['brand','photo','reviews']);
@@ -39,8 +46,6 @@ class FrontEndController extends Controller
         return view('shop', compact('products','brands',));
     }
 
-
-
     public function productsPerBrand($id){
         $brands = Brand::all();
         $products = Product::where('brand_id', $id)->with(['brand','photo','reviews'])->paginate(6);
@@ -62,7 +67,9 @@ class FrontEndController extends Controller
         return view('contact');
     }
 
+    /** Pages front end **/
 
+    /** Cart **/
 
     public function addToCart($id){
         $product = Product::with(['productcategory','photo','brand'])->where('id', $id)->first();
@@ -100,14 +107,52 @@ class FrontEndController extends Controller
         return redirect()->back();
     }
 
-    public function orderReady(CheckoutRequest $request){
+    /** Cart **/
 
-        if ($request->firstName_s == null &&
-            $request->lastName_s == null &&
-            $request->street_one_s == null &&
-            $request->country_s == null  &&
-            $request->state_s == null &&
-            $request->zip_s == null
+    /** Checkout **/
+
+    public function orderReady(Request $request){
+
+        $total = number_format(Session::get('cart')->totalPrice * 1.21,2,'.','');
+        $user = Auth::user()->name;
+        $user_id = Auth::user()->id;
+
+        $payment = Mollie::api()->payments()->create([
+            'amount' => [
+                'currency' => 'EUR', // Type of currency you want to send
+                'value' => "$total", // You must send the correct number of decimals, thus we enforce the use of strings
+            ],
+            'description' => 'Payment By ' . $user,
+            'redirectUrl' => route('payment.success'), // after the payment completion where you to redirect
+            "metadata" => [
+                "order_id" => "12345",
+            ],
+        ]);
+
+        $payment = Mollie::api()->payments()->get($payment->id);
+
+
+        $order = new Order();
+        $order->user_id = $user_id;
+        $order->TC_code = $payment->id;
+        $order->shipping = 'test';
+        $order->billing = 'test';
+        $order->save();
+
+
+        foreach (Session::get('cart')->products as $product){
+            $orderdetail = new OrderDetail();
+            $orderdetail->order_id = $order->id;
+            $orderdetail->product_id = 0;
+            $orderdetail->price = Session::get('cart')->totalPrice;
+            $orderdetail->amount = Session::get('cart')->totalQuantity;
+            $orderdetail->save();
+        }
+
+
+
+
+       /* if ($request->firstName_s == null && $request->lastName_s == null && $request->street_one_s == null && $request->country_s == null  && $request->state_s == null && $request->zip_s == null
         ){
             $address = new Address();
             $address->firstName = $request->firstName_b;
@@ -148,8 +193,15 @@ class FrontEndController extends Controller
             $address->save();
 
 
-        }
-
-        return redirect()->route('');
+        }*/
+        Session::forget('cart');
+        return redirect($payment->getCheckoutUrl(), 303);
     }
+
+    public function paymentSuccess() {
+    echo 'payment has been received';
+
+    }
+
+    /** Checkout **/
 }

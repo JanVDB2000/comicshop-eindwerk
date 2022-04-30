@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-
+            $table->unsignedBigInteger('user_id')->index();
+            $table->string('TC_code');
+            $table->string('billing');
+            $table->string('shipping');
             $table->timestamps();
         });
     }

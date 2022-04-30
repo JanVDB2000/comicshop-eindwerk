@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             TypeAdresSeeder::class,
             AddressSeeder::class,
             AddressesTypeAdresTableSeeder::class,
+            UsersAddressesTableSeeder::class,
         ]);
     }
 }
