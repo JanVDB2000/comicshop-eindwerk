@@ -149,6 +149,7 @@ class FrontEndController extends Controller
             $orderdetail->save();
         }
         if ($request->firstName_s == null && $request->lastName_s == null && $request->street_one_s == null && $request->country_s == null  && $request->state_s == null && $request->zip_s == null){
+
             $address = new Address();
             $address->address_1 = $request->street_one_b;
             $address->country = $request->country_b;
@@ -158,7 +159,7 @@ class FrontEndController extends Controller
 
             $address->save();
 
-            $address->TypeAdres()->sync([2],false);
+            $address->TypeAdres()->sync([],false);
 
 
 
@@ -178,18 +179,15 @@ class FrontEndController extends Controller
             $address->country = $request->country_s;
             $address->state =$request->state_s;
             $address->zip = $request->zip_s;
-
             $address->save();
-
-
         }
         Session::forget('cart');
         return redirect($payment->getCheckoutUrl(), 303);
     }
 
     public function paymentSuccess() {
-    echo 'payment has been received';
 
+        return redirect('index');
     }
 
     /** Checkout **/
