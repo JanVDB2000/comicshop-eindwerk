@@ -92,7 +92,7 @@
                                                     </li>
                                                     <li class="list-group-item bg-dark border-radius m-3">
                                                         <div>
-                                                          <span class="colorstar fs-1 p-0">
+                                                          <span class="colorstar fs-5 p-0">
                                                                 @if($product->reviews->isnotempty())
                                                                     <div class="Stars" style="--rating:{{$product->avgRating()}};"></div>
                                                                 @else
@@ -150,7 +150,7 @@
                                                 </li>
                                                 <li class="list-group-item bg-dark border-radius m-3">
                                                     <div>
-                                                        <span class=" p-0">
+                                                        <span class="fs-5 p-0">
                                                             @if($product->reviews->isnotempty() )
                                                                 <div class="Stars" style="--rating:{{$product->avgRating()}};"></div>
                                                             @else

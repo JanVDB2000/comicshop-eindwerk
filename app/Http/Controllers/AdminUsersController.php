@@ -58,7 +58,6 @@ class AdminUsersController extends Controller
 
         //
         $user = new User();
-        dd($request);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request['password']);
@@ -80,7 +79,6 @@ class AdminUsersController extends Controller
         }
 
         $user->save();
-
         $user->roles()->sync($request->roles,false);
 
         return redirect('admin/users');

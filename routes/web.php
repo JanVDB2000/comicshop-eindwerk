@@ -36,9 +36,7 @@ Route::get('/payment-success',[FrontEndController::Class, 'paymentSuccess'])->na
 //aan de geautentiseerde routes
 Auth::routes(['verify'=>true]);
 
-
-
-/***BACKEND ROUTES***/
+/*** BACKEND ROUTES ***/
 
 
 /*Route::middleware(['auth'])->group(function(){

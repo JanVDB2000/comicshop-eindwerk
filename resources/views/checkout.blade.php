@@ -24,55 +24,73 @@
             <div class="col-md-7 col-lg-8">
                 <form method="POST" action="{{action('App\Http\Controllers\FrontEndController@factuurAddress')}}" enctype="multipart/form-data">
                 <div class="card p-3">
-                    <div class="card-body">
-                        <h4 class="mb-3">Billing address</h4>
+                    <div class="card-body fs-5">
+                        <h4 class="mb-3">Shipping address</h4>
                             @csrf
                             @method('post')
                             <div class="row g-3">
                                 <div class="col-12">
                                     <label for="address" class="form-label">Address</label>
-                                    <input type="text" class="form-control" name="street_one_b" placeholder="1234 Main St">
+                                    <input type="text" class="form-control" name="street_one_s" placeholder="1234 Main St">
                                 </div>
 
                                 <div class="col-md-5">
                                     <label for="country" class="form-label">Country</label>
-                                    <input type="text" class="form-control" name="country_b" placeholder="Country">
+                                    <input type="text" class="form-control" name="country_s" placeholder="Country">
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="state" class="form-label">State</label>
-                                    <input type="text" class="form-control" name="state_b" placeholder="State">
+                                    <input type="text" class="form-control" name="state_s" placeholder="State">
                                 </div>
 
                                 <div class="col-md-3">
                                     <label for="zip" class="form-label">Zip</label>
-                                    <input type="text" class="form-control" id="zip" name="zip_b" placeholder="8000">
-                                </div>
-                                <hr>
-                                <h4 class="mt-2">Shipping address</h4>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <label for="address" class="form-label">Address</label>
-                                        <input type="text" class="form-control" name="street_one_s" placeholder="1234 Main St">
-                                    </div>
-
-                                    <div class="col-md-5">
-                                        <label for="country" class="form-label">Country</label>
-                                        <input type="text" class="form-control" name="country_s" placeholder="Country">
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label for="state" class="form-label">State</label>
-                                        <input type="text" class="form-control" name="state_s" placeholder="State">
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label for="zip" class="form-label">Zip</label>
-                                        <input type="text" class="form-control" name="zip_s" id="zip" placeholder="8000">
-                                    </div>
-                                    <hr class="my-4">
+                                    <input type="text" class="form-control" name="zip_s" id="zip" placeholder="8000">
                                 </div>
 
+
+
+                                <div class="form-check" x-data="{address: 'SB'}">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="addressType" value="SB" id="flexRadioDefault1" x-model="address" checked>
+                                        <label class="form-check-label" for="flexRadioDefault1">Billing address same as Shipping address</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="addressType" value="SBD" id="flexRadioDefault2" x-model="address">
+                                        <label class="form-check-label" for="flexRadioDefault2">Billing address is not the same as Shipping address</label>
+                                    </div>
+                                    <hr>
+                                        <div x-show="address === 'SBD'" x-transition.duration.500ms>
+
+                                            <h4 class="mt-4">Billing address</h4>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label for="address" class="form-label">Address</label>
+                                                    <input type="text" class="form-control" name="street_one_b" placeholder="1234 Main St">
+                                                </div>
+
+                                                <div class="col-md-5">
+                                                    <label for="country" class="form-label">Country</label>
+                                                    <input type="text" class="form-control" name="country_b" placeholder="Country">
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label for="state" class="form-label">State</label>
+                                                    <input type="text" class="form-control" name="state_b" placeholder="State">
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <label for="zip" class="form-label">Zip</label>
+                                                    <input type="text" class="form-control" id="zip" name="zip_b" placeholder="8000">
+                                                </div>
+
+                                                <hr class="my-4">
+                                            </div>
+                                        </div>
+
+                                </div>
                             </div>
                     </div>
                 </div>

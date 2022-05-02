@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 @charset "UTF-8";
 :root {
-  --star-size: 60px;
+  --star-size: 3rem;
   --star-color: #5b5858;
   --star-background: #fd7801;
 }
@@ -78,7 +78,7 @@
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.6;
   --bs-body-color: #212529;
-  --bs-body-bg: #ffffff;
+  --bs-body-bg: #f8fafc;
 }
 
 *,

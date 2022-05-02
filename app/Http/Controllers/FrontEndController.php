@@ -64,8 +64,6 @@ class FrontEndController extends Controller
     }
 
     public function contact(){
-        Session::forget('cart');
-        Session::forget('addresses');
         return view('contact');
     }
 
@@ -117,11 +115,20 @@ class FrontEndController extends Controller
 
        $user_id = Auth::user()->id;
 
-       $billing = ['address_1' =>$request->street_one_b , 'country' =>$request->country_b , 'state' =>$request->state_b, 'zip' =>$request->zip_b, 'user_id' =>$user_id,];
+       if ($request->addressType == 'SB'){
 
-       $shipping = ['address_1' =>$request->street_one_s , 'country' =>$request->country_s , 'state' =>$request->state_s, 'zip' =>$request->zip_s, 'user_id' => $user_id,];
+           $shipping = ['address_1' =>$request->street_one_s , 'country' =>$request->country_s , 'state' =>$request->state_s, 'zip' =>$request->zip_s, 'user_id' => $user_id,];
 
-       $addresses = [ 'shipping' => $shipping, 'billing' => $billing];
+           $billing = null;
+
+       }else{
+           $shipping = ['address_1' =>$request->street_one_s , 'country' =>$request->country_s , 'state' =>$request->state_s, 'zip' =>$request->zip_s, 'user_id' => $user_id,];
+
+           $billing = ['address_1' =>$request->street_one_b , 'country' =>$request->country_b , 'state' =>$request->state_b, 'zip' =>$request->zip_b, 'user_id' =>$user_id,];
+       }
+
+       $addresses = ['shipping' => $shipping, 'billing' => $billing];
+
 
        Session::put('addresses', $addresses);
 
@@ -151,11 +158,49 @@ class FrontEndController extends Controller
 
         $payment = Mollie::api()->payments()->get($payment->id);
 
-        Session::get('addresses')->billing;
 
-        $address_B =  new Address();
-        $address_B =
+        if (Session::get('addresses')['billing'] == null){
+            $a = Session::get('addresses')['shipping'];
+            $address = new Address();
+            $address->address_1 = $a['address_1'];
+            $address->country = $a['country'];
+            $address->state = $a['state'];
+            $address->zip = $a['zip'];
+            $address->user_id = $a['user_id'];
 
+            $address->save();
+
+            $address->TypeAdres()->sync([1,2],false);
+
+        }else{
+
+            $as =  Session::get('addresses')['shipping'];
+            $address_S =  new Address();
+            $address_S->address_1 = $as['address_1'];
+            $address_S->country = $as['country'];
+            $address_S->state = $as['state'];
+            $address_S->zip = $as['zip'];
+            $address_S->user_id =$as['user_id'];
+
+            $address_S->save();
+
+            $address_S->TypeAdres()->sync([1],false);
+
+
+            $ab = Session::get('addresses')['billing'];
+            $address_B = new Address();
+            $address_B->address_1 = $ab['address_1'];
+            $address_B->country = $ab['country'];
+            $address_B->state = $ab['state'];
+            $address_B->zip = $ab['zip'];
+            $address_B->user_id = $ab['user_id'];
+
+            $address_B->save();
+
+            $address_B->TypeAdres()->sync([2],false);
+        }
+
+        Session::forget('addresses');
 
 
 
@@ -183,7 +228,7 @@ class FrontEndController extends Controller
 
     public function paymentSuccess() {
         /*Session::forget('cart');*/
-        /*Session::forget('addresses');*/
+
         return redirect()->route('home');
     }
 
