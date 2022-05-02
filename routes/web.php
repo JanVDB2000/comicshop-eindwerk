@@ -3,7 +3,6 @@
 use App\Http\Controllers\FrontEndController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MollieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +27,8 @@ Route::get('/addtocart/{id}','App\Http\Controllers\FrontEndController@addToCart'
 Route::get('/checkout','App\Http\Controllers\FrontEndController@cart')->name('checkout');
 Route::post('/checkout','App\Http\Controllers\FrontEndController@updateQuantity')->name('quantity');
 Route::get('/removeitem/{id}', 'App\Http\Controllers\FrontEndController@removeItem')->name('removeItem');
-Route::get('/mollie-paymnet',[FrontEndController::Class,'orderReady'])->name('mollie.payment');
+Route::post('/factuur-address','App\Http\Controllers\FrontEndController@factuurAddress')->name('FactuurAddress');
+Route::get('/mollie-payment',[FrontEndController::Class,'orderReady'])->name('mollie.payment');
 Route::get('/payment-success',[FrontEndController::Class, 'paymentSuccess'])->name('payment.success');
 
 

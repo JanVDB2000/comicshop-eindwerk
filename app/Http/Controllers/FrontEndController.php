@@ -64,6 +64,8 @@ class FrontEndController extends Controller
     }
 
     public function contact(){
+        Session::forget('cart');
+        Session::forget('addresses');
         return view('contact');
     }
 
@@ -109,20 +111,38 @@ class FrontEndController extends Controller
 
     /** Cart **/
 
+
+    /** Address **/
+   public function factuurAddress(Request $request){
+
+       $user_id = Auth::user()->id;
+
+       $billing = ['address_1' =>$request->street_one_b , 'country' =>$request->country_b , 'state' =>$request->state_b, 'zip' =>$request->zip_b, 'user_id' =>$user_id,];
+
+       $shipping = ['address_1' =>$request->street_one_s , 'country' =>$request->country_s , 'state' =>$request->state_s, 'zip' =>$request->zip_s, 'user_id' => $user_id,];
+
+       $addresses = [ 'shipping' => $shipping, 'billing' => $billing];
+
+       Session::put('addresses', $addresses);
+
+       return redirect()->route('mollie.payment');
+   }
+    /** Address **/
+
     /** Checkout **/
 
     public function orderReady(Request $request){
 
-        $total = number_format(Session::get('cart')->totalPrice * 1.21,2,'.','');
-        $user = Auth::user()->name;
+        $total = number_format(Session::get('cart')->totalPrice,2,'.','');
         $user_id = Auth::user()->id;
+        $user_name = Auth::user()->name;
 
         $payment = Mollie::api()->payments()->create([
             'amount' => [
                 'currency' => 'EUR', // Type of currency you want to send
                 'value' => "$total", // You must send the correct number of decimals, thus we enforce the use of strings
             ],
-            'description' => 'Payment By ' . $user,
+            'description' => 'Payment By ' . $user_name,
             'redirectUrl' => route('payment.success'), // after the payment completion where you to redirect
             "metadata" => [
                 "order_id" => "12345",
@@ -130,6 +150,14 @@ class FrontEndController extends Controller
         ]);
 
         $payment = Mollie::api()->payments()->get($payment->id);
+
+        Session::get('addresses')->;
+
+        $address_B =  new Address();
+        $address_B =
+
+
+
 
 
         $order = new Order();
@@ -148,46 +176,15 @@ class FrontEndController extends Controller
             $orderdetail->price = $product['product_price'];
             $orderdetail->save();
         }
-        if ($request->firstName_s == null && $request->lastName_s == null && $request->street_one_s == null && $request->country_s == null  && $request->state_s == null && $request->zip_s == null){
-
-            $address = new Address();
-            $address->address_1 = $request->street_one_b;
-            $address->country = $request->country_b;
-            $address->state =$request->state_b;
-            $address->zip = $request->zip_b;
 
 
-            $address->save();
-
-            $address->TypeAdres()->sync([],false);
-
-
-
-        }else{
-            //billing address
-            $address = new Address();
-            $address->address_1 = $request->street_one_b;
-            $address->country = $request->country_b;
-            $address->state =$request->state_b;
-            $address->zip = $request->zip_b;
-
-            $address->save();
-
-            //shipping address
-            $address = new Address();
-            $address->address_1 = $request->street_one_s;
-            $address->country = $request->country_s;
-            $address->state =$request->state_s;
-            $address->zip = $request->zip_s;
-            $address->save();
-        }
-        Session::forget('cart');
         return redirect($payment->getCheckoutUrl(), 303);
     }
 
     public function paymentSuccess() {
-
-        return redirect('index');
+        /*Session::forget('cart');*/
+        /*Session::forget('addresses');*/
+        return redirect()->route('home');
     }
 
     /** Checkout **/

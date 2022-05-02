@@ -18,6 +18,7 @@ class Cart extends Model
             $this->products = $oldCart->products;
             $this->totalQuantity = $oldCart->totalQuantity;
             $this->totalPrice = $oldCart->totalPrice;
+
         }
     }
 
