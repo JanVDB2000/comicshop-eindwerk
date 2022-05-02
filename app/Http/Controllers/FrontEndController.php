@@ -151,7 +151,7 @@ class FrontEndController extends Controller
 
         $payment = Mollie::api()->payments()->get($payment->id);
 
-        Session::get('addresses')->;
+        Session::get('addresses')->billing;
 
         $address_B =  new Address();
         $address_B =
