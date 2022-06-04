@@ -28,7 +28,7 @@ class Cart extends Model
             'product_id'=>0,
             'product_name'=>$product->name,
             'product_price' =>$product->price,
-            'product_image'=>$product->photo->file,
+            'product_image'=>$product->photo,
             'product_body'=>$product->body,
             'product'=>$product
         ];
@@ -41,7 +41,7 @@ class Cart extends Model
         $shopItems['product_id'] = $product_id;
         $shopItems['product_name'] = $product->name;
         $shopItems['product_price'] = $product->price;
-        $shopItems['product_image'] = $product->photo->file;
+        $shopItems['product_image'] = $product->photo ? $product->photo->file : 'test';
         $shopItems['product_body'] = $product->body;
         $this->totalQuantity++;
         $this->totalPrice += $product->price;

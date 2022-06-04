@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckoutRequest;
+use App\Http\Requests\FactuurAddressRequest;
 use App\Models\Address;
 use App\Models\Brand;
 use App\Models\Cart;
@@ -14,7 +15,6 @@ use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Mollie\Laravel\Facades\Mollie;
 
@@ -72,22 +72,30 @@ class FrontEndController extends Controller
     /** Cart **/
 
     public function addToCart($id){
+        if (Auth::user()){
         $product = Product::with(['productcategory','photo','brand'])->where('id', $id)->first();
         $oldCart = Session::has('cart') ? Session::get('cart'): null;
         $cart = new Cart($oldCart);
         $cart->add($product, $id);
         Session::put('cart',$cart);
         return redirect()->back();
+        }else{
+            return redirect()->route('login');
+        }
     }
 
     public function cart(){
-        if(!Session::has('cart')){
-            return redirect('/shop');
+        if (Auth::user()){
+            if(!Session::has('cart')){
+                return redirect('/shop');
+            }else{
+                $currentCart = Session::has('cart') ? Session::get('cart') : null;
+                $cart = new Cart($currentCart);
+                $cart = $cart->products;
+                return view('checkout',compact('cart'));
+            }
         }else{
-            $currentCart = Session::has('cart') ? Session::get('cart') : null;
-            $cart = new Cart($currentCart);
-            $cart = $cart->products;
-            return view('checkout',compact('cart'));
+            return redirect()->route('login');
         }
     }
 
@@ -111,9 +119,11 @@ class FrontEndController extends Controller
 
 
     /** Address **/
+
    public function factuurAddress(Request $request){
 
        $user_id = Auth::user()->id;
+
 
        if ($request->addressType == 'SB'){
 
@@ -122,6 +132,7 @@ class FrontEndController extends Controller
            $billing = null;
 
        }else{
+
            $shipping = ['address_1' =>$request->street_one_s , 'country' =>$request->country_s , 'state' =>$request->state_s, 'zip' =>$request->zip_s, 'user_id' => $user_id,];
 
            $billing = ['address_1' =>$request->street_one_b , 'country' =>$request->country_b , 'state' =>$request->state_b, 'zip' =>$request->zip_b, 'user_id' =>$user_id,];
@@ -129,8 +140,8 @@ class FrontEndController extends Controller
 
        $addresses = ['shipping' => $shipping, 'billing' => $billing];
 
-
        Session::put('addresses', $addresses);
+
 
        return redirect()->route('mollie.payment');
    }
@@ -138,7 +149,7 @@ class FrontEndController extends Controller
 
     /** Checkout **/
 
-    public function orderReady(Request $request){
+    public function orderReady(){
 
         $total = number_format(Session::get('cart')->totalPrice,2,'.','');
         $user_id = Auth::user()->id;
@@ -200,11 +211,6 @@ class FrontEndController extends Controller
             $address_B->TypeAdres()->sync([2],false);
         }
 
-        Session::forget('addresses');
-
-
-
-
         $order = new Order();
         $order->user_id = $user_id;
         $order->TC_code = $payment->id;
@@ -227,8 +233,8 @@ class FrontEndController extends Controller
     }
 
     public function paymentSuccess() {
-        /*Session::forget('cart');*/
-
+        Session::forget('cart');
+        Session::forget('addresses');
         return redirect()->route('home');
     }
 
