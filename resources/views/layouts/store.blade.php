@@ -125,10 +125,10 @@
         </div>
     </div>
 </header>
-<main>
+<main class="bg-white">
 @yield('content')
 </main>
-<footer class="bg-footer pb-5">
+<footer class=" bg-footer pb-5">
     <div class="bg-footer-top">
         <img class="image-fluid" src="{{asset('img/img-pages/footer-top-shape.png')}}" alt="footer-top">
     </div>

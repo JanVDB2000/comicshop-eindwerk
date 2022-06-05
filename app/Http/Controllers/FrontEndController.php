@@ -162,9 +162,6 @@ class FrontEndController extends Controller
             ],
             'description' => 'Payment By ' . $user_name,
             'redirectUrl' => route('payment.success'), // after the payment completion where you to redirect
-            "metadata" => [
-                "order_id" => "12345",
-            ],
         ]);
 
         $payment = Mollie::api()->payments()->get($payment->id);
@@ -179,9 +176,11 @@ class FrontEndController extends Controller
             $address->zip = $a['zip'];
             $address->user_id = $a['user_id'];
 
+
             $address->save();
 
             $address->TypeAdres()->sync([1,2],false);
+            $address->users()->sync([$user_id],false);
 
         }else{
 
@@ -196,6 +195,7 @@ class FrontEndController extends Controller
             $address_S->save();
 
             $address_S->TypeAdres()->sync([1],false);
+            $address_S->users()->sync([$user_id],false);
 
 
             $ab = Session::get('addresses')['billing'];
@@ -209,13 +209,12 @@ class FrontEndController extends Controller
             $address_B->save();
 
             $address_B->TypeAdres()->sync([2],false);
+            $address_B->users()->sync([$user_id],false);
         }
 
         $order = new Order();
         $order->user_id = $user_id;
         $order->TC_code = $payment->id;
-        $order->shipping = 'test';
-        $order->billing = 'test';
         $order->save();
 
 
@@ -228,14 +227,18 @@ class FrontEndController extends Controller
             $orderdetail->save();
         }
 
+        $session = 'order-success';
+
+        Session::forget('cart');
+        Session::forget('addresses');
+
+        Session::put('paymentsuccess', $session);
 
         return redirect($payment->getCheckoutUrl(), 303);
     }
 
     public function paymentSuccess() {
-        Session::forget('cart');
-        Session::forget('addresses');
-        return redirect()->route('home');
+        return view('payment-success');
     }
 
     /** Checkout **/

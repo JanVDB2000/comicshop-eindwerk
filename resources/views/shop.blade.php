@@ -1,4 +1,3 @@
-
 @extends('layouts.store')
 @section('content')
     <section class="container-fluid">

@@ -29,8 +29,9 @@ Route::post('/checkout','App\Http\Controllers\FrontEndController@updateQuantity'
 Route::get('/removeitem/{id}', 'App\Http\Controllers\FrontEndController@removeItem')->name('removeItem');
 Route::post('/factuur-address','App\Http\Controllers\FrontEndController@factuurAddress')->name('FactuurAddress');
 Route::get('/mollie-payment',[FrontEndController::Class,'orderReady'])->name('mollie.payment');
-Route::get('/payment-success',[FrontEndController::Class, 'paymentSuccess'])->name('payment.success');
-
+Route::group(['middleware'=>'has-order'], function(){
+    Route::get('/payment-success',[FrontEndController::Class, 'paymentSuccess'])->name('payment.success');
+});
 
 //verify zorgt ervoor dat enkel een geverifieerde user wordt toegelaten
 //aan de geautentiseerde routes

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Session;
 use Kyslik\ColumnSortable\Sortable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -65,15 +66,32 @@ class User extends Authenticatable implements MustVerifyEmail
     public function postcommentreplies(){
         return $this->hasMany(Reply::class);
     }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
+
     public function addresses(){
         return $this->belongsToMany(Address::class, 'user_address');
     }
+
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
+
+
 
     public function isAdmin(){
         foreach($this->roles as $role){
             if($role->name == 'administrator' && $this->is_active == 1){
                 return true;
             }
+        }
+    }
+
+    public function hasOrder(){
+        if($this->orders->isnotempty() && Session::get('paymentsuccess') == 'order-success'){
+            return true;
         }
     }
 }
