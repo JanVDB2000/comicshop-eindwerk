@@ -13,6 +13,7 @@ use App\Models\OrderDetail;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Review;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -62,6 +63,32 @@ class FrontEndController extends Controller
         $reviewssite = Review::latest()->take(6)->get()->load(['user','user.photo']);
         return view('about-page',compact('reviewssite'));
     }
+
+    public function orderListUser(){
+        $user_id = Auth::id();
+        $orders = Order::where('user_id', $user_id)->paginate(3);
+        return view('order-list-user',compact('orders'));
+    }
+
+    public function orderListUserPDF($id){
+        $order = Order::find($id);
+
+        $subtotaal = 0;
+        foreach($order->orderdetails as $detail){
+            $subtotaal += $detail->amount * $detail->price;
+        }
+        $subtotal = $subtotaal;
+
+        number_format($subtotal,2,'.','');
+
+        /*dump($order);
+        dd($order->orderdetails());*/
+        $pdf = PDF::loadView('myPDF', compact('order','subtotal'));
+        PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+        return $pdf->download('factuur-comic-time.pdf');
+        /*return view('myPDF',compact('order'));*/
+    }
+
 
     public function contact(){
         return view('contact');

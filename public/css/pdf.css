@@ -1,0 +1,422 @@
+html {
+    height: 100%;
+}
+body {
+    background-color: #f7f8f9;
+    color: #455560;
+    font-family: 'CircularStd', sans-serif;
+    font-size: 0.9375rem;
+    height: 100%;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'CircularStd', sans-serif;
+    margin-top: 0;
+    color: #2c3038;
+}
+a {
+    text-decoration: none;
+}
+a:hover,
+a:active,
+a:focus {
+    outline: none;
+    text-decoration: none;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
+label {
+    margin-bottom: 0.5rem;
+}
+.form-control {
+    border: 1px solid #dee2e6;
+    box-shadow: none;
+    color: #333;
+    padding: .54688rem .875rem;
+    font-size: .875rem;
+    height: calc(1.6em + 1.21875rem);
+    line-height: 1.6;
+    font-weight: 400;
+    color: #1e2022;
+}
+textarea.form-control {
+    height: auto;
+}
+.form-control:focus {
+    box-shadow: 0 0 10px rgba(136, 136, 136, 0.125);
+    outline: 0 none;
+    border-color: #c1c9d0;;
+}
+.form-control-sm {
+    height: calc(1.5em + 1rem);
+    padding: .4375rem .65625rem;
+    font-size: .8125rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+.form-control-lg {
+    height: calc(1.5em + 1.875rem);
+    padding: .875rem 1.09375rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .3125rem;
+}
+a {
+    color: #377dff;
+}
+a:hover {
+    color: #0052ea;
+    text-decoration: none;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+p:last-child {
+    margin-bottom: 0;
+}
+dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+input,
+button,
+a {
+    transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    -transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+}
+input,
+input:focus,
+button,
+button:focus {
+    outline: none;
+}
+input[type="file"] {
+    height: auto;
+    min-height: calc(1.5em + .75rem + 2px);
+}
+input[type=text],
+input[type=password] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+textarea.form-control {
+    resize: vertical;
+}
+.navbar-nav > li {
+    float: left;
+}
+.form-group {
+    margin-bottom: 1.25rem;
+}
+.form-group img {
+    width:100%;
+}
+.input-group .form-control {
+    height: 40px;
+}
+.nav .open > a,
+.nav .open > a:focus,
+.nav .open > a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+}
+ul li{
+    list-style: none;
+}
+p:last-child{
+    margin-bottom: 0;
+}
+
+/*-----------------
+	2. Table
+-----------------------*/
+
+.table {
+    color: #333;
+    max-width: 100%;
+    margin-bottom: 0;
+    width: 100%;
+}
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+    background-color: #f8f9fa;
+}
+.table.no-border > tbody > tr > td,
+.table > tbody > tr > th,
+.table.no-border > tfoot > tr > td,
+.table.no-border > tfoot > tr > th,
+.table.no-border > thead > tr > td,
+.table.no-border > thead > tr > th {
+    padding: 10px 8px;
+}
+.table-nowrap td,
+.table-nowrap th {
+    white-space: nowrap
+}
+.table.dataTable {
+    border-collapse: collapse !important;
+}
+table.table td h2 {
+    display: inline-block;
+    font-size: inherit;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+table.table td h2.table-avatar {
+    align-items: center;
+    display: inline-flex;
+    font-size: inherit;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.table > tbody > tr > td {
+    padding: 15px;
+}
+.table .invoice-link {
+    color: #7638FF;
+}
+.table .invoice-link:hover {
+    color: #377dff;
+}
+table.table td h2 a {
+    color: #333;
+}
+table.table td h2 a:hover {
+    color: #7638ff;
+}
+table.table td .items-links {
+    color: #1B2559;
+}
+table.table td .items-links:hover {
+    color: #7638ff;
+}
+table.table td h2 span {
+    color: #888;
+    display: block;
+    font-size: 12px;
+    margin-top: 3px;
+}
+.table thead {
+    background-color: transparent;
+    border-bottom: 0;
+}
+.table thead tr th {
+    font-weight: 500;
+}
+.table.table-center td,
+.table.table-center th {
+    vertical-align: middle;
+}
+.table-hover tbody tr:hover {
+    background-color: #f6f6f7;
+}
+.table td, .table th {
+    vertical-align: middle;
+    white-space: nowrap;
+}
+table.table .dropdown-action {
+    margin-bottom: 0;
+}
+.table-bordered {
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+.table-bordered td:first-child{
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+.table-bordered td:last-child{
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+.table-bordered th,
+.table-bordered td {
+    border-color: rgba(0, 0, 0, 0.05);
+}
+.card-table .card-body {
+    padding: 0;
+}
+.card-table .card-body .table > thead > tr > th {
+    border-top: 0;
+}
+.card-table .card-body .table tr td:first-child,
+.card-table .card-body .table tr th:first-child {
+    padding-left: 1.5rem;
+}
+.card-table .table td,
+.card-table .table th {
+    border-top: 1px solid #e2e5e8;
+    padding: 1rem 0.75rem;
+    white-space: nowrap;
+}
+.table>:not(:first-child) {
+    border: 0;
+}
+table.table td,table.table th {
+    border-color: #dee2e6;
+}
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+.table .dropdown-menu {
+    width: 200px;
+    background: #FFFFFF;
+    border: 1px solid #F2ECFF;
+    box-shadow: 0px 4px 4px rgba(231, 234, 252, 0.75);
+    border-radius: 6px;
+    margin-top: 10px !important;
+}
+.table .dropdown-item {
+    font-weight: 500;
+    font-size: 14px;
+    color: #1B2559;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 14px;
+}
+.table .dropdown-item:last-child {
+    margin-bottom: 0;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #7638FF;
+    background: transparent;
+}
+.table .dropdown-item.active, .table .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #7638FF;
+}
+.table .dropdown-item i {
+    font-size: 16px;
+}
+
+.invoice-item .invoice-logo {
+    margin-bottom: 30px;
+}
+.invoice-item .invoice-logo img {
+    width: auto;
+    max-height: 52px;
+}
+.invoice-item .invoice-text h2 {
+    color:#272b41;
+    font-size:36px;
+    font-weight:600;
+}
+.invoice-item .invoice-details {
+    text-align: right;
+    font-weight: 400
+}
+.invoice-item .invoice-details strong {
+    color:#272b41;
+}
+.invoice-item .invoice-details-two {
+    text-align: left;
+    color: #000;
+}
+.invoice-item .invoice-text {
+    padding-top:42px;
+    padding-bottom:36px
+}
+.invoice-item .invoice-text h2 {
+    font-weight:400
+}
+.invoice-info {
+    margin-bottom: 20px;
+}
+.invoice-info p {
+    margin-bottom: 0;
+}
+.invoice-info.invoice-info2 {
+    text-align: right;
+}
+.invoice-item .customer-text {
+    font-size: 20px;
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: block
+}
+.invoice-item .customer-text a {
+    font-size: 14px;
+    color: #7638FF;
+    margin-left: 12px;
+}
+.invoice-table tr th,
+.invoice-table tr td,
+.invoice-table-two tr th,
+.invoice-table-two tr td {
+    color: #272b41;
+    font-weight: 600;
+    padding: 15px 20px;
+    line-height: inherit
+}
+.invoice-table tr td,
+.invoice-table-two tr td {
+    font-weight: 500;
+}
+.invoice-table-two {
+    margin-bottom:0
+}
+.invoice-table-two tr th,
+.invoice-table-two tr td {
+    border-top: 0;
+}
+.invoice-table-two tr td {
+    text-align: right
+}
+.invoice-info h5 {
+    font-size: 16px;
+    font-weight: 500;
+}
+.other-info {
+    margin-top: 10px;
+}
+.file {
+    visibility: hidden;
+    position: absolute;
+}
+.btn-group,
+.btn-group-vertical {
+    position: relative;
+    display: -inline-flexbox;
+    display: inline-flex;
+    vertical-align: middle;
+}
+.font-size-14 {
+    font-size: 14px;
+}

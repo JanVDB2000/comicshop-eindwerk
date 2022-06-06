@@ -20,7 +20,7 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
     public function orderdetail(){
-        return $this->belongsTo(OrderDetail::class);
+        return $this->hasMany(OrderDetail::class);
     }
     public function reviews(){
         return $this->hasMany(Review::class);
