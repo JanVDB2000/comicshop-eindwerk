@@ -67,6 +67,7 @@ class FrontEndController extends Controller
     public function orderListUser(){
         $user_id = Auth::id();
         $orders = Order::where('user_id', $user_id)->paginate(3);
+
         return view('order-list-user',compact('orders'));
     }
 
@@ -74,6 +75,7 @@ class FrontEndController extends Controller
         $order = Order::find($id);
 
         $subtotaal = 0;
+
         foreach($order->orderdetails as $detail){
             $subtotaal += $detail->amount * $detail->price;
         }

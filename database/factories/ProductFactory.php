@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Brand;
+use App\Models\Photo;
 use App\Models\ProductCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -19,12 +20,13 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $photos = Photo::pluck('id')->toArray();
         $brands = Brand::pluck('id')->toArray();
         $pc = ProductCategory::pluck('id')->toArray();
         $title = $this->faker->sentence($nbwords= 3, $variableNbWords=true);
         $slug = Str::slug($title,'-');
         return [
-            'photo_id'=>$this->faker->numberBetween($min= 1, $max= 2),
+            'photo_id'=>$this->faker->randomElement($photos),
             'brand_id'=>$this->faker->randomElement($brands),
             'product_category_id'=>$this->faker->randomElement($pc),
             'name'=>$title,

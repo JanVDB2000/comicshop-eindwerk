@@ -12,10 +12,10 @@
                 @if($orders->isnotempty())
                 @foreach($orders as $order)
                 <div class="card card-stepper text-black shadow-lg m-3" style="border-radius: 16px;">
-                    <div class="card-body p-5">
+                    <div x-data="{ open: false }"  class="card-body p-5">
                         <div class="d-flex justify-content-between align-items-center mb-5">
                             <div>
-                                <h5 class="mb-0">Order ID : <span class="text-primary font-weight-bold">#{{$order->id}}</span></h5>
+                                <h5 class="mb-0">Order ID : <span class="font-weight-bold">#{{$order->id}}</span></h5>
                             </div>
                             <div class="text-end">
                                 <p class="mb-0">Order Date <span class="font-weight-bold"> {{$order->created_at->diffForHumans()}}</span></p>
@@ -60,13 +60,61 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between p-5 flex-column flex-md-row text-center">
-                            <a href="#" class="btn btn-header btn-lg  fw-bold m-3 text-nowrap">Order Details</a>
+                        <div  class="d-flex justify-content-between p-5 flex-column flex-md-row text-center">
+
+                            <button class="btn btn-header btn-lg  fw-bold m-3 text-nowrap" @click="open = true">Order Details</button>
+
                             <a href="{{route('home.orderListPDF',$order->id)}}" class="btn btn-header btn-lg  fw-bold m-3 text-nowrap">Factuur PDF</a>
+                        </div>
+                        <div x-show="open" @click.away="open = false">
+                            <table width="100%">
+                                <thead style="background-color: lightgray;">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Unit Price</th>
+                                    <th>Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                @foreach($order->orderdetails as $detail)
+                                    <tr>
+                                        <th scope="row">{{$detail->id}}</th>
+                                        <td align="right">{{$detail->product->name}}</td>
+                                        <td align="right">{{$detail->amount}}</td>
+                                        <td align="right">€ {{$detail->price}}</td>
+                                        <td align="right">€ {{number_format($detail->amount * $detail->price,2,'.','')}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+
+                                <tfoot>
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td align="right">SubTotal</td>
+                                    <td align="right">€ {{$order->ordersubtotaal()}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td align="right">Tax</td>
+                                    <td align="right">included</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td align="right">Total</td>
+                                    <td align="right" class="gray">€ {{$order->ordersubtotaal()}}</td>
+                                </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>
-                @endforeach
+
+
+
+                    @endforeach
                 <div class="d-flex justify-content-center">
                     {{$orders->render()}}
                 </div>

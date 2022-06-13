@@ -55,6 +55,7 @@ class AdminProductsController extends Controller
         $product->published_date = $request->published_date;
         $product->writer = $request->writer;
         $product->penciled = $request->penciled;
+        $product->body = $request->body;
         $product->item_number = $request->item_number;
         $product->price = $request->price;
         $product->product_category_id = $request->category_id;

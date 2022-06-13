@@ -16,8 +16,6 @@ class ProductCategorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('product_categories')->insert(['name'=>'SCHOENEN','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
-        DB::table('product_categories')->insert(['name'=>'HEMDEN','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
-        DB::table('product_categories')->insert(['name'=>'SOKKEN','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
+        DB::table('product_categories')->insert(['name'=>'Comics','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
     }
 }

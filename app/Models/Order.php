@@ -17,4 +17,17 @@ class Order extends Model
     public function orderdetails(){
         return $this->hasMany(OrderDetail::class);
     }
+
+    public function ordersubtotaal(){
+        $subtotaal = 0;
+
+        foreach($this->orderdetails as $detail){
+            $subtotaal += $detail->amount * $detail->price;
+        }
+        $subtotal = $subtotaal;
+
+        number_format($subtotal,2,'.','');
+
+        return $subtotaal;
+    }
 }
