@@ -17,6 +17,7 @@ use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Mollie\Laravel\Facades\Mollie;
 
@@ -262,13 +263,19 @@ class FrontEndController extends Controller
 
         $session = 'order-success';
 
+
+
         Session::forget('cart');
         Session::forget('addresses');
 
         Session::put('paymentsuccess', $session);
 
+
         return redirect($payment->getCheckoutUrl(), 303);
+
     }
+
+
 
     public function paymentSuccess() {
         return view('payment-success');

@@ -3,7 +3,7 @@
         <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div class="row">
                 <div class="col-3">
-                    <img class="card-img-top img-thumbnail" src="{{$item['product_image'] ? asset('img/' . $item['product_image']) : 'http://via.placeholder.com/400'}}" alt="">
+                    <img class="card-img-top img-thumbnail" src="{{$item['product_image'] ? asset('img/products' . $item['product_image']) : 'http://via.placeholder.com/400'}}" alt="">
                 </div>
                 <div class="col-9">
                     <div>
