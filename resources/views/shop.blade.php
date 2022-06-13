@@ -62,7 +62,7 @@
                                                 <div class="upcoming-badge">
                                                     <i class="fas fa-book"></i>
                                                 </div>
-                                                <a href="{{route('home.shopd',$product)}}"><img src="{{$product->photo ? asset( 'img/products/'.$product->photo->file) : 'http://via.placeholder.com/450x750'}}" class="card-img-top" alt="{{$product->name}}" width="450" height="750"></a>
+                                                <a href="{{route('home.shopd',$product)}}"><img src="{{$product->photo ? asset( 'img/products'.$product->photo->file) : 'http://via.placeholder.com/450x750'}}" class="card-img-top" alt="{{$product->name}}" width="450" height="750"></a>
                                                 <div class="card-body">
                                                     <h3 class="card-title">{{Str::limit($product->name, 20)}}</h3>
                                                     <p class="card-text">Published: {{$product->published_date}}</p>

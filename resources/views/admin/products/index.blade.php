@@ -22,6 +22,7 @@
                 <th>Brand</th>
                 <th>Name</th>
                 <th>Body</th>
+                <th>Price</th>
                 <th>Created</th>
                 <th>Updated</th>
                 <th>Actions</th>
@@ -41,6 +42,7 @@
                         <td>{{$product->brand ? $product->brand->name : 'no brand'}}</td>
                         <td>{{$product->name}}</td>
                         <td>{{$product->body}}</td>
+                        <td>{{$product->price}}</td>
                         <td>{{$product->created_at->diffForHumans()}}</td>
                         <td>{{$product->updated_at->diffForHumans()}}</td>
                         <td class="d-flex">

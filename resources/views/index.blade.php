@@ -24,7 +24,7 @@
                                     @if($loop->index < 3)
                                 <div class="col p-2">
                                     <div class="card boxshc border-radius mb-5" style="width: 100%;">
-                                        <img class="card-img-top img-fluid border-radius" src="{{$productbrand->photo ? asset('img/'.$productbrand->photo->file) : 'https://via.placeholder.com/450x700'}}" alt="{{$productbrand->name}}" width="450" height="450">
+                                        <img class="card-img-top img-fluid border-radius" src="{{$productbrand->photo ? asset('img/products'.$productbrand->photo->file) : 'https://via.placeholder.com/450x700'}}" alt="{{$productbrand->name}}" width="450" height="450">
                                         <div class="card-body d-flex justify-content-center">
                                             <a href="{{route('home.shopd',$productbrand)}}" class="btn btn-header fw-bold">View More</a>
                                         </div>
@@ -40,7 +40,7 @@
                                     @if($loop->index >= 3)
                                 <div class="col p-2">
                                     <div class="card boxshc border-radius mb-5" style="width: 100%;">
-                                        <img class="card-img-top img-fluid border-radius" src="{{$productbrand->photo ? asset('img/'.$productbrand->photo->file) : 'https://via.placeholder.com/450x700'}}" alt="{{$productbrand->name}}" width="450" height="450">
+                                        <img class="card-img-top img-fluid border-radius" src="{{$productbrand->photo ? asset('img/products'.$productbrand->photo->file) : 'https://via.placeholder.com/450x700'}}" alt="{{$productbrand->name}}" width="450" height="450">
                                         <div class="card-body d-flex justify-content-center">
                                             <a href="{{route('home.shopd',$productbrand)}}" class="btn btn-header fw-bold">View More</a>
                                         </div>
@@ -70,7 +70,7 @@
                         <div class="upcoming-badge">
                             <i class="fas fa-book"></i>
                         </div>
-                        <a href="{{route('home.shopd',$product)}}"><img src="{{$product->photo ? asset( 'img/'.$product->photo->file) : 'https://via.placeholder.com/450x750'}}" class="card-img-top" alt="{{$productbrand->name}}" width="450" height="750"></a>
+                        <a href="{{route('home.shopd',$product)}}"><img src="{{$product->photo ? asset( 'img/products'.$product->photo->file) : 'https://via.placeholder.com/450x750'}}" class="card-img-top" alt="{{$productbrand->name}}" width="450" height="750"></a>
                         <div class="card-body ">
                             <div class="card-body  text-center">
                                 <h3 class="card-title">{{$product->name}}</h3>

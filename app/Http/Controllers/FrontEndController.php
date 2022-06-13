@@ -13,6 +13,7 @@ use App\Models\OrderDetail;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Review;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -76,19 +77,22 @@ class FrontEndController extends Controller
 
         $subtotaal = 0;
 
-        foreach($order->orderdetails as $detail){
-            $subtotaal += $detail->amount * $detail->price;
+        if ( Auth::user()->mypdfid($id)){
+            foreach($order->orderdetails as $detail){
+                $subtotaal += $detail->amount * $detail->price;
+            }
+            $subtotal = $subtotaal;
+
+            number_format($subtotal,2,'.','');
+
+
+            $pdf = PDF::loadView('myPDF', compact('order','subtotal'));
+            PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+            return $pdf->download('factuur-comic-time.pdf');
+            /*return view('myPDF',compact('order'));*/
+        }else{
+            return back();
         }
-        $subtotal = $subtotaal;
-
-        number_format($subtotal,2,'.','');
-
-        /*dump($order);
-        dd($order->orderdetails());*/
-        $pdf = PDF::loadView('myPDF', compact('order','subtotal'));
-        PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
-        return $pdf->download('factuur-comic-time.pdf');
-        /*return view('myPDF',compact('order'));*/
     }
 
 

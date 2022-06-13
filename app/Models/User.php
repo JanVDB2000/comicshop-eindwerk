@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Kyslik\ColumnSortable\Sortable;
 use Laravel\Sanctum\HasApiTokens;
@@ -93,5 +94,15 @@ class User extends Authenticatable implements MustVerifyEmail
         if($this->orders->isnotempty() && Session::get('paymentsuccess') == 'order-success'){
             return true;
         }
+    }
+
+    public function mypdfid($id){
+        foreach($this->orders as $order){
+            if ($order->id == $id){
+                return true;
+            }
+
+        }
+
     }
 }

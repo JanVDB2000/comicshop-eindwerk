@@ -16,7 +16,7 @@
             <tr>
                 <td>{{$photo->id}}</td>
                 <td>
-                    <img width="auto" height="62" src="{{$photo->file ? asset('img/'.$photo->file): 'http://via.placeholder.com/62'}}" alt="{{$photo->file}}">
+                    <img width="auto" height="62" src="{{$photo->file ? asset('img/products'.$photo->file): 'http://via.placeholder.com/62'}}" alt="{{$photo->file}}">
                 </td>
                 <td>{{$photo->file}}</td>
                 <td>{{$photo->created_at->diffForHumans()}}</td>
@@ -27,5 +27,6 @@
         </tbody>
 
     </table>
+    {{$photos->render()}}
 
 @endsection
