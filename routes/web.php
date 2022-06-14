@@ -40,12 +40,9 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/removeitem/{id}', 'App\Http\Controllers\FrontEndController@removeItem')->name('removeItem');
     Route::post('/factuur-address','App\Http\Controllers\FrontEndController@factuurAddress')->name('FactuurAddress');
     Route::get('/mollie-payment',[FrontEndController::Class,'orderReady'])->name('mollie.payment');
-});
-
-
-Route::group(['middleware'=>'has-order'], function(){
     Route::get('/payment-success',[FrontEndController::Class, 'paymentSuccess'])->name('payment.success');
 });
+
 
 
 /*** BACKEND ROUTES ***/
@@ -55,7 +52,6 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['auth','admin']], function(){
     Route::get('users/restore/{user}', 'App\Http\Controllers\AdminUsersController@restore')->name('users.restore');
     Route::resource('comments',\App\Http\Controllers\AdminPostCommentsController::class);
     Route::resource('replies', \App\Http\Controllers\AdminPostCommentRepliesController::class);
-    Route::get('tags', 'App\Http\Controllers\AdminPostsTagsController@index')->name('posttags');
     Route::resource('photos',App\Http\Controllers\AdminPhotosController::class);
     Route::resource('posts', App\Http\Controllers\AdminPostsController::class);
     Route::resource('postcategories', App\Http\Controllers\AdminPostsCategoriesController::class);

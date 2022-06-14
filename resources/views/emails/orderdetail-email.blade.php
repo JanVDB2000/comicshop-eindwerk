@@ -1,15 +1,14 @@
 @component('mail::message')
-    # Order Detail
+# Order Confirmation
 
-    <p>From : {{$orderdetail['name'] }}</p>
-    <p>Mail : {{$orderdetail['email'] }}</p>
-    <p>Phone : {{$orderdetail['phone'] }}</p>
-    <p>Message : {{$orderdetail['message'] }}</p>
+<p>Dear {!! Auth::user()->name !!}</p>
 
-    @component('mail::button', ['url' => ''])
-        Button Text
-    @endcomponent
+<p>Thanks for your purchase</p>
 
-    Thanks,<br>
-    {{ config('app.name') }}
+@component('mail::button', ['url' => Route('home.orderList')])
+  Go to your order
+@endcomponent
+
+Thanks,<br>
+{{ config('app.name') }}
 @endcomponent

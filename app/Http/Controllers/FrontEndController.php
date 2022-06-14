@@ -154,7 +154,13 @@ class FrontEndController extends Controller
 
     /** Address **/
 
+
+
+
+
    public function factuurAddress(Request $request){
+
+
 
        $user_id = Auth::user()->id;
 
@@ -182,11 +188,26 @@ class FrontEndController extends Controller
     /** Address **/
 
     /** Checkout **/
+    public function sendOrderConfirmationMail($order){
+        $subtotaal = 0;
+
+        foreach($order->orderdetails as $detail){
+            $subtotaal += $detail->amount * $detail->price;
+        }
+        $subtotal = $subtotaal;
+
+        number_format($subtotal,2,'.','');
+
+        $pdf = PDF::loadView('myPDF', compact('order','subtotal'));
+        PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+
+        Mail::to($order->email)->send(new \App\Mail\OrderDetail($order));
+    }
 
     public function orderReady(){
 
         $total = number_format(Session::get('cart')->totalPrice,2,'.','');
-        $user_id = Auth::user()->id;
+
         $user_name = Auth::user()->name;
 
         $payment = Mollie::api()->payments()->create([
@@ -200,86 +221,99 @@ class FrontEndController extends Controller
 
         $payment = Mollie::api()->payments()->get($payment->id);
 
+        $id  = $payment->id;
 
-        if (Session::get('addresses')['billing'] == null){
-            $a = Session::get('addresses')['shipping'];
-            $address = new Address();
-            $address->address_1 = $a['address_1'];
-            $address->country = $a['country'];
-            $address->state = $a['state'];
-            $address->zip = $a['zip'];
-            $address->user_id = $a['user_id'];
-
-
-            $address->save();
-
-            $address->TypeAdres()->sync([1,2],false);
-            $address->users()->sync([$user_id],false);
-
-        }else{
-
-            $as =  Session::get('addresses')['shipping'];
-            $address_S =  new Address();
-            $address_S->address_1 = $as['address_1'];
-            $address_S->country = $as['country'];
-            $address_S->state = $as['state'];
-            $address_S->zip = $as['zip'];
-            $address_S->user_id =$as['user_id'];
-
-            $address_S->save();
-
-            $address_S->TypeAdres()->sync([1],false);
-            $address_S->users()->sync([$user_id],false);
-
-
-            $ab = Session::get('addresses')['billing'];
-            $address_B = new Address();
-            $address_B->address_1 = $ab['address_1'];
-            $address_B->country = $ab['country'];
-            $address_B->state = $ab['state'];
-            $address_B->zip = $ab['zip'];
-            $address_B->user_id = $ab['user_id'];
-
-            $address_B->save();
-
-            $address_B->TypeAdres()->sync([2],false);
-            $address_B->users()->sync([$user_id],false);
-        }
-
-        $order = new Order();
-        $order->user_id = $user_id;
-        $order->TC_code = $payment->id;
-        $order->save();
-
-
-        foreach (Session::get('cart')->products as $product){
-            $orderdetail = new OrderDetail();
-            $orderdetail->order_id = $order->id;
-            $orderdetail->product_id = $product['product_id'];
-            $orderdetail->amount = $product['quantity'];
-            $orderdetail->price = $product['product_price'];
-            $orderdetail->save();
-        }
-
-        $session = 'order-success';
-
-
-
-        Session::forget('cart');
-        Session::forget('addresses');
-
-        Session::put('paymentsuccess', $session);
-
+        Session::put('payment', $id);
 
         return redirect($payment->getCheckoutUrl(), 303);
-
     }
 
 
 
-    public function paymentSuccess() {
-        return view('payment-success');
+
+    public function paymentSuccess(){
+
+        if(Session::get('payment') == null ){
+            return redirect()->route('home');
+        }else{
+            $user_id = Auth::user()->id;
+
+            if (Session::get('addresses')['billing'] == null){
+                $a = Session::get('addresses')['shipping'];
+                $address = new Address();
+                $address->address_1 = $a['address_1'];
+                $address->country = $a['country'];
+                $address->state = $a['state'];
+                $address->zip = $a['zip'];
+                $address->user_id = $a['user_id'];
+
+
+                $address->save();
+
+                $address->TypeAdres()->sync([1,2],false);
+                $address->users()->sync([$user_id],false);
+
+            }else{
+
+                $as =  Session::get('addresses')['shipping'];
+                $address_S =  new Address();
+                $address_S->address_1 = $as['address_1'];
+                $address_S->country = $as['country'];
+                $address_S->state = $as['state'];
+                $address_S->zip = $as['zip'];
+                $address_S->user_id =$as['user_id'];
+
+                $address_S->save();
+
+                $address_S->TypeAdres()->sync([1],false);
+                $address_S->users()->sync([$user_id],false);
+
+
+                $ab = Session::get('addresses')['billing'];
+                $address_B = new Address();
+                $address_B->address_1 = $ab['address_1'];
+                $address_B->country = $ab['country'];
+                $address_B->state = $ab['state'];
+                $address_B->zip = $ab['zip'];
+                $address_B->user_id = $ab['user_id'];
+
+                $address_B->save();
+
+                $address_B->TypeAdres()->sync([2],false);
+                $address_B->users()->sync([$user_id],false);
+            }
+
+            $order = new Order();
+            $order->user_id = $user_id;
+            $order->TC_code = Session::get('payment');
+            $order->save();
+
+
+            foreach (Session::get('cart')->products as $product){
+                $orderdetail = new OrderDetail();
+                $orderdetail->order_id = $order->id;
+                $orderdetail->product_id = $product['product_id'];
+                $orderdetail->amount = $product['quantity'];
+                $orderdetail->price = $product['product_price'];
+                $orderdetail->save();
+            }
+
+            $session = 'order-success';
+
+
+            $this->sendOrderConfirmationMail($order);
+
+
+
+            Session::forget('payment');
+            Session::forget('cart');
+            Session::forget('addresses');
+
+            return redirect()->route('home');
+        }
     }
+
+
 
     /** Checkout **/
 }
