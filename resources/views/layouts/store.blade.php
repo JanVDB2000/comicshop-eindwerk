@@ -18,7 +18,7 @@
     <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
     @livewireStyles
 </head>
-<body>
+<body class="bg-white">
 <header>
     <div class="container-fluid bg-image-hero">
         <div class="col-8 offset-2">

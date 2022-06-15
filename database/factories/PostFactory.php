@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Photo;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -18,6 +19,7 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+        $photos = Photo::pluck('id')->toArray();
         $users = User::pluck('id')->toArray();
         $title = $this->faker->sentence($nbwords= 6, $variableNbWords=true);
         $slug = Str::slug($title,'-');
@@ -25,7 +27,7 @@ class PostFactory extends Factory
             //
             'user_id'=> $this->faker->randomElement($users),
            // 'category_id'=>$this->faker->numberBetween($min= 1, $max= 2),
-            'photo_id'=>3,
+            'photo_id'=>$this->faker->randomElement($photos),
             'title'=>$title,
             'slug'=>$slug,
             'body'=>$this->faker->realText($maxNbChars=200, $indexSize=2),

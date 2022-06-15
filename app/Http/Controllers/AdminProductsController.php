@@ -129,7 +129,7 @@ class AdminProductsController extends Controller
 
     public function productsPerBrand($id){
         $brands = Brand::all();
-        $products = Product::where('brand_id', $id)->paginate(10);
+        $products = Product::where('brand_id', $id)->with(['brand','photo','productcategory'])->paginate(10);
         return view('admin.products.index', compact('products','brands'));
     }
 }

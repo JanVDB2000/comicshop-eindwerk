@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="bg-white">
 <header>
     <div class="container-fluid bg-image-hero">
         <div class="col-8 offset-2">
@@ -124,7 +124,7 @@
                 @foreach($posts as $post)
                     @if($loop->index == 0)
                         <div class="card boxshc border-radius" style="width: 100%;">
-                            <a href="{{route('home.post',$post)}}"><img class="card-img-top border-radius" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                            <a href="{{route('home.post',$post)}}"><img class="card-img-top border-radius" src="{{$post->photo ? asset('img/blog'.$post->photo->file) : 'https://via.placeholder.com/800x600'}}" alt="{{$post->title}}" width="600" height="800" /></a>
                             <div class="card-body">
                                 <h2 class="card-title h4">{{$post->title}}</h2>
                                 <p class=" text-muted">{{$post->created_at->diffForHumans()}}</p>
@@ -152,7 +152,7 @@
                             <!-- Blog post-->
                     <div class="col-4">
                         <div class="card mb-4">
-                            <a href="{{route('home.post', $post)}}"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                            <a href="{{route('home.post', $post)}}"><img class="card-img-top" src="{{$post->photo ? asset('img/blog'.$post->photo->file) : 'https://via.placeholder.com/800x600'}}" alt="..." /></a>
                             <div class="card-body">
                                 <h2 class="card-title h4">{{Str::limit($post->title, 15)}}</h2>
                                 <p class=" text-muted">{{$post->created_at->diffForHumans()}}</p>

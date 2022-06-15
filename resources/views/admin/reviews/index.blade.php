@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('seo')
-    users, crud
+    Reviews, crud
 @endsection
 @section('title')
-    Users
+    Reviews
 @endsection
 @section('content')
 
@@ -12,25 +12,36 @@
             <p class="alert alert-info">{{session('user_message')}}</p>
         @endif
     </div>
-
-
     <h1>Reviews</h1>
     <table class="table table-striped">
         <thead>
         <tr>
             <th>Id</th>
-            <th>Photo</th>
-            <th>Role</th>
-            <th>Active</th>
-            <th>Created</th>
-            <th>Updated</th>
-            <th>File</th>
+            <th>Products</th>
+            <th>Stars</th>
+            <th>Users</th>
+            <th>Bodys</th>
             <th>Deleted</th>
-            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
+        @foreach($reviews as $review)
+            <tr>
+                <td>{{$review->id}}</td>
+                <td>{{$review->product->name}}</td>
+                <td>{{$review->stars}}</td>
+                <td>{{$review->user->name}}</td>
+                <td>{{$review->description}}</td>
+                <td><form action="{{route('reviews.destroy', $review->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
 
+        @endforeach
         </tbody>
     </table>
+    {{$reviews->render()}}
 @endsection

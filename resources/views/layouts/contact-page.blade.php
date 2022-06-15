@@ -127,7 +127,7 @@
         </div>
     </div>
 </header>
-<main>
+<main class="bg-white">
 @yield('content')
 </main>
 <footer class="bg-footer pb-5">

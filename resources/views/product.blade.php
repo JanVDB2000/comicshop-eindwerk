@@ -159,14 +159,12 @@
                 <li class="nav-item" role="presentation">
                     <button class="btn active" id="description-tab" data-bs-toggle="pill" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true"><i class="fas fa-file-alt"></i> Description </button>
                 </li>
-                @auth()
                 <li class="nav-item" role="presentation">
                     <button class="btn " id="comment-tab" data-bs-toggle="pill" data-bs-target="#comment" type="button" role="tab" aria-controls="comment" aria-selected="false"><i class="fas fa-th-list"></i> Reviews </button>
                 </li>
-                @endauth
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                @auth()
+
                 <div class="tab-pane fade colorbuy boxshc p-3 border-radius mb-5" id="comment" role="tabpanel" aria-labelledby="comment-tab">
                     <div class="container">
                         <div class="row">
@@ -183,6 +181,7 @@
                                 @endforeach
 
                             </div>
+                            @auth()
                             <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
                                 <form method="POST" action="{{action('App\Http\Controllers\AdminReviewsController@store')}}">
                                     @csrf
@@ -201,10 +200,10 @@
                                     </div>
                                 </form>
                             </div>
+                            @endauth
                         </div>
                     </div>
                 </div>
-                @endauth
                 <div class="tab-pane fade show active colorbuy boxshc p-3 border-radius mb-5" id="description" role="tabpanel" aria-labelledby="description-tab">
                     <div class="container">
                         <h3>{{$product->name}}</h3>

@@ -17,7 +17,7 @@ class AdminReviewsController extends Controller
      */
     public function index()
     {
-        $reviews = Review::paginate(10);
+        $reviews = Review::with(['product','user'])->paginate(10);
         return view('admin.reviews.index', compact('reviews'));
     }
 
@@ -97,7 +97,9 @@ class AdminReviewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+
+    {   $review = Review::findOrFail($id);
+        $review->delete();
+        return redirect()->back();
     }
 }

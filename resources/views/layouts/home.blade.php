@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="bg-white">
 <header>
     <div class="container-fluid bg-image">
         <div class="col-10 offset-1">
@@ -136,7 +136,7 @@
         </div>
     </div>
 </header>
-<main>
+<main class="bg-white">
     @yield('content')
 </main>
 <footer class="bg-footer pb-5">

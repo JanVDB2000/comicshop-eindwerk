@@ -38,6 +38,9 @@
                                             </a>
 
                                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="{{route('home.orderList')}}">
+                                                    Order list
+                                                </a>
                                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -118,7 +121,7 @@
                             </header>
                             <!-- Preview image figure-->
                             <figure class="mb-4">
-                                <img class="img-fluid" src="{{$post->photo ? asset($post->photo->file) : 'https://via.placeholder.com/800x600'}}" alt="{{$post->title}}">
+                                <img class="img-fluid" src="{{$post->photo ? asset('img/blog/'.$post->photo->file) : 'https://via.placeholder.com/800x600'}}" alt="{{$post->title}}">
                             </figure>
                         </article>
                     </div>

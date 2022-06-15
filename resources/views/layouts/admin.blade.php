@@ -116,20 +116,6 @@
         </li>
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePostComments"
-               aria-expanded="true" aria-controls="collapsePostComments">
-                <i class="fas fa-list"></i>
-                <span>Post Comments</span>
-            </a>
-            <div id="collapsePostComments" class="collapse" aria-labelledby="collapsePostComments" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Post Comment Pages:</h6>
-                    <a class="collapse-item" href="{{route('comments.index')}}">All Post Comments</a>
-                </div>
-            </div>
-        </li>
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts"
                aria-expanded="true" aria-controls="collapseProducts">
                 <i class="fas fa-book"></i>
@@ -150,6 +136,20 @@
         </li>
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePostComments"
+               aria-expanded="true" aria-controls="collapsePostComments">
+                <i class="fas fa-list"></i>
+                <span>Product Reviews</span>
+            </a>
+            <div id="collapsePostComments" class="collapse" aria-labelledby="collapsePostComments" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Product Reviews Pages:</h6>
+                    <a class="collapse-item" href="{{route('reviews.index')}}">All Reviews</a>
+                </div>
+            </div>
+        </li>
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBrands"
                aria-expanded="true" aria-controls="collapseBrands">
                 <i class="fas fa-asterisk"></i>
@@ -163,13 +163,6 @@
                 </div>
             </div>
         </li>
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Admin
-        </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
 
@@ -505,7 +498,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2021</span>
+                    <span>Copyright &copy; Your Website 2022</span>
                 </div>
             </div>
         </footer>

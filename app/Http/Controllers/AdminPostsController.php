@@ -59,7 +59,7 @@ class AdminPostsController extends Controller
         if($file = $request->file('photo_id')){
             /**wegschrijven naar de img folder**/
             $name = time(). $file->getClientOriginalName();
-            $file->move('img', $name);
+            $file->move('img/post', $name);
             /**wegschrijven naar de photo table**/
             $photo = Photo::create(['file'=>$name]);
             $post['photo_id'] = $photo->id;
@@ -119,13 +119,6 @@ class AdminPostsController extends Controller
         /**photo opslaan**/
         if($file = $request->file('photo_id')){
             /** opvragen oude image **/
-            $oldImage = Photo::find($post->photo_id);
-            if($oldImage){
-                //fysisch verwijderen uit img directory
-                unlink(public_path() . $oldImage->file);
-                //oude image uit de tabel photos verwijderen
-                $oldImage->delete();
-            }
             //vanaf hier wordt de nieuwe photo opgeslagen.
             /**wegschrijven naar de img folder**/
             $name = time(). $file->getClientOriginalName();

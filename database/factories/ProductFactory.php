@@ -23,7 +23,7 @@ class ProductFactory extends Factory
         $photos = Photo::pluck('id')->toArray();
         $brands = Brand::pluck('id')->toArray();
         $pc = ProductCategory::pluck('id')->toArray();
-        $title = $this->faker->sentence($nbwords= 3, $variableNbWords=true);
+        $title = $this->faker->sentence($nbwords= 2, $variableNbWords=true);
         $slug = Str::slug($title,'-');
         return [
             'photo_id'=>$this->faker->randomElement($photos),

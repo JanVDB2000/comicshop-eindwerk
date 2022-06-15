@@ -38,7 +38,7 @@ class FrontEndController extends Controller
     }
 
     public function bloghome(){
-        $posts = Post::latest()->paginate(7);
+        $posts = Post::latest()->with(['photo'])->paginate(7);
         $categories= Category::all();
         return view('blog-home', compact('posts','categories'));
     }
@@ -68,7 +68,7 @@ class FrontEndController extends Controller
 
     public function orderListUser(){
         $user_id = Auth::id();
-        $orders = Order::where('user_id', $user_id)->paginate(3);
+        $orders = Order::with(['orderdetails','orderdetails.product'])->where('user_id', $user_id)->paginate(3);
 
         return view('order-list-user',compact('orders'));
     }
@@ -154,14 +154,7 @@ class FrontEndController extends Controller
 
     /** Address **/
 
-
-
-
-
    public function factuurAddress(Request $request){
-
-
-
        $user_id = Auth::user()->id;
 
 
@@ -227,8 +220,6 @@ class FrontEndController extends Controller
 
         return redirect($payment->getCheckoutUrl(), 303);
     }
-
-
 
 
     public function paymentSuccess(){
@@ -297,8 +288,6 @@ class FrontEndController extends Controller
                 $orderdetail->price = $product['product_price'];
                 $orderdetail->save();
             }
-
-            $session = 'order-success';
 
 
             $this->sendOrderConfirmationMail($order);

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="col-12">
-        <h1>Create Post</h1>
+        <h1>Edit Post</h1>
         @include('includes.form_error')
         <div class="row">
             <div class="col-6">
@@ -24,9 +24,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                <textarea class="form-control" name="body" id="body" cols="100%" rows="10" placeholder="Description...">
-                    {{$post->body}}
-                </textarea>
+                <textarea class="form-control" name="body" id="body" cols="100%" rows="10" placeholder="Description...">{{$post->body}}</textarea>
                     </div>
                     <div class="form-group">
                         <input type="file" name="photo_id" id="ChooseFile">

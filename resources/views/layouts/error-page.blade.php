@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     @livewireStyles
 </head>
-<body>
+<body class="bg-white">
 <header>
     <div class="container-fluid bg-image-hero">
         <div class="col-8 offset-2">
@@ -121,7 +121,7 @@
         </div>
     </div>
 </header>
-<main>
+<main class="bg-white">
 @yield('content')
 </main>
 <footer class="bg-footer pb-5">

@@ -50,8 +50,6 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['auth','admin']], function(){
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('homebackend');
     Route::resource('users',App\Http\Controllers\AdminUsersController::class);
     Route::get('users/restore/{user}', 'App\Http\Controllers\AdminUsersController@restore')->name('users.restore');
-    Route::resource('comments',\App\Http\Controllers\AdminPostCommentsController::class);
-    Route::resource('replies', \App\Http\Controllers\AdminPostCommentRepliesController::class);
     Route::resource('photos',App\Http\Controllers\AdminPhotosController::class);
     Route::resource('posts', App\Http\Controllers\AdminPostsController::class);
     Route::resource('postcategories', App\Http\Controllers\AdminPostsCategoriesController::class);

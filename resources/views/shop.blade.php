@@ -118,7 +118,7 @@
                                             <i class="fas fa-book"></i>
                                         </div>
                                         <div class="row">
-                                            <a href="{{route('home.shopd',$product)}}" class="col-lg-4"><img class="card-img-top img-fluid border-radius" src="{{$product->photo ? asset('img/'.$product->photo->file) : 'https://via.placeholder.com/450x700'}}" alt="{{$product->name}}" width="450" height="450"></a>
+                                            <a href="{{route('home.shopd',$product)}}" class="col-lg-4"><img class="card-img-top img-fluid border-radius" src="{{$product->photo ? asset('img/products'.$product->photo->file) : 'https://via.placeholder.com/450x700'}}" alt="{{$product->name}}" width="450" height="450"></a>
                                             <div class="card-body border-radius col-lg-4 text-lg-start">
                                                 <h3 class="card-title">{{$product->name}}</h3>
                                                 <p class="card-text">Published: {{$product->published_date}}</p>
