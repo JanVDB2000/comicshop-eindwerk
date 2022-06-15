@@ -5,7 +5,7 @@
 @section('content')
     <div class="col-12">
         <h1>Products</h1>
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center p-3">
             <a href="{{route('products.index')}}"
                class="badge badge-primary m-1 p-3">All</a>
             @foreach($brands as $brand)
@@ -45,8 +45,7 @@
                         <td>{{$product->price}}</td>
                         <td>{{$product->created_at->diffForHumans()}}</td>
                         <td>{{$product->updated_at->diffForHumans()}}</td>
-                        <td class="d-flex">
-                            <a class="btn btn-info mr-1" href="#">Show</a>
+                        <td>
                             <a class="btn btn-warning mr-1" href="{{route('products.edit', $product->id)}}">Edit</a>
                         </td>
                     </tr>

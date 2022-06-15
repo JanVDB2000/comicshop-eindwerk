@@ -90,11 +90,6 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
-    public function hasOrder(){
-        if($this->orders->isnotempty() && Session::get('paymentsuccess') == 'order-success'){
-            return true;
-        }
-    }
 
     public function mypdfid($id){
         foreach($this->orders as $order){

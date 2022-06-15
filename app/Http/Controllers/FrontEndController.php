@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckoutRequest;
-use App\Http\Requests\FactuurAddressRequest;
 use App\Models\Address;
 use App\Models\Brand;
 use App\Models\Cart;
@@ -13,7 +12,6 @@ use App\Models\OrderDetail;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Review;
-use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -107,12 +105,12 @@ class FrontEndController extends Controller
 
     public function addToCart($id){
         if (Auth::user()){
-        $product = Product::with(['productcategory','photo','brand'])->where('id', $id)->first();
-        $oldCart = Session::has('cart') ? Session::get('cart'): null;
-        $cart = new Cart($oldCart);
-        $cart->add($product, $id);
-        Session::put('cart',$cart);
-        return redirect()->back();
+            $product = Product::with(['productcategory','photo','brand'])->where('id', $id)->first();
+            $oldCart = Session::has('cart') ? Session::get('cart'): null;
+            $cart = new Cart($oldCart);
+            $cart->add($product, $id);
+            Session::put('cart',$cart);
+            return redirect()->back();
         }else{
             return redirect()->route('login');
         }
@@ -154,30 +152,30 @@ class FrontEndController extends Controller
 
     /** Address **/
 
-   public function factuurAddress(Request $request){
-       $user_id = Auth::user()->id;
+    public function factuurAddress(Request $request){
+        $user_id = Auth::user()->id;
 
 
-       if ($request->addressType == 'SB'){
+        if ($request->addressType == 'SB'){
 
-           $shipping = ['address_1' =>$request->street_one_s , 'country' =>$request->country_s , 'state' =>$request->state_s, 'zip' =>$request->zip_s, 'user_id' => $user_id,];
+            $shipping = ['address_1' =>$request->street_one_s , 'country' =>$request->country_s , 'state' =>$request->state_s, 'zip' =>$request->zip_s, 'user_id' => $user_id,];
 
-           $billing = null;
+            $billing = null;
 
-       }else{
+        }else{
 
-           $shipping = ['address_1' =>$request->street_one_s , 'country' =>$request->country_s , 'state' =>$request->state_s, 'zip' =>$request->zip_s, 'user_id' => $user_id,];
+            $shipping = ['address_1' =>$request->street_one_s , 'country' =>$request->country_s , 'state' =>$request->state_s, 'zip' =>$request->zip_s, 'user_id' => $user_id,];
 
-           $billing = ['address_1' =>$request->street_one_b , 'country' =>$request->country_b , 'state' =>$request->state_b, 'zip' =>$request->zip_b, 'user_id' =>$user_id,];
-       }
+            $billing = ['address_1' =>$request->street_one_b , 'country' =>$request->country_b , 'state' =>$request->state_b, 'zip' =>$request->zip_b, 'user_id' =>$user_id,];
+        }
 
-       $addresses = ['shipping' => $shipping, 'billing' => $billing];
+        $addresses = ['shipping' => $shipping, 'billing' => $billing];
 
-       Session::put('addresses', $addresses);
+        Session::put('addresses', $addresses);
 
 
-       return redirect()->route('mollie.payment');
-   }
+        return redirect()->route('mollie.payment');
+    }
     /** Address **/
 
     /** Checkout **/
