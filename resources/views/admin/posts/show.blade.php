@@ -5,7 +5,7 @@
         <div class="card mb-3" style="width:540px;">
             <div class="row no-gutters">
                 <div class="col-md-4 align-items-stretch">
-                    <img class="img-fluid" src="{{$post->photo ? asset($post->photo->file): 'http://via.placeholder.com/400x400'}}"
+                    <img class="img-fluid" src="{{$post->photo ? asset('img/blog'. $post->photo->file): 'http://via.placeholder.com/400x400'}}"
                          alt="{{$post->title}}">
                     <div>
                         @if($post->categories)

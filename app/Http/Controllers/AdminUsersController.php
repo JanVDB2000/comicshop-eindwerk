@@ -163,4 +163,6 @@ class AdminUsersController extends Controller
         User::onlyTrashed()->where('id', $id)->restore();
         return redirect('/admin/users');
     }
+
+
 }

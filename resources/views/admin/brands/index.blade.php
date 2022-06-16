@@ -1,12 +1,6 @@
 @extends('layouts.admin')
 @section('content')
     <div class="col-12">
-        @if(session('brands_message'))
-            <div class="alert alert-info alert-dismissible">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Info!</strong>  {{session('brands_message')}}
-            </div>
-        @endif
         <h1>Brand</h1>
         <table class="table table-striped shadow-lg p-3 mb-5 bg-body rounded table-hover">
             <thead>

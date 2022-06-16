@@ -23,18 +23,18 @@ class FactuurAddressRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-                "street_one_s" => 'required',
-                "country_s" => 'required',
-                "state_s" => 'required',
-                "zip_s" => 'required',
-                "addressType" => 'required',
-                "user_id" => 'required|integer',
-                "street_one_b" =>'required_if:addressType,==,SBD',
-                "country_b" =>'required_if:addressType,==,SBD',
-                "state_b" =>'required_if:addressType,==,SBD',
-                "zip_b" =>'required_if:addressType,==,SBD',
 
+        return [
+            "street_one_s" => 'required',
+            "country_s" => 'required',
+            "state_s" => 'required',
+            "zip_s" => 'required',
+            "addressType" => 'required',
+            "street_one_b" =>'required_if:addressType,==,SBD',
+            "country_b" =>'required_if:addressType,==,SBD',
+            "state_b" =>'required_if:addressType,==,SBD',
+            "zip_b" =>'required_if:addressType,==,SBD',
         ];
+
     }
 }

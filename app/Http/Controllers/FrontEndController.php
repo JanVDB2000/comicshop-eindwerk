@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckoutRequest;
+use App\Http\Requests\FactuurAddressRequest;
+use App\Http\Requests\FactuurBillingAddressRequest;
 use App\Models\Address;
 use App\Models\Brand;
 use App\Models\Cart;
@@ -152,11 +154,13 @@ class FrontEndController extends Controller
 
     /** Address **/
 
-    public function factuurAddress(Request $request){
+    public function factuurAddress(FactuurAddressRequest  $request,){
         $user_id = Auth::user()->id;
 
 
         if ($request->addressType == 'SB'){
+
+
 
             $shipping = ['address_1' =>$request->street_one_s , 'country' =>$request->country_s , 'state' =>$request->state_s, 'zip' =>$request->zip_s, 'user_id' => $user_id,];
 

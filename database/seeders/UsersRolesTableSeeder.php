@@ -22,10 +22,10 @@ class  UsersRolesTableSeeder extends Seeder
             if($user['id']==1){
                 $user->roles()->sync([1]);
             }elseif($user['id']==2){
-                $user->roles()->sync([3]);
+                $user->roles()->sync([2]);
             }else{
                 $user->roles()->attach(
-                    $roles->random(rand(1,3))->pluck('id')->toArray()
+                    $roles->random(rand(1,2))->pluck('id')->toArray()
                 );
             }
         });

@@ -14,7 +14,8 @@ class AdminOrdersController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::with(['orderdetails','orderdetails.product'])->paginate(3);
+        return view('admin.orders.index',compact('orders'));
     }
 
     /**

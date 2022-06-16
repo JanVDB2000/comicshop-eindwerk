@@ -120,7 +120,7 @@
             </div>
         </section>
         <section class="container-fluid mb-5 mt-3">
-            <div class="col-8 offset-2">
+            <div class="col-4 offset-4">
                 @foreach($posts as $post)
                     @if($loop->index == 0)
                         <div class="card boxshc border-radius" style="width: 100%;">

@@ -113,7 +113,34 @@ class AdminProductsController extends Controller
     public function update(Request $request, $id)
     {
 
-
+//
+        //opzoeken van de post die aangepast dient te worden
+        $product = Product::findOrFail($id);
+        //opgezochte post wordt vervangen met de nieuwe ingevulde waarden
+        //uit het formulier
+        $product->name = $request->name;
+        $product->slug = Str::slug($product->name,'-');
+        $product->published_date = $request->published_date;
+        $product->writer = $request->writer;
+        $product->penciled = $request->penciled;
+        $product->body = $request->body;
+        $product->item_number = $request->item_number;
+        $product->price = $request->price;
+        $product->product_category_id = $request->category_id;
+        $product->brand_id = $request->brand_id;
+        /**photo opslaan**/
+        if($file = $request->file('photo_id')){
+            /** opvragen oude image **/
+            //vanaf hier wordt de nieuwe photo opgeslagen.
+            /**wegschrijven naar de img folder**/
+            $name = time(). $file->getClientOriginalName();
+            $file->move('img/products', $name);
+            /**wegschrijven naar de photo table**/
+            $photo = Photo::create(['file'=>$name]);
+            $product->photo_id = $photo->id;
+        }
+        $product->update();
+        return redirect()->route('products.index');
     }
 
     /**
@@ -124,7 +151,9 @@ class AdminProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return redirect()->back();
     }
 
     public function productsPerBrand($id){

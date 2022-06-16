@@ -45,8 +45,14 @@
                         <td>{{$product->price}}</td>
                         <td>{{$product->created_at->diffForHumans()}}</td>
                         <td>{{$product->updated_at->diffForHumans()}}</td>
-                        <td>
+                        <td class="d-flex">
                             <a class="btn btn-warning mr-1" href="{{route('products.edit', $product->id)}}">Edit</a>
+
+                            <form action="{{route('products.destroy', $product->id)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

@@ -31,7 +31,7 @@
                 <tr>
                     <td>{{$post->id}}</td>
                     <td>
-                        <img width="auto" height="62" src="{{$post->photo ? asset($post->photo->file) : 'http://via.placeholder.com/62'}}" alt="{{$post->title}}">
+                        <img width="auto" height="62" src="{{$post->photo ? asset('img/blog' . $post->photo->file) : 'http://via.placeholder.com/62'}}" alt="{{$post->title}}">
                     </td>
                     <td>{{$post->user ? $post->user->name : 'Username not known'}}</td>
                     <td>

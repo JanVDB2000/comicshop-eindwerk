@@ -35,9 +35,8 @@ class AdminPostsController extends Controller
     public function create()
     {
         //
-        $keywords = Keyword::all();
         $categories = Category::all();
-        return view('admin.posts.create', compact('categories', 'keywords'));
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**

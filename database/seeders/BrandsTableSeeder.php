@@ -16,12 +16,10 @@ class BrandsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
-        DB::table('brands')->insert(['name'=>'Star Wars','description'=>'description adidas','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
-        DB::table('brands')->insert(['name'=>'Marvel','description'=>'description nike','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
-        DB::table('brands')->insert(['name'=>'DC','description'=>'description lacoste','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
-        DB::table('brands')->insert(['name'=>'IDW PUBLISHING','description'=>'description lacoste','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
-
+        DB::table('brands')->insert(['name'=>'Star Wars','description'=>'description Star Wars','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
+        DB::table('brands')->insert(['name'=>'Marvel','description'=>'description Marvel','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
+        DB::table('brands')->insert(['name'=>'DC','description'=>'description DC','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
+        DB::table('brands')->insert(['name'=>'IDW PUBLISHING','description'=>'description IDW PUBLISHING','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
     }
 }
 

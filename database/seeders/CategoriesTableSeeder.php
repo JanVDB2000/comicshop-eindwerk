@@ -19,10 +19,10 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('categories')->insert(['name'=>'Star Wars Comics','slug'=>'star-wars-comics','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
-        DB::table('categories')->insert(['name'=>'Marvel Comics','slug'=>'marvel-comics','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
-        DB::table('categories')->insert(['name'=>'DC Comics','slug'=>'dc-comics','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
-        DB::table('categories')->insert(['name'=>'IDW PUBLISHING Comics','slug'=>'inw-publishing-comics','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
+        DB::table('categories')->insert(['name'=>'Star Wars Comics','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
+        DB::table('categories')->insert(['name'=>'Marvel Comics','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
+        DB::table('categories')->insert(['name'=>'DC Comics','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
+        DB::table('categories')->insert(['name'=>'IDW PUBLISHING Comics','created_at'=>Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]);
 
         $categories = Category::all();
         Post::all()->each(function ($post) use ($categories){

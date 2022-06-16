@@ -65,4 +65,5 @@
                 @endforeach
         </tbody>
     </table>
+    {{$users->render()}}
     @endsection
