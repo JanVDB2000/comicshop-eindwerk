@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Order {{$order->id}}</title>
+    <title>Order {{$order->id}} Comic-Time</title>
 
     <style type="text/css">
         * {
@@ -25,6 +25,17 @@
 
 <table width="100%">
     <tr>
+        <td align="left">
+            @foreach($order->addresses as $address)
+            <h3>@foreach($address->TypeAdres as $type){{$type->name}} @endforeach</h3>
+            <pre>
+                Adres : {{$address->address_1}}
+                Country : {{$address->country}}
+                State : {{$address->state}}
+                Zip : {{$address->zip}}
+            </pre>
+            @endforeach
+        </td>
         <td align="right">
             <h3>Comic-Time</h3>
             <pre>

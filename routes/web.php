@@ -36,6 +36,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/orderlistpdf/{id}', 'App\Http\Controllers\FrontEndController@orderListUserPDF')->name('home.orderListPDF');
     Route::get('/addtocart/{id}','App\Http\Controllers\FrontEndController@addToCart')->name('addToCart');
     Route::get('/checkout','App\Http\Controllers\FrontEndController@cart')->name('checkout');
+    Route::post('/review','App\Http\Controllers\FrontEndController@ReviewStore')->name('home.review');
     Route::post('/checkout','App\Http\Controllers\FrontEndController@updateQuantity')->name('quantity');
     Route::get('/removeitem/{id}', 'App\Http\Controllers\FrontEndController@removeItem')->name('removeItem');
     Route::post('/factuur-address','App\Http\Controllers\FrontEndController@factuurAddress')->name('FactuurAddress');

@@ -29,9 +29,9 @@ class DatabaseSeeder extends Seeder
             ProductsTableSeeder::class,
             ReviewsTableSeeder::class,
             TypeAdresSeeder::class,
-            AddressSeeder::class,
+            /*AddressSeeder::class,
             AddressesTypeAdresTableSeeder::class,
-            UsersAddressesTableSeeder::class,
+            UsersAddressesTableSeeder::class,*/
         ]);
     }
 }

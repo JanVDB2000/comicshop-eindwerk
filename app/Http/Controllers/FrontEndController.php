@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CheckoutRequest;
 use App\Http\Requests\FactuurAddressRequest;
 use App\Http\Requests\FactuurBillingAddressRequest;
+use App\Http\Requests\ReviewsRequest;
 use App\Models\Address;
 use App\Models\Brand;
 use App\Models\Cart;
@@ -56,6 +57,25 @@ class FrontEndController extends Controller
         return view('shop', compact('products','brands','filter'));
     }
 
+    public function ReviewStore(ReviewsRequest $request)
+    {
+        if ($request->stars <= 5 && $request->stars >= 1 ){
+            if($user = Auth::user()){
+                $data =[
+                    'product_id'=>$request->id,
+                    'stars'=>$request->stars,
+                    'description'=>$request->description,
+                    'user_id' => $user->id,
+                ];
+                Review::create($data);
+            }
+            return back();
+        }else{
+            return back();
+        }
+
+    }
+
     public function shopd(Product $product){
         $product->load('reviews.user');
         return view('product', compact('product'));
@@ -68,7 +88,7 @@ class FrontEndController extends Controller
 
     public function orderListUser(){
         $user_id = Auth::id();
-        $orders = Order::with(['orderdetails','orderdetails.product'])->where('user_id', $user_id)->paginate(3);
+        $orders = Order::with(['orderdetails','orderdetails.product','user','addresses','addresses.TypeAdres'])->where('user_id', $user_id)->orderBy('id', 'desc')->paginate(3);
 
         return view('order-list-user',compact('orders'));
     }
@@ -196,7 +216,7 @@ class FrontEndController extends Controller
         $pdf = PDF::loadView('myPDF', compact('order','subtotal'));
         PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
 
-        Mail::to($order->email)->send(new \App\Mail\OrderDetail($order));
+        Mail::to($order->user->email)->send(new \App\Mail\OrderDetail($order));
     }
 
     public function orderReady(){
@@ -231,6 +251,21 @@ class FrontEndController extends Controller
         }else{
             $user_id = Auth::user()->id;
 
+            $order = new Order();
+            $order->user_id = $user_id;
+            $order->TC_code = Session::get('payment');
+            $order->save();
+
+
+            foreach (Session::get('cart')->products as $product){
+                $orderdetail = new OrderDetail();
+                $orderdetail->order_id = $order->id;
+                $orderdetail->product_id = $product['product_id'];
+                $orderdetail->amount = $product['quantity'];
+                $orderdetail->price = $product['product_price'];
+                $orderdetail->save();
+            }
+
             if (Session::get('addresses')['billing'] == null){
                 $a = Session::get('addresses')['shipping'];
                 $address = new Address();
@@ -239,6 +274,7 @@ class FrontEndController extends Controller
                 $address->state = $a['state'];
                 $address->zip = $a['zip'];
                 $address->user_id = $a['user_id'];
+                $address->order_id = $order->id;
 
 
                 $address->save();
@@ -255,6 +291,7 @@ class FrontEndController extends Controller
                 $address_S->state = $as['state'];
                 $address_S->zip = $as['zip'];
                 $address_S->user_id =$as['user_id'];
+                $address_S->order_id = $order->id;
 
                 $address_S->save();
 
@@ -269,6 +306,7 @@ class FrontEndController extends Controller
                 $address_B->state = $ab['state'];
                 $address_B->zip = $ab['zip'];
                 $address_B->user_id = $ab['user_id'];
+                $address_B->order_id = $order->id;
 
                 $address_B->save();
 
@@ -276,34 +314,21 @@ class FrontEndController extends Controller
                 $address_B->users()->sync([$user_id],false);
             }
 
-            $order = new Order();
-            $order->user_id = $user_id;
-            $order->TC_code = Session::get('payment');
-            $order->save();
-
-
-            foreach (Session::get('cart')->products as $product){
-                $orderdetail = new OrderDetail();
-                $orderdetail->order_id = $order->id;
-                $orderdetail->product_id = $product['product_id'];
-                $orderdetail->amount = $product['quantity'];
-                $orderdetail->price = $product['product_price'];
-                $orderdetail->save();
-            }
-
 
             $this->sendOrderConfirmationMail($order);
-
 
 
             Session::forget('payment');
             Session::forget('cart');
             Session::forget('addresses');
 
-            return redirect()->route('home');
+            return $this->Success();
         }
     }
 
+    public function Success(){
+        return view('payment-success');
+    }
 
 
     /** Checkout **/

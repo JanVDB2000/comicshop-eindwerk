@@ -18,6 +18,10 @@ class Order extends Model
         return $this->hasMany(OrderDetail::class);
     }
 
+    public function addresses(){
+        return $this->hasMany(Address::class);
+    }
+
     public function ordersubtotaal(){
         $subtotaal = 0;
 

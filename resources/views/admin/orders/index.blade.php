@@ -14,8 +14,9 @@
                 <div class="col-11 card text-black shadow-lg m-3" style="border-radius: 16px;">
                     <div x-data="{ open: false }"  class="card-body p-5">
                         <div class="d-flex justify-content-between">
-                            <p class="mb-0">Order ID : <span class="font-weight-bold">#{{$order->id}}</span></p>
-                            <p class="mb-0">Order Transaction Code : <span class="font-weight-bold">#{{$order->TC_code}}</span></p>
+                            <p class="mb-0">Order ID : <span class="font-weight-bold"># {{$order->id}}</span></p>
+                            <p class="mb-0">Order Transaction Code : <span class="font-weight-bold">{{$order->TC_code}}</span></p>
+                            <p class="mb-0">Order User : <span class="font-weight-bold">{{$order->user->name}}</span></p>
                             <p class="mb-0">Order Date <span class="font-weight-bold"> {{$order->created_at->diffForHumans()}}</span></p>
                             <button class="btn btn-secondary btn-lg  fw-bold text-nowrap" @click="open = true">Order Details</button>
                             <form action="{{route('orders.destroy', $order->id)}}" method="POST">
@@ -30,6 +31,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
+                                    <th>User</th>
                                     <th>Quantity</th>
                                     <th>Unit Price</th>
                                     <th>Total</th>
@@ -66,6 +68,23 @@
                                 </tr>
                                 </tfoot>
                             </table>
+                                <div class="d-flex">
+                                    @foreach($order->addresses as $address)
+                                    <ul class="list-group m-3 col-4 border-success">
+                                        <li class="list-group-item border-success"> Type Address :
+                                            @foreach($address->TypeAdres as $type)
+                                                {{$type->name}}
+                                            @endforeach
+                                        </li>
+                                        <li class="list-group-item border-success">
+                                            <p>Address : {{$address->address_1}}</p>
+                                            <p>Country : {{$address->country}}</p>
+                                            <p>State : {{$address->state}}</p>
+                                            <p>Zip : {{$address->zip}}</p>
+                                        </li>
+                                    </ul>
+                                    @endforeach
+                                </div>
                         </div>
                     </div>
                 </div>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('state');
             $table->string('zip');
             $table->unsignedBigInteger('user_id')->index();
+            $table->unsignedBigInteger('order_id')->index();
             $table->timestamps();
         });
         Schema::create('user_address', function (Blueprint $table){

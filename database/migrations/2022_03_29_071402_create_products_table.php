@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('published_date');
             $table->string('writer');
             $table->string('penciled');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->string('item_number');
             $table->text('body');
             $table->decimal('price',10,2);

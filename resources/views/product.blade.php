@@ -183,7 +183,7 @@
                             </div>
                             @auth()
                             <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
-                                <form method="POST" action="{{action('App\Http\Controllers\AdminReviewsController@store')}}">
+                                <form method="POST" action="{{action('App\Http\Controllers\FrontEndController@ReviewStore')}}">
                                     @csrf
                                     @method('POST')
                                     <h4>Leave a Review</h4>

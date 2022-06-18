@@ -15,7 +15,9 @@
                     <div x-data="{ open: false }"  class="card-body p-5">
                         <div class="d-flex justify-content-between align-items-center mb-5">
                             <div>
-                                <h5 class="mb-0">Order ID : <span class="font-weight-bold">#{{$order->id}}</span></h5>
+                                <h5 class="mb-0">Order ID : <span class="font-weight-bold"># {{$order->id}}</span></h5>
+                                <br>
+                                <h5 class="mb-0">Order TC : <span class="font-weight-bold">{{$order->TC_code}}</span></h5>
                             </div>
                             <div class="text-end">
                                 <p class="mb-0">Order Date <span class="font-weight-bold"> {{$order->created_at->diffForHumans()}}</span></p>
@@ -108,6 +110,23 @@
                                 </tr>
                                 </tfoot>
                             </table>
+                        </div>
+                        <div class="d-flex">
+                            @foreach($order->addresses as $address)
+                                <ul class="list-group m-3 col-4 border-dark">
+                                    <li class="list-group-item border-dark"> Type Address :
+                                        @foreach($address->TypeAdres as $type)
+                                            {{$type->name}}
+                                        @endforeach
+                                    </li>
+                                    <li class="list-group-item border-dark">
+                                        <p>Address : {{$address->address_1}}</p>
+                                        <p>Country : {{$address->country}}</p>
+                                        <p>State : {{$address->state}}</p>
+                                        <p>Zip : {{$address->zip}}</p>
+                                    </li>
+                                </ul>
+                            @endforeach
                         </div>
                     </div>
                 </div>
