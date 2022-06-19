@@ -209,6 +209,7 @@ class FrontEndController extends Controller
         foreach($order->orderdetails as $detail){
             $subtotaal += $detail->amount * $detail->price;
         }
+
         $subtotal = $subtotaal;
 
         number_format($subtotal,2,'.','');
@@ -242,7 +243,6 @@ class FrontEndController extends Controller
 
         return redirect($payment->getCheckoutUrl(), 303);
     }
-
 
     public function paymentSuccess(){
 
@@ -329,7 +329,6 @@ class FrontEndController extends Controller
     public function Success(){
         return view('payment-success');
     }
-
 
     /** Checkout **/
 }

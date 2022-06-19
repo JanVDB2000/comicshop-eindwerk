@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 //aan de geautentiseerde routes
 Auth::routes(['verify'=>true]);
 
+/*** Frontend ROUTES ***/
 Route::get('/', 'App\Http\Controllers\FrontEndController@index')->name('home');
 Route::get('/shop', 'App\Http\Controllers\FrontEndController@shop')->name('home.shop');
 Route::get('/shop/brand/{id}','App\Http\Controllers\FrontEndController@productsPerBrand')->name('productsPerBrandF');
@@ -26,11 +27,10 @@ Route::get('/shop/{product:slug}', 'App\Http\Controllers\FrontEndController@shop
 Route::get('/about','App\Http\Controllers\FrontEndController@about' )->name('home.about');
 Route::get('/blog','App\Http\Controllers\FrontEndController@bloghome' )->name('home.bloghome');
 Route::get('/blog/{post:slug}', 'App\Http\Controllers\FrontEndController@post')->name('home.post');
-Route::get('/blogcategory/{category:slug}','App\Http\Controllers\AdminPostsCategoriesController@category')->name('category.category');
 Route::get('/contact', 'App\Http\Controllers\FrontEndController@contact')->name('home.contact');
-Route::get('/generate-pdf', 'App\Http\Controllers\FrontEndController@generatePDF');
 
 
+/*** Auth Frontend ROUTES ***/
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/orderlist', 'App\Http\Controllers\FrontEndController@orderListUser')->name('home.orderList');
     Route::get('/orderlistpdf/{id}', 'App\Http\Controllers\FrontEndController@orderListUserPDF')->name('home.orderListPDF');
@@ -48,7 +48,7 @@ Route::group(['middleware'=>'auth'], function(){
 
 /*** BACKEND ROUTES ***/
 Route::group(['prefix' => 'admin', 'middleware'=> ['auth','admin']], function(){
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('homebackend');
+    Route::get('/', [App\Http\Controllers\AdminHomeController::class, 'index'])->name('homebackend');
     Route::resource('users',App\Http\Controllers\AdminUsersController::class);
     Route::get('users/restore/{user}', 'App\Http\Controllers\AdminUsersController@restore')->name('users.restore');
     Route::resource('orders',App\Http\Controllers\AdminOrdersController::class);

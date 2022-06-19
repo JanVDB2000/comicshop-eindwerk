@@ -5,6 +5,7 @@
             <div class="col-12">
                 <h1>Posts</h1>
                 <form>
+                    @csrf
                     <input type="text" name="search" class="form-control bg-gray-300 border-0 small"
                     placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                 </form>

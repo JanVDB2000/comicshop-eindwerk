@@ -14,7 +14,7 @@ class AdminOrdersController extends Controller
      */
     public function index()
     {
-        $orders = Order::with(['orderdetails','orderdetails.product','user','addresses','addresses.TypeAdres'])->orderBy('id', 'desc')->paginate(4);
+        $orders = Order::with(['orderdetails','orderdetails.product','user','addresses','addresses.TypeAdres'])->orderBy('id', 'desc')->filter(request(['search']))->paginate(4);
         return view('admin.orders.index',compact('orders'));
     }
 

@@ -34,4 +34,16 @@ class Order extends Model
 
         return $subtotaal;
     }
+
+    /**searching/filtering**/
+    public function scopeFilter($query, array $filters){
+        //if(isset($filters['search']) == false
+        if($filters['search'] ?? false){ //php 8
+            $query
+                ->whereHas('user',function ($q){
+                    $q->where('name','like', '%' . request('search') . '%');
+                })
+                ->orWhere('TC_code','like', '%' . request('search') . '%');
+        }
+    }
 }

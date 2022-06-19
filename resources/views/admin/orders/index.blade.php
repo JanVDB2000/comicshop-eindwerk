@@ -6,12 +6,21 @@
     Orders
 @endsection
 @section('content')
-    <h1>Orders</h1>
+    <div class="row">
+        <div class="col-12">
+            <h1>Orders</h1>
+            <form>
+                @csrf
+                <input type="text" name="search" class="form-control bg-gray-300 border-0 small"
+                       placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+            </form>
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="row">
             @if($orders->isnotempty())
             @foreach($orders as $order)
-                <div class="col-11 card text-black shadow-lg m-3" style="border-radius: 16px;">
+                <div class="col-12 card text-black shadow-lg m-3" style="border-radius: 16px;">
                     <div x-data="{ open: false }"  class="card-body p-5">
                         <div class="d-flex justify-content-between">
                             <p class="mb-0">Order ID : <span class="font-weight-bold"># {{$order->id}}</span></p>
@@ -19,11 +28,6 @@
                             <p class="mb-0">Order User : <span class="font-weight-bold">{{$order->user->name}}</span></p>
                             <p class="mb-0">Order Date <span class="font-weight-bold"> {{$order->created_at->diffForHumans()}}</span></p>
                             <button class="btn btn-secondary btn-lg  fw-bold text-nowrap" @click="open = true">Order Details</button>
-                            <form action="{{route('orders.destroy', $order->id)}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-lg btn-danger">Delete</button>
-                            </form>
                         </div>
                         <div x-show="open" @click.away="open = false" class="m-3">
                             <table width="100%">
@@ -90,7 +94,7 @@
                 </div>
             @endforeach
             <div class="d-flex justify-content-center">
-                {{$orders->render()}}
+                {{$orders->withQueryString()->links()}}
             </div>
             @else
                 <h1 class="text-center"> No Orders</h1>
