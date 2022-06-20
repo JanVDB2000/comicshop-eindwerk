@@ -68,7 +68,7 @@
             </tbody>
         </table>
         <div class="text-center">
-            {{$posts->links()}}
+            {{$posts->withQueryString()->links()}}
         </div>
     </div>
     @stop
