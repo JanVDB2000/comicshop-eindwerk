@@ -42,8 +42,8 @@
                             @endforeach
                         @endif
                     </td>
-                    <td>{{$post->title}}</td>
-                    <td>{{$post->body}}</td>
+                    <td>{{Str::words($post->title,2,'...')}}</td>
+                    <td>{{Str::limit($post->body,10,'...')}}</td>
                     <td>{{$post->created_at->diffForHumans()}}</td>
                     <td>{{$post->updated_at->diffForHumans()}}</td>
                     <td class="d-flex">

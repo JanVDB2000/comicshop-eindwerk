@@ -65,17 +65,12 @@ class AdminUsersController extends Controller
 
         /**photo opslaan**/
         if($file = $request->file('photo_id')){
-            $name = time() . $file->getClientOriginalName();
-            Image::make($file)
-                ->resize(300,300, function($constraint){
-                    $constraint->aspectRatio();
-                })
-                ->crop(200,200)
-                ->insert(public_path('/img/watermark.png'), 'bottom-right',20,20)
-                ->save(public_path('/img/users/' . $name));
-            //$file->move('img', $name);
+            /**wegschrijven naar de img folder**/
+            $name = time(). $file->getClientOriginalName();
+            $file->move('img/users/', $name);
+            /**wegschrijven naar de photo table**/
             $photo = Photo::create(['file'=>$name]);
-            $user->photo_id = $photo->id;
+            $product['photo_id'] = $photo->id;
         }
 
         $user->save();

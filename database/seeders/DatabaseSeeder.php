@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
             UsersRolesTableSeeder::class,
             PostsTableSeeder::class,
             CategoriesTableSeeder::class,
-            RepliesTableSeeder::class,
             BrandsTableSeeder::class,
             ProductCategorySeeder::class,
             ProductsTableSeeder::class,

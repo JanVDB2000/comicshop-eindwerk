@@ -58,7 +58,7 @@ class AdminPostsController extends Controller
         if($file = $request->file('photo_id')){
             /**wegschrijven naar de img folder**/
             $name = time(). $file->getClientOriginalName();
-            $file->move('img/post', $name);
+            $file->move('img/blog', $name);
             /**wegschrijven naar de photo table**/
             $photo = Photo::create(['file'=>$name]);
             $post['photo_id'] = $photo->id;

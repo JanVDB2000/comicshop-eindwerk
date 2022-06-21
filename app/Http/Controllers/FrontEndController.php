@@ -204,19 +204,6 @@ class FrontEndController extends Controller
 
     /** Checkout **/
     public function sendOrderConfirmationMail($order){
-        $subtotaal = 0;
-
-        foreach($order->orderdetails as $detail){
-            $subtotaal += $detail->amount * $detail->price;
-        }
-
-        $subtotal = $subtotaal;
-
-        number_format($subtotal,2,'.','');
-
-        $pdf = PDF::loadView('myPDF', compact('order','subtotal'));
-        PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
-
         Mail::to($order->user->email)->send(new \App\Mail\OrderDetail($order));
     }
 

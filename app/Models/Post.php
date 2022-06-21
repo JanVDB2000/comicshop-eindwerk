@@ -20,9 +20,6 @@ class Post extends Model
     public function photo(){
         return $this->belongsTo(Photo::class);
     }
-    public function postcomments(){
-        return $this->hasMany(Comment::class);
-    }
 
     /**searching/filtering**/
     public function scopeFilter($query, array $filters){
