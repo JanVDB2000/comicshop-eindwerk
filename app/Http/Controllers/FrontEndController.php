@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckoutRequest;
 use App\Http\Requests\FactuurAddressRequest;
-use App\Http\Requests\FactuurBillingAddressRequest;
 use App\Http\Requests\ReviewsRequest;
 use App\Models\Address;
 use App\Models\Brand;

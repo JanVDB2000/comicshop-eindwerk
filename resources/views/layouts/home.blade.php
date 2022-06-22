@@ -121,7 +121,7 @@
                         <section class="text-center text-lg-start pb-5">
                             <h1 class="pt-2 pb-2 colorbluegreen">Next Generation Comics Store</h1>
                             <h2 class="display-2 fw-bold colorwhite"><span class="d-xl-block">Welcome</span> On Comic-Time!</h2>
-                            <p class="colorwhite text-wrap">Online Store is where everyone goes to shop for comics.</p>
+                            <p class="colorwhite text-wrap">Online Store where everyone goes to shop for comics.</p>
                             <a class="btn btn- btn-lg btn-header fw-bold colorwhite mt-5" href="{{route('home.shop')}}" role="button"> Go To The Shop</a>
                         </section>
                     </div>
