@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('title')
+    Brand
+@endsection
 @section('content')
     <div class="col-12">
         <h1>Brand</h1>

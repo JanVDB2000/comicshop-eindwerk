@@ -17,7 +17,7 @@ class AdminReviewsController extends Controller
      */
     public function index()
     {
-        $reviews = Review::with(['product','user'])->paginate(10);
+        $reviews = Review::with(['product','user'])->orderBy('id', 'desc')->paginate(10);
         return view('admin.reviews.index', compact('reviews'));
     }
 

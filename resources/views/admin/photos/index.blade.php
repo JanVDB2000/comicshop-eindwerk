@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('title')
+    Photos
+@endsection
 @section('content')
     <h1>Photos</h1>
     <table class="table table-striped">

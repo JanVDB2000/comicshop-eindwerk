@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('title')
+    Post Categories
+@endsection
 @section('content')
     <div class="col-12">
         @if(session('category_message'))

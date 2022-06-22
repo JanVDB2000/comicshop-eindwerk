@@ -141,7 +141,6 @@ class AdminPostsController extends Controller
      */
     public function destroy($id)
     {
-        //
         $post = Post::findOrFail($id);
         //fysisch verwijderen img tabel
         if($post->photo){

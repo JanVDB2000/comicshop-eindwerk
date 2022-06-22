@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('title')
+
+@endsection
 @section('content')
     <div class="col-12">
         <div class="row">

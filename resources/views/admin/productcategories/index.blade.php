@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('title')
+    Product Categories
+@endsection
 @section('content')
     <div class="col-12">
         <h1>Product Categories</h1>
