@@ -34,9 +34,7 @@ php artisan migrate
 ```
 php artisan migrate:fresh --seed
 ```
-```
-php artisan storage:link
-```
+
 For localhost
 ```
 php artisan serve 
