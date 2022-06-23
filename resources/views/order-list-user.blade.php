@@ -68,7 +68,7 @@
 
                             <a href="{{route('home.orderListPDF',$order->id)}}" class="btn btn-header btn-lg  fw-bold m-3 text-nowrap">Factuur PDF</a>
                         </div>
-                        <div x-show="open" @click.away="open = false">
+                        <div x-show="open" @click.away="open = false" x-transition.duration.500ms>
                             <table width="100%">
                                 <thead style="background-color: lightgray;">
                                 <tr>
