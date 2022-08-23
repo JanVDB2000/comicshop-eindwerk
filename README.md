@@ -1,9 +1,3 @@
-## Trello link 
-
-```
-https://trello.com/invite/b/TtcIpx5D/8298989677dfc67daeee7333b5fcc798/eindwerk
-```
-
 
 ## Installation
 
